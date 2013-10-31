@@ -86,10 +86,10 @@ Descripción del proyecto
 
 \begin_layout Standard
 En este proyecto se pretenderá formalizar y regular la información entregada
- por los profesores a través de un administrador el cual ingresará cada
- información a la plataforma de la escuela de informática, dicha información
- corresponde a los profesores, respecto de sus clases, ya sea, horario,
- secciones y salas en la cual se impartirán cada asignatura.
+ por las personas que gestionan los horarios a través de un administrador
+ el cual ingresará cada información a la plataforma que se realizara, dicha
+ información corresponde a los profesores, respecto de sus clases, ya sea,
+ horario, secciones y salas en la cual se impartirán cada asignatura.
 \begin_inset ERT
 status open
 
@@ -157,11 +157,31 @@ Esta información se dará a conocer a través de la página de la escuela de
  Esto permitirá al alumnado una buena experiencia, debido a que a principio
  de semestre, se juntan muchos alumnos en el único panel donde se puede
  ver las asignaturas, con el profesor, sección y periodo, por lo cual se
- pierde bastante tiempo,
+ pierde bastante tiempo.
 \end_layout
 
 \begin_layout Chapter
 Actores Involucrados
+\end_layout
+
+\begin_layout Itemize
+Departamento Plan Comun 
+\end_layout
+
+\begin_layout Itemize
+Departamentos de Escuelas
+\end_layout
+
+\begin_layout Itemize
+Secretaria de Estudios
+\end_layout
+
+\begin_layout Itemize
+Profesores 
+\end_layout
+
+\begin_layout Itemize
+Alumnos 
 \end_layout
 
 \end_body
