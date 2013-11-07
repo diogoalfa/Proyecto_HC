@@ -1,0 +1,649 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Historia de Usuario
+\end_layout
+
+\begin_layout Author
+Francisco Ramirez
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Sebastian Esparza
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+Diego Navia
+\end_layout
+
+\begin_layout Date
+07 de Noviembre del 2013
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introducción 
+\end_layout
+
+\begin_layout Standard
+Una historia de usuario es una representación de un requisito de software
+ escrito por el Product Owner (quien representará la voz del cliente) en
+ lenguaje natural con el usuario.
+ Estas son utilizadas en las metodologías de desarrollo ágiles para la especific
+ación de requisitos, estos requerimientos se prioridad y se colocan en el
+ Product Backlog, que corresponde a la lista de requerimientos del producto
+ y usado para la planificación.
+\end_layout
+
+\begin_layout Standard
+Las historias de usuario son una forma rápida de administrar los requerimientos
+ de los usuarios sin tener que elaborar gran cantidad de documentos formales
+ y sin requerir de mucho tiempo para administrarlo, a la vez permiten responder
+ rápidamente a los requisitos cambiantes.
+ Estas historias deben cumplir con el principio INVEST, que corresponde
+ a: 1.
+ Independiente (Independiente): la historia de usuario no debe depender
+ de otra historia ya que esto facilitará la priorización de las mismas.
+ Si por alguna razón la historia de usuario es dependiente se recomienda
+ fusionarlas.
+ 
+\end_layout
+
+\begin_layout Standard
+2.
+ Negotiable (Negociable): la historia de usuario puede cambiar y evolucionar
+ a lo largo de la ejecución del proyecto, incluso podría dejar de tenerse
+ en cuenta si así el cliente lo desea.
+ 
+\end_layout
+
+\begin_layout Standard
+3.
+ Valuable (Valiosa): la historia de usuario debe brindar valor al proyecto
+ y al usuario final.
+ 
+\end_layout
+
+\begin_layout Standard
+4.
+ Estimable (Estimable): la historia de usuario debe tener el tiempo que
+ ésta tomará en implementarse.
+ 
+\end_layout
+
+\begin_layout Standard
+5.
+ Small (Pequeña): la historia de usuario debe ser pequeña y concisa.
+ Si una historia de usuario es muy grande ésta se debe dividir en otras
+ historias más pequeñas, esto con el fin de poder tener un mejor control
+ sobre ellas.
+ 
+\end_layout
+
+\begin_layout Standard
+6.
+ Testeable: la historia de usuario debe poderse probar en un proceso de
+ calidad.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las historias de usuario tiene limitaciones y desventajas como: 
+\end_layout
+
+\begin_layout Standard
+• Sin pruebas de validación pueden quedar abiertas a distintas interpretaciones
+ haciendo difícil utilizarlas como base para un contrato
+\end_layout
+
+\begin_layout Standard
+• Se requiere un contacto permanente con el cliente durante el proyecto
+ lo cual puede ser difícil o costoso 
+\end_layout
+
+\begin_layout Standard
+• Pueden resultar difíciles las pruebas de usuario, que sólo se ven en las
+ metodologías SCRUM para escalar a proyectos grandes
+\end_layout
+
+\begin_layout Standard
+• Requiere desarrolladores muy competentes
+\end_layout
+
+\begin_layout Standard
+Por otra parte posee múltiples beneficios como: 
+\end_layout
+
+\begin_layout Standard
+• Al ser muy corta, ésta representa requisitos del modelo de negocio que
+ pueden implementarse rápidamente (días o semanas)
+\end_layout
+
+\begin_layout Standard
+• Necesitan poco mantenimiento 
+\end_layout
+
+\begin_layout Standard
+• Mantienen una relación cercana con el cliente 
+\end_layout
+
+\begin_layout Standard
+• Permite dividir los proyectos en pequeñas entregas 
+\end_layout
+
+\begin_layout Standard
+• Permite estimar fácilmente el esfuerzo de desarrollo
+\end_layout
+
+\begin_layout Standard
+• Es ideal para proyectos con requisitos volátiles o no muy claros
+\end_layout
+
+\begin_layout Standard
+En este documento daremos a conocer todas las historias de usuario de los
+ involucrados con el proyecto de “Horario de clases” entre ellos: alumnos,
+ académicos, jefe de carrera, director de escuela, entre otros.
+ Permitiendo llegar de la mejor manera, ordenado y conciso a la planificación
+ del proyecto.
+ 
+\end_layout
+
+\begin_layout Chapter
+Historias de usuario
+\end_layout
+
+\begin_layout Section
+Historia de usuario de Estudiantes
+\end_layout
+
+\begin_layout Itemize
+Rol: Estudiantes 
+\end_layout
+
+\begin_layout Itemize
+Prioridad: Alta 
+\end_layout
+
+\begin_layout Standard
+Yo como estudiante, quiero una plataforma web que me permita visualizar
+ la sala donde tengo clases, el horario donde puedo encontrar a un profesor,
+ ya sea en clases, oficina o no llegará a la universidad.
+ También consultar las clases que se están impartiendo ahora y las clases
+ que se impartirán hoy día.
+ Además esta herramienta debe estar actualizándose mínimo semana a semana.
+ De manera que facilitará el conocimiento de las salas sin perder tiempo
+ en ir a secretaria de estudio, donde se juntan varios alumnos y poder ver
+ la sala demora mucho tiempo.
+ De esta forma llegaríamos directo a la sala, más tranquilamente en el caso
+ que estemos llegando a la hora de inicio 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Escenario 1 : Satisfacción
+\end_layout
+
+\begin_layout Standard
+La herramienta permite a los estudiantes satisfacer todos los tipos de consultas
+, que dieron a conocer en la encuesta.
+ Llegando inmediatamente a las salas y haciendo que pocos alumno vayan a
+ consultar en el panel, ya sea porque no tienen internet, se olvidó de revisar
+ la sala o se le olvido, lo grande que estas consultas físicamente sean
+ más rápida por la poca demanda.
+\end_layout
+
+\begin_layout Subsection
+Escenario 2 : Problemas con ausencia y suspensión 
+\end_layout
+
+\begin_layout Standard
+La herramienta funciona bien pero al momento en que un profesor se ausenta
+ o suspende la clases, no alcanza a avisar al administrador para que avise
+ o los alumnos se confiaron de ver que las salas no se modificaban que no
+ vieron el aviso de suspensión.
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Secretaria de Departamento
+\end_layout
+
+\begin_layout Itemize
+Rol: Secretario de Departamento
+\end_layout
+
+\begin_layout Itemize
+Prioridad: Alta
+\end_layout
+
+\begin_layout Standard
+Yo como secretaria del departamento de informática quisiera consultar el
+ horario de clases de los académicos de planta y part-time, de manera de
+ poder comunicarles en que sala impartir sus clases incluyendo la consulta
+ en los alumnos.
+\end_layout
+
+\begin_layout Subsection
+Escenario 1 :
+\end_layout
+
+\begin_layout Standard
+Si llega un profesor consultando la sala que le toca a las 08:15 la secretaria
+ es capaz de consultar en la herramienta web para decirle su sala correspondient
+e.
+ 
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Secretaria de Escuela
+\end_layout
+
+\begin_layout Itemize
+Rol: Secretaria de Escuela
+\end_layout
+
+\begin_layout Itemize
+Prioridad : Media
+\end_layout
+
+\begin_layout Standard
+Yo como Secretaria de Escuela ,necesito un sistema donde la información
+ de salas ,asignaturas y profesores sea inmediata y como la disponibilidad
+ de salas .
+\end_layout
+
+\begin_layout Subsection
+Escenario 1:
+\end_layout
+
+\begin_layout Standard
+Al consultar por algún profesor que aparezca una ventana donde esta haciendo
+ clases o va hacer próximamente.
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Secretaria de Estudios
+\end_layout
+
+\begin_layout Itemize
+Rol: Secretario de Estudios
+\end_layout
+
+\begin_layout Itemize
+Prioridad: Alta
+\end_layout
+
+\begin_layout Standard
+Yo como Secretario de Estudios ,necesito un portal donde la actualización
+ de las información de las salas sean inmediata, donde los alumnos no necesiten
+ ver el panel ,para ver la disponibilidad de las aulas ,y además cuando
+ vengan a reservar salas por periodo, semana ,mes o semestre eso tenga una
+ visibilidad para todos y que puedan planear mejor sus pedidas de salas
+ y no allá problemas al respecto.
+\end_layout
+
+\begin_layout Subsection
+Escenario 1:
+\end_layout
+
+\begin_layout Standard
+Cuando se dispone a asignar sala ,pero esta se encuentre ocupada que emerja
+ una ventana donde salga un mensaje que diga que esta ocupada y muestre
+ la próxima disponible.
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Laboratorio Informática
+\end_layout
+
+\begin_layout Itemize
+Rol: Jefe Laboratorio Informática
+\end_layout
+
+\begin_layout Itemize
+Prioridad : Media.
+\end_layout
+
+\begin_layout Standard
+Yo como Jefe Laboratorio informática , necesito un sistema que contemple
+ las disponibilidad de laboratorios como salas de uso solo para los profesores
+ de informática.
+ Se visualice las horas en que algún profesor esta haciendo clase ,durante
+ la semana .
+\end_layout
+
+\begin_layout Subsection
+Escenario 1:
+\end_layout
+
+\begin_layout Standard
+Al momento de consultar por un profesor que salga un mensaje donde se visualice
+ a que hora tiene pedida una sala en el laboratorio.
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Director de escuela informática
+\end_layout
+
+\begin_layout Itemize
+Rol: Director de Escuela
+\end_layout
+
+\begin_layout Itemize
+Prioridad :
+\end_layout
+
+\begin_layout Standard
+Yo como director de escuela de informática quisiera consultar las salas
+ disponibles, además de un recuento de salas disponibles a la semana y saber
+ cuantas salas se ocupan realmente en informática de manera de llevar un
+ conteo de salas por mes.
+\end_layout
+
+\begin_layout Subsection
+Escenario 1:
+\end_layout
+
+\begin_layout Standard
+Cuando una carrera pida información de cuantas salas esta ocupando informática
+ el sitio web es capaz de devolver esta información.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Jefe de Carrera
+\end_layout
+
+\begin_layout Itemize
+Rol: Jefe de Carrera
+\end_layout
+
+\begin_layout Itemize
+Prioridad :
+\end_layout
+
+\begin_layout Standard
+Yo como jefe de carrera quisiera un sistema de administración de horario
+ de manera que me proporcione una búsqueda especializada sobre estadísticas
+ mas que consultar un horario en especifico.
+\end_layout
+
+\begin_layout Subsection
+Escenario 1:
+\end_layout
+
+\begin_layout Standard
+Al consultar en la herramienta web se debe desplegar cuantas horas a la
+ semana, al mes se tiene como carrera para saber una estimación de horas
+ como carrera.
+\end_layout
+
+\begin_layout Section
+Historia de Usuario de Académicos
+\end_layout
+
+\begin_layout Itemize
+Rol: Académico
+\end_layout
+
+\begin_layout Itemize
+Prioridad: 
+\end_layout
+
+\begin_layout Standard
+Yo como académico quisiera consultar las salas que se imparte cada día para
+ no interrumpir la labor de la secretaría, de manera de facilitar y agilizar
+ el tiempo que se pierde en ir cada día a secretaria de estudios, además
+ de pedir alguna sala cuando se estime conveniente.
+\end_layout
+
+\begin_layout Subsection
+Escenario 1:
+\end_layout
+
+\begin_layout Standard
+Si un académico va atrasado a su clase y no tiene tiempo para ir a secretaria
+ de estudio, este mismo puede consultar online donde imparte su clase.
+\end_layout
+
+\begin_layout Chapter
+Conclusión 
+\end_layout
+
+\begin_layout Chapter
+Bibliografía 
+\end_layout
+
+\begin_layout Standard
+-
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://lecciones-aprendidas.blogspot.com/2013/06/la-magia-de-las-historias-de-usua
+rio.html
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+-
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://adrianmoya.com/2012/08/que-hay-en-una-historia/
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+-
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.intergrupo.com/blog/mobile/como-escribir-historias-de-usuario.aspx
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+-
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://es.wikipedia.org/wiki/Historias_de_usuario 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
