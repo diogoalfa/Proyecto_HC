@@ -106,7 +106,7 @@ newline
 \end_layout
 
 \begin_layout Standard
-Además de brindar al alumnado y academicos con información de las salas
+Además de brindar al alumnado y académicos con información de las salas
  por periodos e incluso, información de todo el día, con las características
  antes mencionadas.
 \begin_inset ERT
@@ -131,8 +131,8 @@ Esta nueva herramienta el alumno podrá visualizar de forma más rápida sin
  Incluso para los alumno que llegan atrasados para el inicio de clases o
  desea buscar urgentemente a un profesor y no lo encuentra, ahora podrá
  hacerlo por medio de un buscador que tiene esta herramienta, encontrándolo
- de manera fácil ,teniendo busquedas pensadas en una mejor usabilidad de
- los alumnos y academicos.De manera de facilitar el uso y brindado un manejo
+ de manera fácil ,teniendo búsquedas pensadas en una mejor usabilidad de
+ los alumnos y académicos.De manera de facilitar el uso y brindado un manejo
  sencillo.
  
 \begin_inset ERT
@@ -165,7 +165,7 @@ Actores Involucrados
 \end_layout
 
 \begin_layout Itemize
-Departamento Plan Comun 
+Departamento Plan Común 
 \end_layout
 
 \begin_layout Itemize
@@ -182,6 +182,67 @@ Profesores
 
 \begin_layout Itemize
 Alumnos 
+\end_layout
+
+\begin_layout Section
+Actores Involucrados
+\end_layout
+
+\begin_layout Itemize
+Profesores
+\end_layout
+
+\begin_layout Itemize
+Alumnos
+\end_layout
+
+\begin_layout Section
+Actores Comprometidos
+\end_layout
+
+\begin_layout Itemize
+Departamento Plan Común 
+\end_layout
+
+\begin_layout Itemize
+Departamentos de Escuelas
+\end_layout
+
+\begin_layout Itemize
+Secretaria de Estudios
+\end_layout
+
+\begin_layout Chapter
+Conclusión
+\end_layout
+
+\begin_layout Standard
+Se presenta la problemática de tener que administrar un área en la cual
+ se necesita una automatización prontamente,ya que requiere de una coordinación
+ de distintas partes involucradas ,pasando por un protocolo que no se puede
+ saltar .
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Creando un sistema que proporciones un medio de comunicación y difusión
+ satisfacemos una carencia en la cual alumnos y profesores sugieren una
+ mejora.El actual sistema no es muy accesible y cómodo para los usuarios
+ involucrados teniendo aglomeración de gente en el panel de secretaria de
+ estudios de la universidad las primeras semanas de clase ,ademas de andar
+ con poco tiempo se urge un herramienta instantánea de visualización.
 \end_layout
 
 \end_body
