@@ -532,7 +532,15 @@ Si un académico va atrasado a su clase y no tiene tiempo para ir a secretaria
 \end_layout
 
 \begin_layout Chapter
-Conclusión 
+Conclusión
+\end_layout
+
+\begin_layout Standard
+Nos hemos dado cuenta que las historias de usuarios son el resultado de
+ las interacciones del usuario con el software respectivo ademas de proporcionar
+nos informacion de tallada de cada usuario.
+ Es por esto que las historias de usuario son muy importantes para poder
+ comenzar con un buen proyecto de Ingenieria en Software
 \end_layout
 
 \begin_layout Chapter

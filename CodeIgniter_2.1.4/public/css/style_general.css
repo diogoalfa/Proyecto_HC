@@ -1,0 +1,20 @@
+/* 
+    Document   : style_general
+    Created on : 08-nov-2013, 14:12:00
+    Author     : Diogo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+#divBarra1{
+    
+    width: 70%;
+    height: 50%;
+    margin:0 auto;
+}
+
+#divCasillaHorario{width:30px;}
+

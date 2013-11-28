@@ -537,10 +537,16 @@ Conclusión
 
 \begin_layout Standard
 Nos hemos dado cuenta que las historias de usuarios son el resultado de
- las interacciones del usuario con el software respectivo ademas de proporcionar
-nos informacion de tallada de cada usuario.
- Es por esto que las historias de usuario son muy importantes para poder
- comenzar con un buen proyecto de Ingenieria en Software
+ las perspectiva del usuario con respecto a una temática que estará bajo
+ estudio de este proyecto, además de proporcionarnos información detallada
+ de cada una de las tareas que se van automatizar.
+ Es por esto que son muy relevantes para poder comenzar con una planificación
+ proyecto de Ingeniería en Software, formando de está una sólida base para
+ la proyección del proyecto, el posterior desarrollo, y una posible implementaci
+ón de acuerdo a un estudio de viabilidad que se tratará a partir de la planifica
+ción y la historias de usuario, comprometiéndonos con los diferentes involucrado
+s a satisfacer de la mejor manera sus necesidades con esta nueva herramienta
+ a desarrollar.
 \end_layout
 
 \begin_layout Chapter

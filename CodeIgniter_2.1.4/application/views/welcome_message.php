@@ -3,8 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
+       <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<!--<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
 	::moz-selection{ background-color: #E13300; color: white; }
@@ -64,6 +65,7 @@
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
 	</style>
+ -->
 </head>
 <body>
 
