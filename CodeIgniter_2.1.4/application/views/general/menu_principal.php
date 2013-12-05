@@ -4,21 +4,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Bootstrap -->
-        <link href="<?echo base_url()?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
-        <link href="<?echo base_url()?>public/css/style_general.css" rel="stylesheet" type="text/css" media="screen">
-    </style>
-    </head>
+?>    
     <body>
-        
-        <script src="http://code.jquery.com/jquery.js"></script>
+ <script src="http://code.jquery.com/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
     
         
@@ -33,17 +21,10 @@
                 <li><a href="#">Pedidos</a></li>
                 <li><a href="#">Profesores</a></li>
                 <li><a href="#">Ayuda</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Intranet</a></li>
+                <li><a href="<?= site_url('contacto');?>">Contacto</a></li>
               </ul>
             </div>
           </div>
         </div><!-- /.navbar -->
       </div>
-        
-        <div>asdasd</div>
-
-        
-      
-        
-    </body>
-</html>

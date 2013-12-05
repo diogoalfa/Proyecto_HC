@@ -5,7 +5,9 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
+body{
+    text-align: center;
+}
 root { 
     display: block;
 }
@@ -17,4 +19,25 @@ root {
 }
 
 #divCasillaHorario{width:30px;}
+
+#divContactoEnviar{
+    width: 50%;
+    border: 1px;
+    border-radius: 5px;
+    background-color: gray;
+    
+}
+#divContactoEnviar{
+    margin:10px;
+}
+
+/*
+-------------Contacto--------------------
+*/
+
+#textoAreaMensaje{
+    width: 600px;
+    height: 200px;
+    
+}
 
