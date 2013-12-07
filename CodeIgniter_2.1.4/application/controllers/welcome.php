@@ -22,7 +22,9 @@ class Welcome extends CI_Controller {
             
 		$this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
                 $this->load->view('pagina_principal');
+                $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 	}
 }
