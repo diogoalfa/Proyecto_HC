@@ -20,8 +20,8 @@
               <ul class="nav">
                 <li class="active"><a href="<?= site_url('welcome');?>">Inicio</a></li>
                 <li><a href="#">Consulta</a></li>
-                <li><a href="#">Pedidos</a></li>
-                <li><a href="#">Profesores</a></li>
+                <li><a href="<?= site_url('pedidos');?>">Pedidos</a></li>
+                    <li><a href="#">Profesores</a></li>
                 <li><a href="#">Ayuda</a></li>
                 <li><a href="<?= site_url('intranet');?>">Intranet</a></li>
                 <li><a href="<?= site_url('contacto');?>">Contacto</a></li>
