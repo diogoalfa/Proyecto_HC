@@ -39,7 +39,7 @@ class Login extends CI_Controller {
             
             if($respuestaLogin==1){
                  //  $_SESSION['usuarioAdmin']=$this->input->post('usuario');
-                   redirect('intranet',301); 
+                   redirect('intranet/acceso',301); 
                    
             }
             else{

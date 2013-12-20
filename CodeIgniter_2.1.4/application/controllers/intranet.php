@@ -15,15 +15,13 @@ class Intranet extends CI_Controller {
         $this->load->view('general/headers');
         $this->load->view('general/menu_principal');
         $this->load->view('general/abre_bodypagina');
-        /*
-        if(!isset($_SESSION['usuarioAdmin'])){
               $this->load->view('intranet/loginAdmin');
-        }
-        else{
-           $this->load->view('intranet/central_secretaria');     
-        }
-         * 
-         */
+       
+       
+           //$this->load->view('intranet/central_secretaria');     
+        
+         
+         
         
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
@@ -41,6 +39,14 @@ class Intranet extends CI_Controller {
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
         
+    }
+    public function acceso(){
+        $this->load->view('general/headers');           
+        $this->load->view('general/menu_principal');
+        $this->load->view('general/abre_bodypagina');
+            $this->load->view('intranet/menu');
+        $this->load->view('general/cierre_bodypagina');
+        $this->load->view('general/cierre_footer');
     }
     
     
