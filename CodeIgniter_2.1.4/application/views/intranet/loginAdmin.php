@@ -27,11 +27,11 @@
             'class'=>'btn'); 
         
         echo form_open('login/validarAdmin');
-        echo form_label('Usuario', 'usuario');
-        echo form_input($atributos_Usuario);echo '<br>';
-        echo form_label('Clave', 'password');
-        echo form_input($atributos_Clave);echo '<br>';      
-        echo form_submit($atributos_Btn, 'Enviar');
+          echo form_label('Usuario', 'usuario');
+          echo form_input($atributos_Usuario);echo '<br>';
+          echo form_label('Clave', 'password');
+          echo form_input($atributos_Clave);echo '<br>';      
+          echo form_submit($atributos_Btn, 'Enviar');
         echo form_close();
     
     /*
