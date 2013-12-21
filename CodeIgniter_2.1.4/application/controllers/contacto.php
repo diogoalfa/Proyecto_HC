@@ -23,4 +23,6 @@ class Contacto extends CI_Controller {
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 	}
+
 }
+?> 

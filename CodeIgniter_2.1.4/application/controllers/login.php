@@ -39,8 +39,9 @@ class Login extends CI_Controller {
             
             if($respuestaLogin==1){
                  //  $_SESSION['usuarioAdmin']=$this->input->post('usuario');
-                   redirect('intranet/acceso',301); 
-                   
+                  // redirect('intranet/acceso',301); 
+                  //  base_url("intranet/acceso");
+              header ("Location: http://localhost/Proyecto_HC/CodeIgniter_2.1.4/index.php/intranet/acceso");
             }
             else{
                redirect('intranet/errorLoguear',301);
