@@ -24,7 +24,7 @@
             ,'type'=>'password'
         );
         $atributos_Btn=  array(
-            'class'=>'btn'); 
+            'class'=>'btn btn-primary'); 
         
         echo form_open('login/validarAdmin');
           echo form_label('Usuario', 'usuario');

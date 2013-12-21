@@ -1,16 +1,19 @@
-	<div class="span9">
+<div class="span9">
 		<h3>Imparte Clase:</h3>
-		<?php 
-$opciones = array(//q se exraigan de la bd
-                  'small'  => 'Ricaro Corbinaud',
-                  'med'    => 'Santiago Zapata',
-                  'large'   => 'Mauro Castillo',
-                );
+	<?php 
+	        $atributos_Btn=  array(
+            'class'=>'btn btn-primary'); 
+            $atributos= array( "" => "Seleccione un Academico", );
+			foreach ($academico as $profesor){ 
+				$atributos[$profesor->pk] = $profesor->nombres." ".$profesor->apellidos; 
+			}
 
-//$remeras_a_la_venta = array('small');
-$clase='class="form-control"';
-echo form_dropdown('academicos', $opciones, 'small',$clase);
+				
+				
+		echo form_open('consulta/res_academico/');	
+		echo form_dropdown('docente', $atributos);echo "<br />";
+		 	echo form_submit($atributos_Btn, 'Enviar');
+        echo form_close();
+	?>
 
-
-		 ?>
-	</div>
+</div>
