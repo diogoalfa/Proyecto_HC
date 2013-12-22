@@ -47,8 +47,9 @@
                 ->from('docentes')
                 ->from('cursos')
                 ->where($where)
-                 ->get();      */       
-       $query = $this->db->query("SELECT d.nombres,d.apellidos,c.asignatura_fk FROM docentes d, cursos c WHERE c.docente_fk=d.pk AND ".$pk."=d.pk ");
+                 ->get();      */   
+       $query=$this->db->query("SELECT s.sala, d.nombres,d.apellidos, a.nombre,c.seccion FROM reservas r, cursos c, docentes d, salas s, asignaturas a WHERE r.curso_fk=c.pk AND c.docente_fk=d.pk AND r.sala_fk=s.pk AND c.asignatura_fk=a.pk AND ".$pk."=d.pk");              
+      // $query = $this->db->query("SELECT d.nombres,d.apellidos,a.nombre,c.seccion FROM docentes d, cursos c, asignaturas a WHERE c.docente_fk=d.pk AND ".$pk."=d.pk AND c.asignatura_fk=a.pk");
         return $query->result();
     }
   
