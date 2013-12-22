@@ -33,7 +33,7 @@
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 		}
-		public function res_academico(){
+		public function res_academico(){ 
 			$pk=$this->input->post('docente');
 
 			$result=$this->docente_model->academicoSemana($pk);

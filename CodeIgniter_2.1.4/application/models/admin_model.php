@@ -24,9 +24,11 @@
      }
      public function setAcademico($datos){
         $this->db->insert('docentes',$datos);
-                    echo '<script>alert("Exito al guardar datos de Academico"); </script>';
-            redirect('/', 'refresh');
             return true;
+     }
+     public function asocia($datos){
+        $this->db->insert('cursos',$datos);
+         return true;
      }
     
    }

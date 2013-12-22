@@ -24,7 +24,7 @@
             ,'type'=>'password'
         );
         $atributos_Btn=  array(
-            'class'=>'btn btn-primary'); 
+            'class'=>'btn btn-primary btn-large'); 
         
         echo form_open('login/validarAdmin');
           echo form_label('Usuario', 'usuario');
@@ -66,8 +66,8 @@
      */
     
     ?>
-        <button class="btn btn-warning" onclick="location.href='<?= site_url('login/desconectar') ?>'" >desconectar</button>
-
+<!--         <button class="btn btn-warning" onclick="location.href='<?= site_url('login/desconectar') ?>'" >desconectar</button>
+ -->
     
    
 </div>

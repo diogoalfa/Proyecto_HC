@@ -23,7 +23,7 @@
             'name'=>'clave'
             ,'type'=>'password'
         );
-        $atributos_Btn=  array('class'=>'btn'); 
+        $atributos_Btn=  array('class'=>'btn btn-primary btn-large'); 
         
         echo form_open('login/index');
         echo form_label('Usuario', 'usuario');

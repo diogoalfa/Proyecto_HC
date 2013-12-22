@@ -71,7 +71,6 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/cierre_footer');
     }
     public function setAcademico(){
-        echo    'hol';
             $datos=array(
                 'nombres'=>$this->input->post('nombre'),
                 'apellidos'=>$this->input->post('apellido'),
@@ -79,7 +78,25 @@ class Intranet extends CI_Controller {
                 //'departamento'=>$this->input->post('dpto')
                 'departamento_fk'=>1//el uno quiere decir de informatica :S
                 );
-            $this->admin_model->setAcademico($datos);
+            $estado=$this->admin_model->setAcademico($datos);
+            if($estado==TRUE){
+                    echo '<script>alert("Exito al guardar datos de Academico"); </script>';
+                     redirect('intranet/academico', 'refresh');
+            }
+    }
+    public function asocia(){
+        $datos=array(
+            'semestre'=>$this->input->post('semestre'),
+            'anio'=>$this->input->post('anio'),
+            'asignatura_fk'=>$this->input->post('ramo'),
+            'docente_fk'=>$this->input->post('docente'),
+            'seccion'=>$this->input->post('seccion')
+            );
+        $estado=$this->admin_model->asocia($datos);
+                    if($estado==TRUE){
+                    echo '<script>alert("Asociacion realizada con Exito"); </script>';
+                     redirect('intranet/academico', 'refresh');
+            }
     }
     
     
