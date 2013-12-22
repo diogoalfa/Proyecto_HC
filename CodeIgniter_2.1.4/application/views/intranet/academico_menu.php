@@ -36,21 +36,19 @@
 		        echo form_close();
 			 ?>
 	</div>
-	<div class="span4"><h4>Asocia</h4>
+	<div class="span6"><h4>Asocia</h4>
+
 			<?php 
 			echo form_open('intranet/asocia');	
-				echo form_label('Academico', 'academico');
-			        $atributos_Btn=  array(
-		            'class'=>'btn btn-primary'); 
-		            $atributos= array( "" => "Seleccione un Academico", );
-					foreach ($academico as $profesor){ 
-						$atributos[$profesor->pk] = $profesor->nombres." ".$profesor->apellidos; 
+						        $atributos_Btn=  array('class'=>'btn btn-primary'); 
+						        $atributos= array( "" => "Seleccione un Academico", );
+						foreach ($academico as $profesor){ 
+						$atributos[$profesor->pk] = $profesor->nombres." ".$profesor->apellidos; }
+
+						$listaAsignatura= array( "" => "Seleccione una Asignatura", );
+					foreach ($asignatura as $ramo){ 
+						$listaAsignatura[$ramo->pk] = $ramo->nombre." ".$ramo->codigo; 
 					}
-						
-				
-				echo form_dropdown('docente', $atributos);echo "<br />";
-				 	//echo form_submit($atributos_Btn, 'Enviar');
-				//--------
 					$sec1 = array(
 					    'name'        => 'seccion',
 					    'id'          => 'seccion',
@@ -88,34 +86,36 @@
 					    'id'          => 'semestre',
 					    'style'       => 'margin:10px',
 					    'value'=>'2',
-					    );				
-					   
-					    		$año=array(
+					    );
+								$año=array(
 					    				'2013'=>'2013'
 					    			);
-					    		
-					echo form_label('Asignatura', 'asignatura');
-					$listaAsignatura= array( "" => "Seleccione una Asignatura", );
-					foreach ($asignatura as $ramo){ 
-						$listaAsignatura[$ramo->pk] = $ramo->nombre." ".$ramo->codigo; 
-					}
-						echo form_dropdown('ramo', $listaAsignatura);echo "<br />";
-					echo form_label('Seccion', 'seccion');
-						echo "1".form_radio($sec1)."2".form_radio($sec2)."3".form_radio($sec3)."4".form_radio($sec4);
-					echo form_label('Año', 'año');
-						echo form_dropdown('anio', $año);echo "<br />";
-					echo form_label('Semestre','semestre');
-						echo "1".form_radio($sem1)."2".form_radio($sem2);
+					    $atributos_Btnn=  array('class'=>'btn btn-primary btn-large');			    			
+			echo '
+				<table border="0">
+					<tr>
+						<td>'.form_label('Academico', 'academico').''.form_dropdown('docente', $atributos).'</td>
+						<td>'.form_label('Año', 'año').''.form_dropdown('anio', $año).'</td>
+					</tr>
+					<tr>
+						<td>'.form_label('Asignatura', 'asignatura').''.form_dropdown('ramo', $listaAsignatura).'</td>
+						<td>'.form_label('Semestre','semestre').'1'.form_radio($sem1).'2'.form_radio($sem2).'</td>
+					</tr>
+					<tr>
+						<td>'.form_label('Seccion', 'seccion').'1'.form_radio($sec1).'2'.form_radio($sec2).'3'.form_radio($sec3).'4'.form_radio($sec4).'</td>
+						<td>'.form_submit($atributos_Btnn, 'Asociar').'</td>
+					</tr>
+				</table>
+			';
 
-		$atributos_Btnn=  array('class'=>'btn btn-primary btn-large'); echo "<br />";
-						echo form_submit($atributos_Btnn, 'Asociar');	
+				 	//echo form_submit($atributos_Btn, 'Enviar');
+				//--------
 				        echo form_close();
 					
 ?>	
 	</div>
-	<div class="span4">
-		
-
+	<div class="span2">
 		
 	</div>
+
 </div>
