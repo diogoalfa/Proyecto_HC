@@ -32,10 +32,19 @@
                 $this->load->view('general/cierre_footer');
 		}
 		public function res_academico(){
-			$datos = array('pk' =>$this->input->post('docente'));
-			//echo $datos->pk;
-			$s=$this->docente_model->academicoSemana($datos);
-			print_r($s);
+			$pk=$this->input->post('docente');
+
+			$result=$this->docente_model->academicoSemana($pk);
+
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                	$this->load->view('consulta/header_menu');
+                		$this->load->view('consulta/ver_academico',compact("result"));//consulta academico
+                	$this->load->view('consulta/fin_header_menu');
+
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');	
 		}
 	}
 

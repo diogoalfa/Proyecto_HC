@@ -31,18 +31,29 @@
                 ->get();
         return $query->result();
     }
-    public function academicoSemana($datos){
-       /* $where=array("d.pk"=>$datos,'d.pk'=>'c.docente_fk');
-        $query=$this->db
-                ->select('d.nombres,d.apellidos,c.asignatura_fk')
-                ->from('docentes d, cursos c')
-                ->where($where)
+    public function academicoSemana($pk){
+        //$where=array('d.pk'=>);
+   /*     $query=$this->db
+                ->select('docentes.nombres,docentes.apellidos,cursos.asignatura_fk')
+                ->from('docentes')
+                //->where($where)
+                ->join('cursos','cursos.asignatura_fk=docentes.pk')
                 ->get();
-        return $query->result();*/
-        $query = $this->db->query("SELECT d.nombres,d.apellidos,c.asignatura_fk FROM docentes d, cursos c WHERE c.docente_fk=d.pk");
+
+ */ 
+               /* $where = "cursos.docente_fk = docentes.pk";
+         $query=$this->db
+                ->select('docentes.nombres,docentes.apellidos,cursos.asignatura_fk')
+                ->from('docentes')
+                ->from('cursos')
+                ->where($where)
+                 ->get();      */       
+       $query = $this->db->query("SELECT d.nombres,d.apellidos,c.asignatura_fk FROM docentes d, cursos c WHERE c.docente_fk=d.pk AND ".$pk."=d.pk ");
         return $query->result();
     }
   
-    
+    /* $this->db->select('*');
+     $this->db->from('blogs');
+      $this->db->join('comments', 'comments.id = blogs.id');*/
 }
 ?>
