@@ -49,7 +49,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/abre_bodypagina');
                     $this->load->view('intranet/bienvenido');
                     $this->load->view('intranet/header_menu');
-                        $this->load->view('intranet/menu');
+                       // $this->load->view('intranet/menu');
                     $this->load->view('intranet/fin_header_menu');
                 
                 $this->load->view('general/cierre_bodypagina');
@@ -100,14 +100,55 @@ class Intranet extends CI_Controller {
     }
     public function salas(){
             $academico=$this->docente_model->getAcademico();
-            $asignatura=$this->admin_model->getAsignatura();
-            //print_r($asignatura);
+            $salas=$this->admin_model->getSala();
+            $periodo=$this->admin_model->getPeriodo();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
                     $this->load->view('intranet/bienvenido');
                     $this->load->view('intranet/header_menu');
-                        $this->load->view('intranet/salas_menu',compact('academico','asignatura'));
+                        $this->load->view('intranet/salas_menu',compact('salas','academico','periodo'));
+                    $this->load->view('intranet/fin_header_menu');
+                
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+    }
+    public function setSala(){
+                $datos=array(
+                 'facultad_fk'=>'1',//facultad de ingenieria=1   
+                'sala'=>$this->input->post('nombre'),
+                );
+                $estado=$this->admin_model->setSala($datos);
+                    if($estado==TRUE){
+                    echo '<script>alert("Sala Ingresada con Exito"); </script>';
+                     redirect('intranet/salas', 'refresh');
+             }
+    }
+    public function setSalaAcademico(){
+
+            $docentePk=$this->input->post('docente');
+            $cursoPk=$this->admin_model->pkCurso($docentePk);//extrae el pk apartir del docente
+                         $x=$cursoPk->pk;
+                $datos=array(
+                'sala_fk'=>$this->input->post('sala'),
+                'periodo_fk'=>$this->input->post('periodo'),
+                'curso_fk'=>$x,
+                'adm_fk'=>'1',//1 por el administrador
+                );
+                $estado=$this->admin_model->setReserva($datos);
+                    if($estado==TRUE){
+                    echo '<script>alert("Reserva con Exito"); </script>';
+                     redirect('intranet/salas', 'refresh');
+             }
+    }
+    public function resultadosGral(){//muestra la tabla reserva "todos los datos (sala,periodo, academico etc)"
+            $result=$this->admin_model->resultadosGral();
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                    $this->load->view('intranet/bienvenido');
+                    $this->load->view('intranet/header_menu');
+                        $this->load->view('intranet/resultadosGral',compact('result'));
                     $this->load->view('intranet/fin_header_menu');
                 
                 $this->load->view('general/cierre_bodypagina');
