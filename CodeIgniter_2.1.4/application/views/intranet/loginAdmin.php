@@ -9,7 +9,7 @@
 
 <div class="well">
     
-    <?
+    <?php
     
     if(isset($mensajeAlerta)){
         echo "<h4>".$mensajeAlerta."</h4><br><br>";

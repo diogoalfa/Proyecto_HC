@@ -8,87 +8,91 @@
 
 <div class="well">
     <div class="row" id="divSaludoProfesor">
-       <div class="span4"><h4>Bienvenido SR@ :<?='  '."_SESSION['usuarioProfesor']";?></h4></div> 
+       <div class="span4"><h4>Bienvenido SR@ :<?=$_SESSION['usuarioProfesor'];?></h4></div> 
     </div>
     <div class="row">
         <div class="span6">Llene el formulario para enviar la solicitud de peticion de Sala.</div>
     </div>
 </div><br>
+<br><br>
+<?php
+$atributos_Nombre=array('name'=>'nombre');
+$atributos_Apellido=array('name'=>'Apellido');
+
+    if (isset($asignaturas)) {
+       $atributos_OptionAsig=array(''=>'->Seleccionar Asignatura',);
+       foreach ($asignaturas as $asig) {
+           
+           $atributos_OptionAsig[$asig->pk]=$asig->nombre;
+       }
+    }
+    if (isset($periodos)) {
+        $atributos_OptionPeriodo=array(''=>'->Seleccione Periodo',);
+       foreach($periodos as $peri) {
+           
+           $atributos_OptionPeriodo[$peri->pk]=$peri->periodo;
+      }
+    }
+    
+    $atributos_OptionDia=array(
+    ''=>'->Seleccione el Dia',
+    'optDia1'=>'Lunes',
+    'optDia2'=>'Martes',
+    'optDia3'=>'Miercoles',
+    'optDia4'=>'Jueves',
+    'optDia5'=>'Viernes');
+ 
+
+   $atributos_OptionSala=array();
+
+
+
+?>
 <div class="well">
-    <br><br>
-    <?
-      
+    <?php 
     
-    
-       $atributos_Usuario = array(
-          'name' => 'usuario',
-            'value' => set_value('usuario')
-        );
-        $atributos_Clave=  array(
-            'name'=>'clave'
-            ,'type'=>'password'
-        );
-        $atributos_Btn=  array('class'=>'btn'); 
-        
-        echo form_open('');
-        echo '<label>Nombre :</label>';
-        echo form_input($atributos_Usuario);
-        echo form_label('Clave', 'password');
-        echo form_input($atributos_Clave);echo '<br>';      
-        echo form_submit($atributos_Btn, 'Enviar');
-        echo form_close(); 
-    
-    
+    if (isset($docente)) {
+        ?>
+    <div class="row">
+        <div class="span2"><?= form_label('Nombre :');?></div> <div class="span3"><?=  form_label($docente->nombres); ?></div>
+    </div>
+    <div class="row">
+       <div class="span2"><?=form_label('Apellido :');?></div>  <div></div><div class="span3"><?=  form_label($docente->apellidos); ?></div>   
+    </div>
+    <div class="row">
+       <div class="span2"><?=form_label('Rut :'); ?></div>  <div></div><div class="span3"><?=  form_label($docente->rut); ?></div>   
+    </div>
+     <?php
+    }
     ?>
+     <br><br>
     <div class="row">
-       <div class="span2"><label>Nombre :</label></div><div class="span4"><input type="text" placeholder="" value=""></div>
-    </div>
-    <div class="row">
-        <div class="span2"><label>Apellidos :</label></div><div class="span4"><input type="text" placeholder="" value=""></div>
-    </div>
-      <div class="row">
-        <div class="span2"><label>Contacto : </label></div><div class="span4"><input type="text" placeholder="example@gmail.com"></div>
-    </div> 
-    <div class="row">
-        <div class="span2"><label>Asignatura : </label></div><div class="span4"><input type="text" placeholder="" ></div>
+        <div class="span2"><label>Asignatura : </label></div><div class="span4">
+            <?= form_dropdown('asignatura',$atributos_OptionAsig) ?>
+         </div>
     </div>
    
     <div class="row">
-        <div class="span2"><label>Dia de la semana : </label></div>
+        <div class="span2"><label>Fecha : </label></div>
         <div class="span4">
-            <select>
-                <option>Lunes</option>
-                <option>Martes</option>
-                <option>Miercoles</option>
-                <option>Jueves</option>
-                <option>Viernes</option>
-            </select>
+           <?= form_dropdown('dia',$atributos_OptionDia);?>
+            <?php
+             
+             echo $this->calendar->generate(2013,12);
+            ?>
         </div>
     </div>
      <div class="row">
         <div class="span2"><label>Periodo : </label></div>
-       
-             <div class="span4">
-                 <select>
-                <option>I</option>
-                <option>II</option>
-                <option>III</option>
-                <option>IV</option>
-                <option>V</option>
-                <option>VI</option>
-                <option>VII</option>
-                <option>VIII</option>
-            </select>
+          <div class="span4">
+          <?=  form_dropdown('periodo',$atributos_OptionPeriodo);?>
         </div>
     </div>
     <div class="row">
-        <div class="span2"><label>Sala a priori : </label></div><div class="span4"><input type="text" placeholder=""></div>
-    </div>
-    <div class="row">
-        <div class="span2">Motivo : </label></div><div class="span4"><textarea rows="3"></textarea></div>
+        <div class="span2"><label>Sala a priori :</label></div><div class="span4"><input type="text" placeholder=""></div>
     </div>
     <div class="row">
         <div class="span3"><button type="submit" class="btn">Enviar</button> </div>
-    </div>
+    </div><br>
     <button class="btn btn-warning" onclick="location.href='<?= site_url('login/desconectar') ?>'" >desconectar</button>
 </div>

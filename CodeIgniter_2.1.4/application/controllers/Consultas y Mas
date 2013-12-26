@@ -1,0 +1,3 @@
+select *
+from salas 
+where pk not in (select sala_fk from reservas where reservas.periodo_fk='6' )

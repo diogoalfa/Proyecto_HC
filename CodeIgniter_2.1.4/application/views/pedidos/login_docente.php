@@ -15,8 +15,8 @@
              
          }
          
-          $atributos_Usuario = array(
-          'name' => 'usuario',
+          $atributos_Rut = array(
+          'name' => 'rut',
             'value' => set_value('usuario')
         );
         $atributos_Clave=  array(
@@ -26,8 +26,8 @@
         $atributos_Btn=  array('class'=>'btn btn-primary btn-large'); 
         
         echo form_open('login/index');
-        echo form_label('Usuario', 'usuario');
-        echo form_input($atributos_Usuario);echo '<br>';
+        echo form_label('Rut', 'labelRut');
+        echo form_input($atributos_Rut);echo '<br>';
         echo form_label('Clave', 'password');
         echo form_input($atributos_Clave);echo '<br>';      
         echo form_submit($atributos_Btn, 'Enviar');

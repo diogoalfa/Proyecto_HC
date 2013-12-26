@@ -8,6 +8,7 @@ class Pedidos extends CI_Controller {
     function __construct() {
         parent::__construct();
         session_start();
+        $this->load->library('calendar');
        //session_destroy();   
     }
 
@@ -21,7 +22,11 @@ class Pedidos extends CI_Controller {
             $this->load->view('pedidos/login_docente');
         }
         else{
-            $this->load->view('pedidos/pedir_sala');   
+        //echo $_SESSION['usuarioProfesor'];
+          $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']); 
+          $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
+          $periodos= $this->Admin_model->getPeriodo();
+          $this->load->view('pedidos/pedir_sala',compact("asignaturas","docente","periodos"));      
         }
         
         $this->load->view('general/cierre_bodypagina');

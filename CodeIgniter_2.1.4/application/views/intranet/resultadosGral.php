@@ -25,7 +25,7 @@
             </tr>
 
                    
-            <?}
+            <?php }
             echo "</tbody></table>";
         //}else{
          //   echo "Noo exiten datos!<br>";

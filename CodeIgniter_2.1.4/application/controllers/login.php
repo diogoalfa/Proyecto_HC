@@ -6,7 +6,7 @@ class Login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-       //session_start();
+       session_start();
       // session_destroy();
     }
   
@@ -15,12 +15,12 @@ class Login extends CI_Controller {
        
         if($this->input->post()){
             $clave=$this->input->post('clave');
-            $usuario=$this->input->post('usuario');
+            $rut=$this->input->post('rut');
             
-            $respuestaLogin=$this->Docente_model->loguearDocente($usuario,$clave);
+            $respuestaLogin=$this->Docente_model->loguearDocente($rut,$clave);
             if($respuestaLogin==1){
-                   //$_SESSION['usuarioProfesor']=  $this->input->post('usuario');
-                   redirect('pedido',301); 
+                   $_SESSION['usuarioProfesor']=  $this->input->post('rut');
+                   redirect('pedidos',301); 
                    
             }
             else{
