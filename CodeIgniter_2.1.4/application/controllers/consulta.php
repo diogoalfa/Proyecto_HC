@@ -51,7 +51,7 @@
                 $this->load->view('general/cierre_footer');	
 		}
                  public function ahora(){
-                        $clases=$this->clases_model->getClases();
+                        $clases=$this->clases_model->getAhora();
                         $this->load->view('general/headers');
                         $this->load->view('general/menu_principal');
                         $this->load->view('general/abre_bodypagina');

@@ -1,6 +1,6 @@
 <?php 
 class Clases_model extends CI_Model{
-	    public function getClases(){
+	    public function getAhora(){
         date_default_timezone_set("America/Santiago");
         $time  = date("H:i:s");
         //tomar dia falta
