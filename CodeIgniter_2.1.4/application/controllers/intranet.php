@@ -125,7 +125,7 @@ class Intranet extends CI_Controller {
              }
     }
     public function setSalaAcademico(){
-
+           // $comprobar=$this->admin_model->check();//arreglar esto
             $docentePk=$this->input->post('docente');
             $cursoPk=$this->admin_model->pkCurso($docentePk);//extrae el pk apartir del docente
                          $x=$cursoPk->pk;
