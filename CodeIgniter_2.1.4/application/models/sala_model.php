@@ -6,12 +6,19 @@
        function __construct() {
            parent::__construct();
        }
- 
-       public function getSalasDisponibles() {
-           
-           $query=$this->db
-                   ->query("");
-       }
+        
+        public function getSalasDisponibles($pk_periodo,$fecha) {
+            
+            $consul="select *
+                   from salas 
+                   where pk not in (select sala_fk from reservas where periodo_fk=".$pk_periodo." and fecha='$fecha' and adm_fk is not null );";
+            
+            $query=  $this->db
+           ->query($consul);
+           return $query->result();
+        }
+        
+      
        
        
        

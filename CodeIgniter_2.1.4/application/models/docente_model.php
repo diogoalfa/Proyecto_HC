@@ -73,11 +73,13 @@
                                  WHERE  c.docente_fk='$pk' AND a.pk=c.asignatura_fk;");
         return $query->result();
      }
-     function getAsignaturaRut($rut) {
-        $query=$this->db->query("SELECT a.nombre as nombre 
-                                 FROM docentes as d,cursos as c,asignaturas as a 
-                                 WHERE d.rut='$rut' c.docente_fk=d.pk AND a.pk=c.asignatura_fk;");
-        return $query->result();
+     
+     public function guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk) {
+         
+         $query=  $this->db
+               ->query("INSERT INTO reservas (fecha,sala_fk,periodo_fk,curso_fk) values('$fecha','$sala_pk','$periodo_pk',"
+                       . "(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' and docente_fk='$docente_pk' ));");
+         return true;
      }
    }
 ?>

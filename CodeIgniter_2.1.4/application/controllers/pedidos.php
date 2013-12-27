@@ -47,5 +47,44 @@ class Pedidos extends CI_Controller {
         
     }
     
+    public function salaDisponible() {
+          
+        $pk_periodo= $this->input->post('sePeriodo');
+        $fecha=$this->input->post('datepicker');
+        
+       
+       $salasDisponibles=$this->Sala_model->getSalasDisponibles((int)$pk_periodo,$fecha);
+     //  echo "<option>".$pk_periodo."</option>";
+     //  echo "<option>".$fecha."</option>";
+        foreach ($salasDisponibles as $sala) {
+                echo '<option value="'.$sala->pk.'">'.$sala->sala.'</option>';
+        }      /*$docentes=$this->Docente_model->getAcademico();
+            foreach ($docentes as $docen) {
+                echo '<option value="'.$docen->pk.'">'.$docen->nombres.'</option>';
+            }
+             * 
+             */
+       // }
+    }
+    
+    public function getCurso() {
+        
+        
+    }
+    public function guardarPedidoSala(){
+        
+        $fecha=  $this->input->post('datepicker');
+        $sala_pk=$this->input->post('sala');
+        $periodo_pk=$this->input->post('sePeriodo');
+        $docente_pk=$this->input->post('docente');
+        $asignatura_pk=$this->input->post('asignatura'); 
+        
+       // echo " '$fecha'-'$sala_pk'-'$periodo_pk'-'$docente_pk'-'$asignatura_pk'";
+        $pedidoSala=  $this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk);
+        if($pedidoSala==true){
+          echo "Se guardo con Exito :)";  
+        }        
+        
+    }    
 
 }

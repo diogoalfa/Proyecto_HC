@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
     <head>
         <title></title>
@@ -13,6 +13,7 @@
         <!-- Bootstrap -->
         <link href="<?php echo base_url()?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">
         <link href="<?php echo base_url()?>public/css/style_general.css" rel="stylesheet" type="text/css" media="screen">
-        <link src="">
+        <script src="<?php echo base_url()?>public/js/jquery.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url()?>public/js/jquery.js" type="text/javascript"></script>
     </style>
     </head>
