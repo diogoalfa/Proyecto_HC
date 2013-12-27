@@ -51,8 +51,6 @@
                 $this->load->view('general/cierre_footer');	
 		}
                  public function ahora(){
-                        //extraer tiempo de ahora mandar al modelo, consultar 
-
                         $clases=$this->clases_model->getClases();
                         $this->load->view('general/headers');
                         $this->load->view('general/menu_principal');
@@ -66,6 +64,23 @@
                         $this->load->view('general/cierre_footer');
 
                 }
+
+                
+                public function hoy(){
+                        $hoy=$this->clases_model->getHoy();
+                        $this->load->view('general/headers');
+                        $this->load->view('general/menu_principal');
+                        $this->load->view('general/abre_bodypagina');
+                        $this->load->view('consulta/bienvenido');
+                        $this->load->view('consulta/header_menu');
+                                $this->load->view('consulta/consultar_hoy',compact('hoy'));//consulta academico
+                        $this->load->view('consulta/fin_header_menu');
+
+                        $this->load->view('general/cierre_bodypagina');
+                        $this->load->view('general/cierre_footer');
+
+                }
+                
 	}
 
 
