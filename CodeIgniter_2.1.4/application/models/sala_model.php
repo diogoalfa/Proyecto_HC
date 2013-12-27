@@ -11,7 +11,7 @@
             
             $consul="select *
                    from salas 
-                   where pk not in (select sala_fk from reservas where periodo_fk=".$pk_periodo." and fecha='$fecha' and adm_fk is not null );";
+                   where pk not in (select sala_fk from reservas where periodo_fk=".$pk_periodo." and fecha='$fecha');";
             
             $query=  $this->db
            ->query($consul);

@@ -23,16 +23,41 @@ class Pedidos extends CI_Controller {
         }
         else{
         //echo $_SESSION['usuarioProfesor'];
-          $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']); 
-          $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
-          $periodos= $this->Admin_model->getPeriodo();
-          $this->load->view('pedidos/pedir_sala',compact("asignaturas","docente","periodos"));      
+          
+          $this->load->view('pedidos/selecionar_opcionPedidos');
+          
+           
         }
         
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
     }
-
+    
+    public function pedirSala(){
+        $this->load->view('general/headers');
+        $this->load->view('general/menu_principal');
+        $this->load->view('general/abre_bodypagina');
+        $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']); 
+          $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
+          $periodos= $this->Admin_model->getPeriodo();
+          $this->load->view('pedidos/selecionar_opcionPedidos');
+          $this->load->view('pedidos/pedir_sala',compact("asignaturas","docente","periodos"));     
+           
+        $this->load->view('general/cierre_bodypagina');
+        $this->load->view('general/cierre_footer');
+    }    
+    
+    public function verPedidos() {
+        $this->load->view('general/headers');
+        $this->load->view('general/menu_principal');
+        $this->load->view('general/abre_bodypagina');
+        $this->load->view('pedidos/selecionar_opcionPedidos');
+       
+        $this->load->view('pedidos/verPedidos');
+           
+        $this->load->view('general/cierre_bodypagina');
+        $this->load->view('general/cierre_footer');
+    }
     
     public function logueoError() {
         $this->load->view('general/headers');
@@ -81,9 +106,16 @@ class Pedidos extends CI_Controller {
         
        // echo " '$fecha'-'$sala_pk'-'$periodo_pk'-'$docente_pk'-'$asignatura_pk'";
         $pedidoSala=  $this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk);
+        
         if($pedidoSala==true){
-          echo "Se guardo con Exito :)";  
+          echo '<script>alert("Se ha guardado Exitosamente!"); </script>';
+             redirect('pedidos', 'refresh');
+        }
+        else{
+           echo '<script>alert("Ha ocurrido un error !"); </script>';
+           redirect('pedidos', 'refresh');
         }        
+        
         
     }    
 
