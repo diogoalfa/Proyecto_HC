@@ -1,7 +1,7 @@
 <div class="row-fluid">
 	<div class="span12"><br>
 		<?php 
-            if ($clases != null) {
+            if ($hoy != null) {
                 echo "<h3>Clases del periodo</h3>";
                 echo "<table class='table table-hover-striped'>
                        <thead>
@@ -16,7 +16,7 @@
                         </tr> 
                       </thead><tbody>";
                   
-                foreach ($clases as $aula) { ?>
+                foreach ($hoy as $aula) { ?>
                     <tr>
                         <td><?= $aula->periodo;  ?></td>
                         <td><?= $aula->inicio; ?></td>
@@ -30,7 +30,7 @@
                 }
                 echo "</tbody></table>";
             } 
-            else echo "<script>alert ('No hay clases en este periodo, recomendamos consultar por dia o profesor');</script>";
+            else echo "<script>alert ('No hay clases hoy día');</script>";
         ?>
 	</div>
 </div>

@@ -49,7 +49,13 @@
          return true;
      }
      public function pkCurso($pk){
-        $query=$this->db->query("SELECT c.pk FROM cursos c,docentes d WHERE d.pk=c.docente_fk AND ".$pk."=c.docente_fk");
+        $cond=array('c.docente_fk'=>$pk);
+        $query=$this->db
+                    ->select('c.pk')
+                    ->from('cursos as c')
+                    ->join('docentes as d','d.pk=c.docente_fk','inner')
+                    ->where($cond)
+                    ->get();
         return $query->row(); 
      }
      public function setReserva($datos){
@@ -57,9 +63,18 @@
          return true;
      }
      public function resultadosGral(){
-             $query=$this->db->query("SELECT s.sala, d.nombres,d.apellidos, a.nombre,c.seccion,p.periodo,p.inicio,p.termino FROM periodos p, reservas r, cursos c, docentes d, salas s, asignaturas a WHERE r.curso_fk=c.pk AND c.docente_fk=d.pk AND r.sala_fk=s.pk AND c.asignatura_fk=a.pk AND p.pk=r.periodo_fk");              
-       return $query->result();
+            $query=$this->db
+                ->select('p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+                ->from('reservas as r')
+                ->join('cursos as c','r.curso_fk=c.pk','inner')
+                ->join('docentes as d','c.docente_fk=d.pk','inner')
+                ->join('salas as s','r.sala_fk=s.pk','inner')
+                ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
+                ->join('periodos as p','p.pk=r.periodo_fk','inner')
+                ->get();
+        return $query->result();
      }
+
     
    }
 ?>
