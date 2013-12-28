@@ -49,11 +49,10 @@
          return true;
      }
      public function pkCurso($pk){
-        $cond=array('c.docente_fk'=>$pk);
+        $cond=array('docente_fk'=>$pk);
         $query=$this->db
-                    ->select('c.pk')
-                    ->from('cursos as c')
-                    ->join('docentes as d','d.pk=c.docente_fk','inner')
+                    ->select('MAX(pk) as pk')
+                    ->from ('cursos')
                     ->where($cond)
                     ->get();
         return $query->row(); 
@@ -71,9 +70,13 @@
                 ->join('salas as s','r.sala_fk=s.pk','inner')
                 ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
                 ->join('periodos as p','p.pk=r.periodo_fk','inner')
+                ->order_by('r.periodo_fk','asc')
                 ->get();
         return $query->result();
      }
+     // public function check($pk){
+     //        $query=$this->db->select
+     // }
 
     
    }

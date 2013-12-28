@@ -6,7 +6,7 @@ class Intranet extends CI_Controller {
     
     function __construct() {
         parent::__construct();
-       // session_start();   
+        session_start();   
         $this->load->model('docente_model');
         $this->load->model('admin_model');
     }
@@ -18,7 +18,9 @@ class Intranet extends CI_Controller {
         $this->load->view('general/menu_principal');
         $this->load->view('general/abre_bodypagina');
               $this->load->view('intranet/loginAdmin');
-       
+       // if (!isset($_SESSION['usuarioAdmin'])) {
+       //     echo "no";
+       // }
        
            //$this->load->view('intranet/central_secretaria');     
         
@@ -92,6 +94,7 @@ class Intranet extends CI_Controller {
             'docente_fk'=>$this->input->post('docente'),
             'seccion'=>$this->input->post('seccion')
             );
+        //print_r($datos);
         $estado=$this->admin_model->asocia($datos);
                     if($estado==TRUE){
                     echo '<script>alert("Asociacion realizada con Exito"); </script>';
@@ -125,9 +128,17 @@ class Intranet extends CI_Controller {
              }
     }
     public function setSalaAcademico(){
-           // $comprobar=$this->admin_model->check();//arreglar esto
+           
             $docentePk=$this->input->post('docente');
+            //print_r($docentePk);
+            //$comprobar=$this->admin_model->check($docentePk);//arreglar esto
             $cursoPk=$this->admin_model->pkCurso($docentePk);//extrae el pk apartir del docente
+            // print_r($cursoPk);
+            if($cursoPk==NULL)
+            {
+                    echo '<script>alert("Debes asignar un academico con una asignatura previamente"); </script>';
+                     redirect('intranet/academico', 'refresh');
+            }else{
                          $x=$cursoPk->pk;
                 $datos=array(
                 'sala_fk'=>$this->input->post('sala'),
@@ -140,6 +151,7 @@ class Intranet extends CI_Controller {
                     echo '<script>alert("Reserva con Exito"); </script>';
                      redirect('intranet/salas', 'refresh');
              }
+            } 
     }
     public function resultadosGral(){//muestra la tabla reserva "todos los datos (sala,periodo, academico etc)"
             $result=$this->admin_model->resultadosGral();
@@ -154,6 +166,9 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
     }
-    
+        public function desconectar() {
+        session_destroy();
+        redirect('welcome');
+    }
     
 }
