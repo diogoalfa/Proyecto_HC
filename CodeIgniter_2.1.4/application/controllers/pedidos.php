@@ -52,8 +52,16 @@ class Pedidos extends CI_Controller {
         $this->load->view('general/menu_principal');
         $this->load->view('general/abre_bodypagina');
         $this->load->view('pedidos/selecionar_opcionPedidos');
-       
-        $this->load->view('pedidos/verPedidos');
+        $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']);
+        $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
+        $this->load->view('pedidos/consultaPorAsignatura',  compact("asignaturas"));
+        
+        if($this->input->post('asignatura')){
+            $asignatura_pk=$this->input->post('asignatura');
+            $pedidos=$this->Docente_model->getPedidoSalaDocente($asignatura_pk,$docente->pk);
+            $this->load->view('pedidos/verPedidos',compact("pedidos"));
+        }
+        
            
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
