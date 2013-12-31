@@ -63,7 +63,7 @@
      }
      public function resultadosGral(){
             $query=$this->db
-                ->select('p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+                ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
                 ->from('reservas as r')
                 ->join('cursos as c','r.curso_fk=c.pk','inner')
                 ->join('docentes as d','c.docente_fk=d.pk','inner')
@@ -74,9 +74,18 @@
                 ->get();
         return $query->result();
      }
-     // public function check($pk){
-     //        $query=$this->db->select
-     // }
+    public function delete($id){
+            $this->db->delete('reservas', array('pk' => $id));
+            return true;
+     }
+     public function edit($id){
+            $query = $this->db
+                ->select("pk,sala_fk,rut,contacto")
+                ->from("reservas")
+                ->where(array('pk' =>$id))
+                ->get ();
+                return $query->row();
+     }
 
     
    }

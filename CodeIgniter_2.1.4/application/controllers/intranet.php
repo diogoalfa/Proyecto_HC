@@ -18,10 +18,12 @@ class Intranet extends CI_Controller {
         $this->load->view('general/menu_principal');
         $this->load->view('general/abre_bodypagina');
               $this->load->view('intranet/loginAdmin');
-       // if (!isset($_SESSION['usuarioAdmin'])) {
-       //     echo "no";
-       // }
-       
+       if (!isset($_SESSION['usuarioAdmin'])) {
+                          
+       }
+       else{
+        redirect('intranet/acceso', 'refresh');
+       }
            //$this->load->view('intranet/central_secretaria');     
         
          
@@ -45,7 +47,11 @@ class Intranet extends CI_Controller {
         
     }
     public function acceso(){
-
+            if(!isset($_SESSION['usuarioAdmin']))
+            {
+                echo "no has iniciado sesion";
+                redirect('intranet/', 'refresh');
+            }else{
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
@@ -56,6 +62,8 @@ class Intranet extends CI_Controller {
                 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
+            }
+
     }
     public function academico(){
             $academico=$this->docente_model->getAcademico();
@@ -166,7 +174,31 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
     }
-        public function desconectar() {
+    public function eliminar($id=NULL){
+        if (!$id) {
+            show_404();
+        }
+        $eliminar = $this->admin_model->delete($id);
+        if($eliminar==TRUE)
+        {
+            echo '<script>alert("Se ha eliminado un registro"); </script>';
+            redirect('/intranet/resultadosGral', 'refresh');
+        }
+    }
+    public function editar($id = null){
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                $edit=$this->admin_model->getReservas($id);
+                    //$this->load->view('intranet/bienvenido');
+                   // $this->load->view('intranet/header_menu');
+                       // $this->load->view('intranet/resultadosGral',compact('result'));
+                 //   $this->load->view('intranet/fin_header_menu');
+                
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+    }
+    public function desconectar() {
         session_destroy();
         redirect('welcome');
     }
