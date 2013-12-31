@@ -20,6 +20,7 @@ class Clases_model extends CI_Model{
                 ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
                 ->join('periodos as p','p.pk=r.periodo_fk','inner')
                 ->where($condicion)
+                ->order_by('c.seccion','asc')
                 ->get();
         return $query->result();
     }

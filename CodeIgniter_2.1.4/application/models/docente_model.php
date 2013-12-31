@@ -32,9 +32,6 @@
         return $query->result();
     }
     public function academicoSemana($pk){
- 
-       // $query=$this->db->query("SELECT p.termino,p.inicio,s.sala, d.nombres,d.apellidos, a.nombre,c.seccion FROM reservas r, cursos c, docentes d, salas s, asignaturas a WHERE r.curso_fk=c.pk AND c.docente_fk=d.pk AND r.sala_fk=s.pk AND c.asignatura_fk=a.pk AND ".$pk."=d.pk");              
-       //  return $query->result();
         $condicion=array('d.pk'=>$pk);
               $query=$this->db
                 ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')

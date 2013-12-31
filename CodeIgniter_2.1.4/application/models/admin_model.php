@@ -78,6 +78,21 @@
             $this->db->delete('reservas', array('pk' => $id));
             return true;
      }
+     public function getReservas($pk){
+            $condicion=array('r.pk'=>$pk);
+              $query=$this->db
+                ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+                ->from('reservas as r')
+                ->join('cursos as c','r.curso_fk=c.pk','inner')
+                ->join('docentes as d','c.docente_fk=d.pk','inner')
+                ->join('salas as s','r.sala_fk=s.pk','inner')
+                ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
+                ->join('periodos as p','p.pk=r.periodo_fk','inner')
+                ->where($condicion)
+                ->get();
+        return $query->result();
+       
+     }
      public function edit($id){
             $query = $this->db
                 ->select("pk,sala_fk,rut,contacto")

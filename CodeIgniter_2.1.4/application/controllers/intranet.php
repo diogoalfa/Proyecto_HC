@@ -190,6 +190,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
                 $edit=$this->admin_model->getReservas($id);
+                $this->load->view('intranet/edit',compact('edit'));
                     //$this->load->view('intranet/bienvenido');
                    // $this->load->view('intranet/header_menu');
                        // $this->load->view('intranet/resultadosGral',compact('result'));
