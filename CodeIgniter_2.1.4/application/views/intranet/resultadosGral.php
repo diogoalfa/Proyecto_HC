@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url() ?>public/js/funciones.js"></script>
+
 <div class="row-fluid"><br>
   <div class="span12">
   
