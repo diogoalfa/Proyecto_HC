@@ -4,7 +4,6 @@
 				$nombreSala = array(
 		          'name' => 'nombre',
 		            'id' => 'nombre',
-		            'placeholder'=>'Sala',
 		        );
 	        
 		        $atributos_Btn=  array('class'=>'btn btn-primary btn-large'); 

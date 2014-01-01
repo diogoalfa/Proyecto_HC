@@ -90,7 +90,7 @@
                 ->join('periodos as p','p.pk=r.periodo_fk','inner')
                 ->where($condicion)
                 ->get();
-        return $query->result();
+        return $query->row();
        
      }
      public function edit($id){

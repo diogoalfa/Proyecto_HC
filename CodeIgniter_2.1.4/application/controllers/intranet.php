@@ -230,11 +230,15 @@ class Intranet extends CI_Controller {
         }
     }
     public function editar($id = null){
+                    $academico=$this->docente_model->getAcademico();
+                    $asignatura=$this->admin_model->getAsignatura();
+                    $salas=$this->admin_model->getSala();
+                    $periodo=$this->admin_model->getPeriodo();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $edit=$this->admin_model->getReservas($id);
-                $this->load->view('intranet/edit',compact('edit'));
+                    $edit=$this->admin_model->getReservas($id);
+                $this->load->view('intranet/edit',compact('edit','academico','asignatura','salas','periodo'));
                     //$this->load->view('intranet/bienvenido');
                    // $this->load->view('intranet/header_menu');
                        // $this->load->view('intranet/resultadosGral',compact('result'));
