@@ -8,7 +8,23 @@
 
 
 
-<footer>@UTEM-Company <ul class="breadcrumb">
+<footer><?php 
+            date_default_timezone_set("America/Santiago");
+            $time  = date("H:i:s");
+            $year=date("Y");
+            $month=date("N");
+            $day=date("j");
+            if (strlen($month)==1) {
+                $month="0$month";
+            }
+            if (strlen($day)==1) {
+                $day="0".$day;
+            }
+            $date=$year."-".$month."-".$day;
+            echo "@UTEM-Company $date $time";
+
+
+?> <ul class="breadcrumb">
   <li>
     <a href="#">Consulta</a> <span class="divider">/</span>
   </li>

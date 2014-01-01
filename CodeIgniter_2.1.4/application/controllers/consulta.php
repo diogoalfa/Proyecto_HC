@@ -51,7 +51,9 @@
                 $this->load->view('general/cierre_footer');	
 		}
                  public function ahora(){
-                        $clases=$this->clases_model->getAhora();
+                        $time=$this->clases_model->getTime();
+                        $date=$this->clases_model->getDate();
+                        $clases=$this->clases_model->getAhora($time , $date);
                         $this->load->view('general/headers');
                         $this->load->view('general/menu_principal');
                         $this->load->view('general/abre_bodypagina');
@@ -67,7 +69,8 @@
 
                 
                 public function hoy(){
-                        $hoy=$this->clases_model->getHoy();
+                        $date=$this->clases_model->getDate();
+                        $hoy=$this->clases_model->getHoy($date);
                         $this->load->view('general/headers');
                         $this->load->view('general/menu_principal');
                         $this->load->view('general/abre_bodypagina');
@@ -80,6 +83,7 @@
                         $this->load->view('general/cierre_footer');
 
                 }
+
                 
 	}
 
