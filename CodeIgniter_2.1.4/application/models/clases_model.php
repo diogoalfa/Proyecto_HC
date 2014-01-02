@@ -7,9 +7,13 @@ class Clases_model extends CI_Model{
             $min= date("i");
             $sec= date("s");
             $time=$hour.":".$min.":".$sec;
-            if (($time>"09:35:00" && $time<"9:45:00")||($time>"11:05:00" && $time<"11:15:00")||($time>"12:35:00" && $time<"12:45:00")||($time>"14:05:00" && $time<"14:15:00")||($time>"15:35:00" && $time<"15:45:00")||($time>"17:05:00" && $time<"17:15:00")||($time>"18:35:00" && $time<"19:00:00")||($time>"20:30:00" && $time<"20:45:00")) 
-            $min=$min+"10"; //ahi que probar esto mañana
+            //echo $time=$hour.":".$min.":".$sec;
+            if (($time>"09:35:00" && $time<"09:45:00")||($time>"11:05:00" && $time<"11:15:00")||($time>"12:35:00" && $time<"12:45:00")||($time>"14:05:00" && $time<"14:15:00")||($time>"15:35:00" && $time<"15:45:00")||($time>"17:05:00" && $time<"17:15:00")||($time>"18:35:00" && $time<"19:00:00")||($time>"20:30:00" && $time<"20:45:00")) {
+                $min=$min+"10"; 
+                //ahi que probar esto mañana
+            }
             $time=$hour.":".$min.":".$sec;
+            //echo $time=$hour.":".$min.":".$sec;
             return $time;
         }
 
