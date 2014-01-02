@@ -69,8 +69,9 @@
 
                 
                 public function hoy(){
+                        $time=$this->clases_model->getTime();
                         $date=$this->clases_model->getDate();
-                        $hoy=$this->clases_model->getHoy($date);
+                        $hoy=$this->clases_model->getHoy($time , $date);
                         $this->load->view('general/headers');
                         $this->load->view('general/menu_principal');
                         $this->load->view('general/abre_bodypagina');

@@ -19,7 +19,7 @@ class Clases_model extends CI_Model{
 
         public function getDate(){
             $year=date("Y");
-            $month=date("N");
+            $month=date("n");
             $day=date("j");
             if (strlen($month)==1) {
                 $month="0$month";   //una forma de concadenar
@@ -47,12 +47,11 @@ class Clases_model extends CI_Model{
                 }
             }
 
-
             $condicion=array(
                 
                 'p.inicio <='=>$time,
                 'p.termino >='=>$time,
-                //tomar dia falta
+                'r.fecha ='=>$date,
               );
             $query=$this->db
                     ->select('p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
@@ -68,8 +67,12 @@ class Clases_model extends CI_Model{
             return $query->result();
         }
 
-    public function getHoy($date){
+    public function getHoy($time, $date){
         //echo $date;
+        $condicion=array(
+                'r.fecha ='=>$date,
+              );
+                
         $query=$this->db
                 ->select('p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
                 ->from('reservas as r')
@@ -78,7 +81,7 @@ class Clases_model extends CI_Model{
                 ->join('salas as s','r.sala_fk=s.pk','inner')
                 ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
                 ->join('periodos as p','p.pk=r.periodo_fk','inner')
-                //where del dia falta
+                ->where ($condicion)
                 ->order_by('p.periodo','asc')
                 ->get();
         return $query->result();
