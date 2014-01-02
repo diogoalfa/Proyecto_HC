@@ -59,7 +59,7 @@
                         $this->load->view('general/abre_bodypagina');
                         $this->load->view('consulta/bienvenido');
                         $this->load->view('consulta/header_menu');
-                                $this->load->view('consulta/consultar_ahora',compact('clases'));//consulta academico
+                                $this->load->view('consulta/consultar_ahora',compact('clases','time','date'));//consulta academico
                         $this->load->view('consulta/fin_header_menu');
 
                         $this->load->view('general/cierre_bodypagina');
@@ -76,7 +76,7 @@
                         $this->load->view('general/abre_bodypagina');
                         $this->load->view('consulta/bienvenido');
                         $this->load->view('consulta/header_menu');
-                                $this->load->view('consulta/consultar_hoy',compact('hoy'));//consulta academico
+                                $this->load->view('consulta/consultar_hoy',compact('hoy','time','date'));//consulta academico
                         $this->load->view('consulta/fin_header_menu');
 
                         $this->load->view('general/cierre_bodypagina');
