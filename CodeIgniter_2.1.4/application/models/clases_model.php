@@ -19,7 +19,7 @@ class Clases_model extends CI_Model{
 
         public function getDate(){
             $year=date("Y");
-            $month=date("N");
+            $month=date("n");
             $day=date("j");
             if (strlen($month)==1) {
                 $month="0$month";   //una forma de concadenar
@@ -47,12 +47,11 @@ class Clases_model extends CI_Model{
                 }
             }
 
-
             $condicion=array(
                 
                 'p.inicio <='=>$time,
                 'p.termino >='=>$time,
-                //tomar dia falta
+                'r.fecha ='=>$date,
               );
             $query=$this->db
                     ->select('p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
@@ -65,11 +64,65 @@ class Clases_model extends CI_Model{
                     ->where($condicion)
                     ->order_by('c.seccion','asc')
                     ->get();
+
+
+            //INI
+            date_default_timezone_set("America/Santiago");
+            $year=date("Y");
+            $month=date("n");
+            $day=date("j");
+            if (strlen($month)==1) {
+                $month="0$month";   //una forma de concadenar
+            }
+            if (strlen($day)==1) {
+                $day="0".$day;      //otra forma de concadenar
+            }
+            $date=$year."-".$month."-".$day;
+            while($date<"2014-02-13"){
+                for ($conta=1; $conta<=7 ; $conta++) { 
+                    if ($day=="31" && ($month=="01"||$month=="03"||$month=="05"||$month=="07"||$month=="08"||$month=="10"||$month=="12")){
+                        if ($month=="12") {
+                            $day="01";
+                            $month="01";
+                            $year=$year+"0001";
+                        }
+                        else{
+                            $day="01";
+                            $month=$month+"01";
+                        }
+                    }
+                    elseif ($day=="30" && ($month=="04"||$month=="06"||$month=="09"||$month=="11")) {
+                        $day="01";
+                        $month=$month+"01";
+                    }
+                    else{
+                        $day=$day+"01";
+                    }
+                    if (strlen($month)==1) {
+                        $month="0$month";   //una forma de concadenar
+                    }
+                    if (strlen($day)==1) {
+                        $day="0".$day;      //otra forma de concadenar
+                    }
+                }
+                $date=$year."-".$month."-".$day;
+                //echo "$date<br>";
+            }
+            //FIN
+
+
+
+
+
             return $query->result();
         }
 
-    public function getHoy($date){
+    public function getHoy($time, $date){
         //echo $date;
+        $condicion=array(
+                'r.fecha ='=>$date,
+              );
+                
         $query=$this->db
                 ->select('p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
                 ->from('reservas as r')
@@ -78,7 +131,7 @@ class Clases_model extends CI_Model{
                 ->join('salas as s','r.sala_fk=s.pk','inner')
                 ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
                 ->join('periodos as p','p.pk=r.periodo_fk','inner')
-                //where del dia falta
+                ->where ($condicion)
                 ->order_by('p.periodo','asc')
                 ->get();
         return $query->result();

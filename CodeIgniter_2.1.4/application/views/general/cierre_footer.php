@@ -12,7 +12,7 @@
             date_default_timezone_set("America/Santiago");
             $time  = date("H:i:s");
             $year=date("Y");
-            $month=date("N");
+            $month=date("n");
             $day=date("j");
             if (strlen($month)==1) {
                 $month="0$month";
@@ -20,8 +20,8 @@
             if (strlen($day)==1) {
                 $day="0".$day;
             }
-            $date=$year."-".$month."-".$day;
-            echo "@UTEM-Company $date $time";
+            $date=$day."/".$month."/".$year;
+            echo "@UTEM-Company $time $date";
 
 
 ?> <ul class="breadcrumb">
