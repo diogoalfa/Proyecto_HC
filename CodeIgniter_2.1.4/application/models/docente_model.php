@@ -58,24 +58,24 @@
          return $query->row();
     }     
      function getAsignatura($pk_docente) {
-        $query=$this->db->query("SELECT a.nombre as nombre, a.pk as pk 
+        $query=$this->db->query("SELECT a.nombre as nombre, a.pk as pk,c.seccion as seccion 
                                  FROM cursos as c,asignaturas as a 
                                  WHERE  c.docente_fk='$pk_docente' AND a.pk=c.asignatura_fk;");
         return $query->result();
      }
      
-     public function guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk) {
-         
+     public function guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion) {
+         echo "$seccion";
          $query=  $this->db
-               ->query("INSERT INTO reservas (fecha,sala_fk,periodo_fk,curso_fk) values('$fecha','$sala_pk','$periodo_pk',"
-                       . "(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' and docente_fk='$docente_pk' ));");
+               ->query("INSERT INTO reservas (fecha,sala_fk,periodo_fk,curso_fk) values('$fecha','$sala_pk','$periodo_pk'"
+                       . ",(select pk FROM cursos WHERE asignatura_fk='$asignatura_pk' and docente_fk='$docente_pk' and seccion=$seccion));");
          return true;
      }
      
-     public function getPedidoSalaDocente($asignatura_pk,$docente_pk){
+     public function getPedidoSalaDocente($asignatura_pk,$docente_pk,$seccion){
 //$query=$this->db->query("SELECT * FROM reservas WHERE curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk') ");
          
-      $query=$this->db->query("SELECT r.*,s.sala,p.periodo FROM reservas as r,salas as s,periodos as p WHERE r.curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk') "
+      $query=$this->db->query("SELECT r.*,s.sala,p.periodo FROM reservas as r,salas as s,periodos as p WHERE r.curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk' AND seccion='$seccion') "
               . "AND s.pk=r.sala_fk AND p.pk=r.periodo_fk ");
          
       return $query->result();
@@ -100,6 +100,18 @@
                  ->query('SELECT FROM reservas as r,docentes s WHERE');
          
          return $query->row();
+     }
+     
+     public function updatePedido($pkPedido,$asignatura,$fecha,$periodo,$sala,$seccion,$docente) {
+        
+       $this->db
+               ->query("UPDATE reservas  SET "
+                       ."sala_fk='$sala', "
+                       ."periodo_fk=(SELECT pk FROM periodos WHERE periodo='$periodo'), "
+                       ."curso_fk=(SELECT pk FROM cursos WHERE  asignatura_fk='$asignatura' AND docente_fk='$docente' AND seccion='$seccion' ) ,"
+                       . "fecha='$fecha' "
+                       ." WHERE pk=$pkPedido");
+       return true;
      }
      
      

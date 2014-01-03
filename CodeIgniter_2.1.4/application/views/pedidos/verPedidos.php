@@ -26,15 +26,15 @@
                         
                       if($pedi->adm_fk==NULL){
                           echo "<td><span class='label'>Pendiente</span></td>";
-                          echo "<td><a href='".  base_url()."index.php/pedidos/editarPedido/$pedi->pk/$pedi->fecha' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn' >editar</a></td>";
-                          echo "<td><a href='".  base_url()."index.php/pedidos/eliminarPedido/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-warning' >Eliminar</a></td>";  
+                          echo "<td><a href='".  base_url()."index.php/pedidos/editarPedido/$pedi->pk/$pedi->fecha/$seccion' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-succes' >editar</a></td>";
+                          echo "<td><a href='".  base_url()."index.php/pedidos/eliminarPedido/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-danger' >Eliminar</a></td>";  
                       }
                       else{
                           echo "<td><span class='label label-success'>Aprobado</span></td>";
                           echo '<td></td>';
-                          echo "<td><a href='".  base_url()."index.php/pedidos/eliminarPedido/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-warning' >Eliminar</a></td>";
+                          echo "<td><a href='".  base_url()."index.php/pedidos/eliminarPedido/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-danger' >Eliminar</a></td>";
                       }                      
-                      echo '</tr5>';
+                      echo '</tr>';
                     }
                     
                     ?>

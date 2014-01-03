@@ -24,8 +24,10 @@
   }
   
   $contenidoAsignatura=array(''=>'Seleccione asignatura',);
+  $contenidoSeccion=array(''=>'Seleccione seccion',);
   foreach ($asignaturas as $asig) {
     $contenidoAsignatura[$asig->pk]=$asig->nombre;
+    $contenidoSeccion[$asig->seccion]=$asig->seccion;
   }
  
 ?>
@@ -35,13 +37,18 @@
 <div class="well">
   
  <?=form_open('pedidos/updatePedido')?>
+    <?=form_hidden('docente', $docente->pk)?>
      <div class="row">
-        <div class="span2">Pk :</div>
+        <div class="span2">N° Pedido :</div>
         <div class="span3"><?= form_input(array('name'=>'pkPeriodo','readonly'=>'readonly','value'=>$pkPedido))?></div>
     </div>   
     <div class="row">
         <div class="span2">Asignatura :</div>
         <div class="span3"><?= form_dropdown('asignatura',$contenidoAsignatura)?></div>
+    </div>
+    <div class="row">
+        <div class="span2">Seccion :</div>
+        <div class="span3"><?= form_dropdown('seccion',$contenidoSeccion)?></div>
     </div>
     <div class="row">
          <div class="span2">Fecha :</div>
