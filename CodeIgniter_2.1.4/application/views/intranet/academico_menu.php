@@ -1,44 +1,125 @@
-<br><div class="row-fluid">
-	<div class="span4"><h4>Registrar Academico</h4>
+<script type="text/javascript">
+     $(document).ready(function() {
+            $("#periodo").change(function() {
+                $("#periodo option:selected").each(function() { 
+                   periodo = $('#periodo').val();
+                   datepicker=$('#datepicker').val();
+                    $.post("<?= base_url('/index.php/intranet/getSala');?>", {
+                        periodo : periodo ,datepicker : datepicker
+                    }, function(data) {
+                        $("#sala").html(data);
+                    });
+                });
+            });
+        });
+</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#docente").change(function() {
+                $("#docente option:selected").each(function() { 
+                   docente = $('#docente').val();
+                    $.post("<?= base_url('/index.php/intranet/getAsignaturasDocente')?>", {
+                        docente : docente
+                    }, function(data) {
+                        $("#asignatura").html(data);
+                    });
+                });
+            });
+        });
+        
+</script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="jquery.ui.datepicker-es.js"></script>
+<script>
+$(function () {
+ $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+        dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };    
+$.datepicker.setDefaults($.datepicker.regional["es"]);
+$("#datepicker").datepicker({
+minDate: "0D",
+maxDate: "+4M, 5D"
+});
+$('#datepicker2').datepicker({
+minDate: "0D",
+maxDate: "+6M, 5D"
+});
+});
+</script>
+
+<?php
+  $atributosDocente= array( "" => "Seleccione un Academico", );
+    foreach ($academico as $profesor){ 
+    $atributosDocente[$profesor->pk] = $profesor->nombres." ".$profesor->apellidos; 
+    }
+    
+    
+    $atributosPeriodo=array( "" => "Seleccione un Periodo", );
+    foreach ($periodos as $peri) {
+      $atributosPeriodo[$peri->pk]=$peri->periodo;
+    }
+    
+?>
+
+
+<div class="well">
+    
+    
+        <?= form_open('intranet/llenarReservaSemestre')?>
+        <div class="row">
+         <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'")?></div>
+        </div>
+        <div class="row">
+         <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',array(''=>'Seleccione Asignatura'),'',"id='asignatura'")?></div>
+        </div>
+        <div class="row">
+        <div class="span2">Semestre:</div> <div class="span3"><?=form_dropdown('semestre',array('1'=>'1','2'=>'2'),'',"id='semestre'")?></div>
+        </div>
+        <div class="row">
+            <div class="span2">Fecha:</div><div class="span3">
+                <?= form_input(array('name'=>'datepickerInicio','id'=>'datepicker'));?>
+            </div><div class="span3"><?=form_input(array('name'=>'datepickerTermino','id'=>'datepicker2'));?></div>
+        </div>
+        <div class="row">
+        <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo'")?></div>
+        </div>
+        
+        <div class="row">
+        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'")?></div>
+        </div>
+        <div class="row">
+            <div class="span3"><?= form_submit("btnEnviar", "Enviar","class='btn'") ?></div> <div class="span3"></div>
+        </div>
+        <?=  form_close() ?>
+        <div class="row">
+            <div class="span2"></div> <div class="span3"></div>
+        </div>
+    
+    
+
+   
+<br>
+
 			<?php 
-				$nombre = array(
-		          'name' => 'nombre',
-		            'id' => 'nombre'
-		        );
-				$apellido = array(
-		          'name' => 'apellido',
-		            'id' => 'apellido'
-		        );		        
-		        $rut=  array(
-		            'name'=>'rut'
-		            ,'id'=>'rut'
-		        );
-		        $dpto=  array(
-		            'name'=>'dpto'
-		            ,'id'=>'dpto'
-		        );		        
-		        $atributos_Btn=  array('class'=>'btn btn-primary btn-large'); 
-		        
-		        echo form_open('intranet/setAcademico');
-		        echo form_label('Nombre', 'usuario');
-		        echo form_input($nombre);echo '<br>';
-
-		      	echo form_label('Apellido', 'usuario');
-		        echo form_input($apellido);echo '<br>';
-
-		        echo form_label('Rut', 'password');
-		        echo form_input($rut);echo '<br>';   
-
-		       // echo form_label('Departamento', 'departamento');
-		        //echo form_input($dpto);echo '<br>'; 
-
-		        echo form_submit($atributos_Btn, 'Enviar');
-		        echo form_close();
-			 ?>
-	</div>
-	<div class="span6"><h4>Asocia</h4>
-
-			<?php 
+                        /*
+                        date_default_timezone_set("America/Santiago");
 			echo form_open('intranet/asocia');	
 						        $atributos_Btn=  array('class'=>'btn btn-primary'); 
 						        $atributos= array( "" => "Seleccione un Academico", );
@@ -94,11 +175,12 @@
 				 	//echo form_submit($atributos_Btn, 'Enviar');
 				//--------
 				        echo form_close();
+                         * 
+                         */
 					
 ?>	
-	</div>
-	<div class="span2">
-		
-	</div>
+	
+	
+
 
 </div>

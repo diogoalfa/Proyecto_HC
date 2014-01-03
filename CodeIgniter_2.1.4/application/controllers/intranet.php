@@ -60,10 +60,10 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                    $this->load->view('intranet/bienvenido');
+                    //$this->load->view('intranet/bienvenido');
                     $this->load->view('intranet/header_menu');
                        // $this->load->view('intranet/menu');
-                    $this->load->view('intranet/fin_header_menu');
+                    //$this->load->view('intranet/fin_header_menu');
                 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
@@ -81,15 +81,18 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/cierre_footer');
 
             }else{
-                            $academico=$this->docente_model->getAcademico();
-                            $asignatura=$this->admin_model->getAsignatura();
+                $academico=$this->docente_model->getAcademico();
+                $asignatura=$this->admin_model->getAsignatura();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                    $this->load->view('intranet/bienvenido');
-                    $this->load->view('intranet/header_menu');
-                      $this->load->view('intranet/academico_menu',compact('academico','asignatura'));
-                    $this->load->view('intranet/fin_header_menu');
+                
+                $periodos=$this->Admin_model->getPeriodo();
+                    
+                //$this->load->view('intranet/bienvenido');
+                $this->load->view('intranet/header_menu');
+                $this->load->view('intranet/academico_menu',compact('academico','asignatura','periodos'));
+                  //  $this->load->view('intranet/fin_header_menu');
                 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
@@ -97,6 +100,7 @@ class Intranet extends CI_Controller {
 
 
     }
+    
     public function setAcademico(){
             $datos=array(
                 'nombres'=>$this->input->post('nombre'),
@@ -252,6 +256,47 @@ class Intranet extends CI_Controller {
     }
     public function updateReservas($id){
             //seguir
+    }
+    
+    public function getAsignaturasDocente() {
+        
+        $pkDocente=$this->input->post('docente');
+        $asignaturas=$this->Docente_model->getAsignatura($pkDocente);
+        
+        foreach ($asignaturas as $asig) {
+            echo form_hidden('seccion',$asig->seccion,'',"id='seccion'");
+            echo "<option value=''".$asig->pk."''>".$asig->nombre."-".$asig->seccion."</option>";
+            
+           
+        }
+    }
+    
+    public function getSala(){
+        
+       $pkPeriodo=$this->input->post('periodo');
+       $fecha=$this->input->post('datepicker');
+       echo "$fecha - $pkPeriodo";
+       
+       $salasDisponibles=$this->Sala_model->getSalasDisponibles($pkPeriodo,$fecha);
+     //  echo "<option>".$pk_periodo."</option>";
+     //  echo "<option>".$fecha."</option>";
+        foreach ($salasDisponibles as $sala) {
+           echo '<option value="'.$sala->pk.'">'.$sala->sala.'</option>';
+        } 
+       
+    }
+    
+    public function llenarReservaSemestre() {
+        
+        $pkDocente=$this->input->post('docente');
+        $pkAsignatura=$this->input->post('asignatura');
+        $semestre=$this->input->post('semestre');  
+        $fechaInicio=$this->input->post('datepickerInicio');
+        
+        
+        
+        
+        
     }
     public function desconectar() {
         session_destroy();

@@ -237,11 +237,11 @@ class Pedidos extends CI_Controller {
         
         }
         else{  
-        $pk_periodo= $this->input->post('sePeriodo');
+        $pkPeriodo= $this->input->post('sePeriodo');
         $fecha=$this->input->post('datepicker');
         
        
-       $salasDisponibles=$this->Sala_model->getSalasDisponibles($pk_periodo,$fecha);
+       $salasDisponibles=$this->Sala_model->getSalasDisponibles($pkPeriodo,$fecha);
      //  echo "<option>".$pk_periodo."</option>";
      //  echo "<option>".$fecha."</option>";
         foreach ($salasDisponibles as $sala) {

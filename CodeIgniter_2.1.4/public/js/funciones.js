@@ -4,3 +4,5 @@ function eliminar(url) {
         redirect('/intranet', 'refresh');
     }
 }
+
+
