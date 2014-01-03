@@ -47,33 +47,13 @@
 
 						$listaAsignatura= array( "" => "Seleccione una Asignatura", );
 					foreach ($asignatura as $ramo){ 
-						$listaAsignatura[$ramo->pk] = $ramo->nombre." ".$ramo->codigo; 
-					}
-					$sec1 = array(
-					    'name'        => 'seccion',
-					    'id'          => 'seccion',
-					    'checked'     => TRUE,
-					    'style'       => 'margin:10px',
-					    'value'=>'1',
-					    );
-					$sec2 = array(
-					    'name'        => 'seccion',
-					    'id'          => 'seccion',
-					    'style'       => 'margin:10px',
-					    'value'=>'2',
-					    );
-					$sec3 = array(
-					    'name'        => 'seccion',
-					    'id'          => 'seccion',
-					    'style'       => 'margin:10px',
-					    'value'=>'3',
-					    );
-					$sec4 = array(
-					    'name'        => 'seccion',
-					    'id'          => 'seccion',
-					    'style'       => 'margin:10px',
-					    'value'=>'4',
-					    );
+						$listaAsignatura[$ramo->pk] = $ramo->nombre." ".$ramo->codigo; }
+						$seccion= array( "" => "Seleccione una Seccion", );
+					foreach ($asignatura as $ramo){ 
+						for ($i=1; $i <=8; $i++) { 
+								$seccion[$i] =$i ;
+						}
+						 }
 					$sem1 = array(
 					    'name'        => 'semestre',
 					    'id'          => 'semestre',
@@ -88,21 +68,24 @@
 					    'value'=>'2',
 					    );
 								$año=array(
-					    				'2013'=>'2013'
+					    				'value'=>date("Y"),
+					    				'readonly'=>'readonly',
+					    				'id'=>'anio',
+					    				'name'=>'anio',
 					    			);
 					    $atributos_Btnn=  array('class'=>'btn btn-primary btn-large');			    			
 			echo '
 				<table border="0">
 					<tr>
 						<td>'.form_label('Academico', 'academico').''.form_dropdown('docente', $atributos).'</td>
-						<td>'.form_label('Año', 'año').''.form_dropdown('anio', $año).'</td>
+						<td>'.form_label('Año', 'año').''.form_input($año).'</td>
 					</tr>
 					<tr>
 						<td>'.form_label('Asignatura', 'asignatura').''.form_dropdown('ramo', $listaAsignatura).'</td>
 						<td>'.form_label('Semestre','semestre').'1'.form_radio($sem1).'2'.form_radio($sem2).'</td>
 					</tr>
 					<tr>
-						<td>'.form_label('Seccion', 'seccion').'1'.form_radio($sec1).'2'.form_radio($sec2).'3'.form_radio($sec3).'4'.form_radio($sec4).'</td>
+						<td>'.form_label('Seccion', 'seccion').''.form_dropdown('seccion', $seccion).'</td>
 						<td>'.form_submit($atributos_Btnn, 'Asociar').'</td>
 					</tr>
 				</table>

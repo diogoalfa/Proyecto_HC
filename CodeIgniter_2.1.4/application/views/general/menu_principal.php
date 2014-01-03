@@ -18,8 +18,9 @@
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class=""><a href="<?= site_url('consulta');?>">Inicio</a></li>
-               <li><a href="<?= site_url('pedidos');?>">Pedidos</a></li>
+                <li class=""><a href="<?= site_url('welcome');?>">Inicio</a></li>
+                <li><a href="<?= site_url('consulta');?>">Consulta</a></li>
+                <li><a href="<?= site_url('pedidos');?>">Pedidos</a></li>
                     <li><a href="#">Profesores</a></li>
                 <li><a href="#">Ayuda</a></li>
                 <li><a href="<?= site_url('intranet');?>">Intranet</a></li>

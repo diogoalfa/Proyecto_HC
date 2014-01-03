@@ -57,6 +57,13 @@
                     ->get();
         return $query->row(); 
      }
+     public function getCursos(){
+            $query=$this->db
+                    ->select('pk,asignatura_fk,docente_fk,seccion')
+                    ->from ('cursos')
+                    ->get();
+        return $query->result(); 
+     }
      public function setReserva($datos){
                 $this->db->insert('reservas',$datos);
          return true;
@@ -81,7 +88,7 @@
      public function getReservas($pk){
             $condicion=array('r.pk'=>$pk);
               $query=$this->db
-                ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+                ->select('r.curso_fk,sala_fk,r.periodo_fk,r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
                 ->from('reservas as r')
                 ->join('cursos as c','r.curso_fk=c.pk','inner')
                 ->join('docentes as d','c.docente_fk=d.pk','inner')

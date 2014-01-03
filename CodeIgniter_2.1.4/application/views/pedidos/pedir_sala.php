@@ -62,12 +62,10 @@ $atributos_Apellido=array('name'=>'Apellido');
 
     if (isset($asignaturas)) {
         $atributos_OptionAsig=array(''=>'->Seleccionar Asignatura',);
-        $atributos_OptionSeccion=array(''=>'->Seleccionar seccion',);
      //  $atributos_OptionAsig=array(''=>'->Seleccionar Asignatura',);
        foreach ($asignaturas as $asig) {
            
            $atributos_OptionAsig[$asig->pk]=$asig->nombre;
-           $atributos_OptionSeccion[$asig->seccion]=$asig->seccion;
        }
     }
     if (isset($periodos)) {
@@ -77,9 +75,6 @@ $atributos_Apellido=array('name'=>'Apellido');
            $atributos_OptionPeriodo[$peri->periodo]=$peri->pk;
       }
     }
- 
-    
-
     
     $atributos_OptionDia=array(
     ''=>'->Seleccione el Dia',
@@ -119,12 +114,18 @@ $atributos_Apellido=array('name'=>'Apellido');
      </div>
     <div class="row">
         <div class="span2"><label>Asignatura : </label></div><div class="span4">
-            <?= form_dropdown('asignatura',$atributos_OptionAsig,'','')?>  
-         </div>
-    </div>
-     <div class="row">
-        <div class="span2"><label>Seccion : </label></div><div class="span4">
-            <?= form_dropdown('seccion',$atributos_OptionSeccion,'','')?>  
+           
+            <select id="" name="asignatura">
+             <?php
+                 echo '<option>->Seleccione Asignatura</option>';
+                foreach ($asignaturas as $asig) {
+                    echo '<option value="'.$asig->pk.'">'.$asig->nombre.'</option>';
+                }
+            
+            ?>   
+                
+            </select>
+            
          </div>
     </div>
    
@@ -137,7 +138,15 @@ $atributos_Apellido=array('name'=>'Apellido');
      <div class="row">
         <div class="span2"><label>Periodo : </label></div>
           <div class="span4">
-           <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id=sePeriodo")?>
+          <?php // form_dropdown('periodo',$atributos_OptionPeriodo,'->Seleccione Periodo','id="periodo"');?>
+              <select required  id="sePeriodo" name="sePeriodo" value="<?= set_value('sePeriodo')?>">
+               <?php 
+                echo "<option>->Seleccione Periodo</option>";
+                foreach ($periodos as $peri) {
+                    echo '<option value="'.$peri->pk.'">'.$peri->periodo.'</option>';
+                }
+               ?>  
+              </select>
         </div>
     </div>
     <div class="row">

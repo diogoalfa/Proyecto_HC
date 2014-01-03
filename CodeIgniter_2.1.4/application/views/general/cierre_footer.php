@@ -20,8 +20,8 @@
             if (strlen($day)==1) {
                 $day="0".$day;
             }
-            $date=$day."/".$month."/".$year;
-            echo "@UTEM-Company $time $date";
+            $date=$year."-".$month."-".$day;
+            echo "@UTEM-Company $date $time";
 
 
 ?> <ul class="breadcrumb">

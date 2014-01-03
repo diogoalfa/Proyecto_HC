@@ -52,8 +52,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
+                        $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -77,8 +76,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
+                        $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -100,19 +98,6 @@ class Intranet extends CI_Controller {
 
     }
     public function setAcademico(){
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-        
             $datos=array(
                 'nombres'=>$this->input->post('nombre'),
                 'apellidos'=>$this->input->post('apellido'),
@@ -125,21 +110,8 @@ class Intranet extends CI_Controller {
                     echo '<script>alert("Exito al guardar datos de Academico"); </script>';
                      redirect('intranet/academico', 'refresh');
             }
-            }
     }
     public function asocia(){
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
         $datos=array(
             'semestre'=>$this->input->post('semestre'),
             'anio'=>$this->input->post('anio'),
@@ -153,7 +125,6 @@ class Intranet extends CI_Controller {
                     echo '<script>alert("Asociacion realizada con Exito"); </script>';
                      redirect('intranet/academico', 'refresh');
             }
-            }
     }
     public function salas(){
 
@@ -162,8 +133,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
+                        $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -174,10 +144,10 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/bienvenido');
-                $this->load->view('intranet/header_menu');
-                $this->load->view('intranet/salas_menu',compact('salas','academico','periodo'));
-                $this->load->view('intranet/fin_header_menu');
+                    $this->load->view('intranet/bienvenido');
+                    $this->load->view('intranet/header_menu');
+                       $this->load->view('intranet/salas_menu',compact('salas','academico','periodo'));
+                    $this->load->view('intranet/fin_header_menu');
                 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
@@ -187,17 +157,6 @@ class Intranet extends CI_Controller {
 
     }
     public function setSala(){
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
                 $datos=array(
                  'facultad_fk'=>'1',//facultad de ingenieria=1   
                 'sala'=>$this->input->post('nombre'),
@@ -207,21 +166,8 @@ class Intranet extends CI_Controller {
                     echo '<script>alert("Sala Ingresada con Exito"); </script>';
                      redirect('intranet/salas', 'refresh');
              }
-            }
     }
     public function setSalaAcademico(){
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
            
             $docentePk=$this->input->post('docente');
             //print_r($docentePk);
@@ -246,7 +192,6 @@ class Intranet extends CI_Controller {
                      redirect('intranet/salas', 'refresh');
              }
             } 
-            }
     }
     public function resultadosGral(){//muestra la tabla reserva "todos los datos (sala,periodo, academico etc)"
 
@@ -255,8 +200,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
+                        $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -275,17 +219,6 @@ class Intranet extends CI_Controller {
             }                
     }
     public function eliminar($id=NULL){
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
         if (!$id) {
             show_404();
         }
@@ -295,29 +228,20 @@ class Intranet extends CI_Controller {
             echo '<script>alert("Se ha eliminado un registro"); </script>';
             redirect('/intranet/resultadosGral', 'refresh');
         }
-           }
     }
     public function editar($id = null){
-          if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $mensajeAlerta="No ha iniciado sesion!";
-                $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
+        $edit=$this->admin_model->getReservas($id);
                     $academico=$this->docente_model->getAcademico();
                     $asignatura=$this->admin_model->getAsignatura();
                     $salas=$this->admin_model->getSala();
                     $periodo=$this->admin_model->getPeriodo();
+                    $cursos=$this->admin_model->getCursos();
+
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
                     $edit=$this->admin_model->getReservas($id);
-                $this->load->view('intranet/edit',compact('edit','academico','asignatura','salas','periodo'));
+                $this->load->view('intranet/edit',compact('edit','academico','asignatura','salas','periodo','cursos'));
                     //$this->load->view('intranet/bienvenido');
                    // $this->load->view('intranet/header_menu');
                        // $this->load->view('intranet/resultadosGral',compact('result'));
@@ -325,7 +249,9 @@ class Intranet extends CI_Controller {
                 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
-            }
+    }
+    public function updateReservas($id){
+            //seguir
     }
     public function desconectar() {
         session_destroy();
