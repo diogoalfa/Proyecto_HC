@@ -32,9 +32,6 @@
         return $query->result();
     }
     public function academicoSemana($pk){
- 
-       // $query=$this->db->query("SELECT r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion FROM reservas r,periodo p, cursos c, docentes d, salas s, asignaturas a WHERE r.curso_fk=c.pk AND c.docente_fk=d.pk AND r.sala_fk=s.pk AND c.asignatura_fk=a.pk AND p.pk=r.periodo_fk AND".$pk."=d.pk");              
-       //  return $query->result();
         $condicion=array('d.pk'=>$pk);
               $query=$this->db
                 ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
@@ -51,7 +48,13 @@
        }
 
     public function getDocenteRut($rut){
-        $query=$this->db->query("SELECT * FROM docentes WHERE rut='$rut'");
+       // $query=$this->db->query("SELECT * FROM docentes WHERE rut='$rut'");
+       $where=array('rut'=>$rut);
+       $query= $this->db
+               ->select('*')
+               ->from('docentes')
+               ->where($where)
+               ->get();
          return $query->row();
     }     
      function getAsignatura($pk_docente) {
@@ -76,6 +79,27 @@
               . "AND s.pk=r.sala_fk AND p.pk=r.periodo_fk ");
          
       return $query->result();
+     }
+     
+     public function borrarPedido($pkPedido) {
+        $this->db
+             ->delete('reservas',array('pk'=>$pkPedido));
+         return true;
+     }
+     
+     public function getDocentePkPedido($pkPedido) {
+         
+        /* $query=$this->db
+                 ->select('*')
+                 ->from()
+                 ->where()
+                 ->get();
+         * 
+         */
+        $query=$this->db
+                 ->query('SELECT FROM reservas as r,docentes s WHERE');
+         
+         return $query->row();
      }
      
      

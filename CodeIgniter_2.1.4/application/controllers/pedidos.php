@@ -8,7 +8,7 @@ class Pedidos extends CI_Controller {
     function __construct() {
         parent::__construct();
         session_start();
-        $this->load->library('calendar');
+   
        //session_destroy();   
     }
 
@@ -37,11 +37,13 @@ class Pedidos extends CI_Controller {
         $this->load->view('general/headers');
         $this->load->view('general/menu_principal');
         $this->load->view('general/abre_bodypagina');
+        
         $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']); 
-          $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
-          $periodos= $this->Admin_model->getPeriodo();
-          $this->load->view('pedidos/selecionar_opcionPedidos');
-          $this->load->view('pedidos/pedir_sala',compact("asignaturas","docente","periodos"));     
+        $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
+        $periodos= $this->Admin_model->getPeriodo();
+        
+        $this->load->view('pedidos/selecionar_opcionPedidos');
+        $this->load->view('pedidos/pedir_sala',compact("asignaturas","docente","periodos"));     
            
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
@@ -54,18 +56,55 @@ class Pedidos extends CI_Controller {
         $this->load->view('pedidos/selecionar_opcionPedidos');
         $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']);
         $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
-        $this->load->view('pedidos/consultaPorAsignatura',  compact("asignaturas"));
+        $this->load->view('pedidos/consultaPorAsignatura',compact("asignaturas"));
         
-        if($this->input->post('asignatura')){
-            $asignatura_pk=$this->input->post('asignatura');
+        $asignatura_pk=$this->input->post('asignatura');
+        if($asignatura_pk){
+            
+            //Pedido es una reserva sin confirmar
             $pedidos=$this->Docente_model->getPedidoSalaDocente($asignatura_pk,$docente->pk);
-            $this->load->view('pedidos/verPedidos',compact("pedidos"));
+            $this->load->view('pedidos/verPedidos',compact("pedidos","asignatura_pk"));
         }
-        
-           
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
     }
+    
+    public function editarPedido($pkPedido=null,$fecha=null){
+        
+        $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']); 
+        $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
+        $periodos= $this->Admin_model->getPeriodo();        
+                
+                
+        $this->load->view('general/headers');
+        $this->load->view('general/menu_principal');
+        $this->load->view('general/abre_bodypagina');
+        $this->load->view('pedidos/selecionar_opcionPedidos');
+         
+        $this->load->view('pedidos/editarPedido',compact("pkPedido","asignaturas","periodos","fecha"));
+        
+        $this->load->view('general/cierre_bodypagina');
+        $this->load->view('general/cierre_footer');
+            
+        
+      }
+    
+    public function eliminarPedido($pkPedido=null) {
+        
+       
+          $esEliminado=$this->Docente_model->borrarPedido($pkPedido);
+          if($esEliminado==true){
+               echo '<script>alert("Exito al eliminar el Pedido"); </script>';
+               redirect('pedidos', 'refresh');
+          } 
+          else{
+                    echo '<script>alert("A ocurrido un error al eliminar el Pedido"); </script>';
+                    redirect('pedidos', 'refresh');
+         }                    
+         
+        
+    }
+    
     
     public function logueoError() {
         $this->load->view('general/headers');
@@ -100,10 +139,7 @@ class Pedidos extends CI_Controller {
        // }
     }
     
-    public function getCurso() {
-        
-        
-    }
+    
     public function guardarPedidoSala(){
         
         $fecha=  $this->input->post('datepicker');
