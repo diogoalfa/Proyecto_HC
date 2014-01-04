@@ -11,7 +11,8 @@
 <footer><?php 
             date_default_timezone_set("America/Santiago");
             $time  = date("H:i:s");
-            $year=date("Y");
+            //Otro forma de fecha
+            /*$year=date("Y");
             $month=date("n");
             $day=date("j");
             if (strlen($month)==1) {
@@ -20,8 +21,13 @@
             if (strlen($day)==1) {
                 $day="0".$day;
             }
-            $date=$day."/".$month."/".$year;
-            echo "@UTEM-Company $time $date";
+            $date=$day."/".$month."/".$year;*/
+            
+            $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            $fecha= $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+
+            echo "@UTEM-Company Son las $time, $fecha";
 
 
 ?> <ul class="breadcrumb">

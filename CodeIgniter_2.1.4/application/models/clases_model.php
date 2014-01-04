@@ -66,7 +66,7 @@ class Clases_model extends CI_Model{
                     ->get();
 
 
-            //INI
+            /*//INI
             date_default_timezone_set("America/Santiago");
             $year=date("Y");
             $month=date("n");
@@ -108,7 +108,7 @@ class Clases_model extends CI_Model{
                 $date=$year."-".$month."-".$day;
                 //echo "$date<br>";
             }
-            //FIN
+            //FIN*/
 
 
 
