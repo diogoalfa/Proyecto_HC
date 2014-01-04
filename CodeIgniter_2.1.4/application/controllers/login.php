@@ -6,6 +6,7 @@ class Login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->helper("ws_helper");
        session_start();
       // session_destroy();
     }
@@ -13,19 +14,42 @@ class Login extends CI_Controller {
     
     function index() {
        
-        if($this->input->post()){
-            $clave=$this->input->post('clave');
-            $rut=$this->input->post('rut');
+        // if($this->input->post()){
+        //     $clave=$this->input->post('clave');
+        //     $rut=$this->input->post('rut');
             
-            $respuestaLogin=$this->Docente_model->loguearDocente($rut,$clave);
-            if($respuestaLogin==1){
-                   $_SESSION['usuarioProfesor']=  $this->input->post('rut');
-                   redirect('pedidos',301); 
+        //     $respuestaLogin=$this->Docente_model->loguearDocente($rut,$clave);
+        //     if($respuestaLogin==1){
+        //            $_SESSION['usuarioProfesor']=  $this->input->post('rut');
+        //            redirect('pedidos',301); 
                    
+        //     }
+        //     else{
+        //        redirect('pedidos/logueoError',301);
+        //     }
+        // }
+              if ($this->input->post()) {
+                $rut = $this->input->post("rut", TRUE);//rut
+                $p = strtoupper($this->input->post("clave", TRUE));
+                $str = hash('sha256', $p);
+                error_log("$rut / $p / $str");
+                $resultado = wsLogear($rut, $str);
+//           echo $resultado;exit;
+
+          if($resultado==1){
+                  $_SESSION['usuarioProfesor']=  $this->input->post('rut');
+                  $alias=wsSession($rut);
+                  if($alias==FALSE)
+                    redirect('pedidos/logueoError',301);
+                  else{
+                     $_SESSION['bnv'] = $alias;
+                   redirect('pedidos',301); 
+                  }                  
             }
             else{
                redirect('pedidos/logueoError',301);
             }
+            
         }
         
     }
@@ -39,6 +63,7 @@ class Login extends CI_Controller {
             
             if($respuestaLogin==1){
                    $_SESSION['usuarioAdmin']=$this->input->post('usuario');
+
                   // redirect('intranet/acceso',301); 
                   //  base_url("intranet/acceso");
               header ("Location: http://localhost/Proyecto_HC/CodeIgniter_2.1.4/index.php/intranet/acceso");

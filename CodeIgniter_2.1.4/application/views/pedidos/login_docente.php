@@ -4,7 +4,7 @@
 <div class="well">
     <div class="alert alert-block">
         <label><h2>Solicitar Salas</h2></label><br>
-        <h5>Solo los profesores pueden pedir salas los profesores.Entrar con USUARIO y PASSWORD de reko!.</h5><br>
+        <h5>Solo los profesores pueden pedir salas los profesores.Entrar con USUARIO y PASSWORD de dirdoc!.</h5><br>
       
          <?php
          

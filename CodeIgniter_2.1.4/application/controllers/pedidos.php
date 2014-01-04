@@ -23,7 +23,7 @@ class Pedidos extends CI_Controller {
         }
         else{
         //echo $_SESSION['usuarioProfesor'];
-          
+          //$this->load->view('pedidos/login_docente');
           $this->load->view('pedidos/selecionar_opcionPedidos');
           
            
