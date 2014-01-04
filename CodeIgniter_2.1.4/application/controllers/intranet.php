@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Intranet extends CI_Controller {
 
@@ -265,11 +265,16 @@ class Intranet extends CI_Controller {
         
         foreach ($asignaturas as $asig) {
             echo form_hidden('seccion',$asig->seccion,'',"id='seccion'");
-            echo "<option value=''".$asig->pk."''>".$asig->nombre."-".$asig->seccion."</option>";
-            
-           
+            echo "<option value=".$asig->pk.">".$asig->nombre." sec. ".$asig->seccion."</option>";
         }
     }
+    /*public function getSeccionAsignaturasDocente() {
+        $pkDocente=$this->input->post('docente');
+        $pkAsignatura=$this->input->post('asignatura');
+        $asignaturas=$this->Docente_model->getSeccion_AsignaturasDocente($pkDocente,$pkAsignatura);
+        
+        
+    }*/
     
     public function getSala(){
         
@@ -288,10 +293,34 @@ class Intranet extends CI_Controller {
     
     public function llenarReservaSemestre() {
         
-        $pkDocente=$this->input->post('docente');
-        $pkAsignatura=$this->input->post('asignatura');
-        $semestre=$this->input->post('semestre');  
-        $fechaInicio=$this->input->post('datepickerInicio');
+        $pkDocente=$this->input->post('docente');              
+        $pkAsignatura=$this->input->post('asignatura');        
+        $semestre=$this->input->post('semestre');              
+        $fechaInicio=$this->input->post('datepickerInicio');   
+        $fechaTermino=$this->input->post('datepickerTermino'); 
+        $periodo=$this->input->post('periodo');
+        $sala=$this->input->post('sala');
+        $listo=$this->Admin_model->AsignacionPorTiempo($pkDocente,$pkAsignatura,$semestre,$fechaInicio,$fechaTermino,$periodo,$sala);
+        
+        /*
+        $this->load->view('general/headers');
+        $this->load->view('general/menu_principal');
+        $this->load->view('general/abre_bodypagina');
+              $this->load->view('intranet/loginAdmin');
+       if (!isset($_SESSION['usuarioAdmin'])) {
+                          
+       }
+       else{
+        redirect('intranet/acceso', 'refresh');
+       }
+           //$this->load->view('intranet/central_secretaria');     
+        
+         
+         
+        
+        $this->load->view('general/cierre_bodypagina');
+        $this->load->view('general/cierre_footer');
+        */
         
         
         

@@ -58,7 +58,7 @@
          return $query->row();
     }     
      function getAsignatura($pk_docente) {
-        $query=$this->db->query("SELECT a.nombre as nombre, a.pk as pk,c.seccion as seccion 
+        $query=$this->db->query("SELECT a.pk as pk, a.nombre as nombre, c.seccion as seccion 
                                  FROM cursos as c,asignaturas as a 
                                  WHERE  c.docente_fk='$pk_docente' AND a.pk=c.asignatura_fk;");
         return $query->result();
@@ -113,6 +113,14 @@
                        ." WHERE pk=$pkPedido");
        return true;
      }
+
+     /*public function getSeccion_AsignaturasDocente($pkDocente,$pkAsignatura)){
+
+        ->query=$this->db
+              ->query('SELECT c.seccion from cursos c, docentes d,asignaturas a where d.pk=c.docente_fk and d.pk=$pkDocente and a.pk=c.asignatura_fk and a.pk=$pkAsignatura');
+        return $query->row();
+
+     }*/
      
      
    }
