@@ -81,10 +81,7 @@
                 ->get();
         return $query->result();
      }
-    public function delete($id){
-            $this->db->delete('reservas', array('pk' => $id));
-            return true;
-     }
+   
      public function getReservas($pk){
             $condicion=array('r.pk'=>$pk);
               $query=$this->db
@@ -100,15 +97,7 @@
         return $query->row();
        
      }
-     public function edit($id){
-            $query = $this->db
-                ->select("pk,sala_fk,rut,contacto")
-                ->from("reservas")
-                ->where(array('pk' =>$id))
-                ->get ();
-                return $query->row();
-     }
-     
+
      public function getTodosPedidos() {
          
          $query=$this->db
@@ -119,7 +108,8 @@
                     c.pk=r.curso_fk and 
                     p.pk=r.periodo_fk and 
                     d.pk=c.docente_fk and 
-                    a.pk=c.asignatura_fk ");
+                    a.pk=c.asignatura_fk 
+                    ORDER BY pk ASC");
        return $query->result();
      }
      
@@ -138,6 +128,38 @@
                  ->delete('reservas',array('pk'=>$pkPedido));
          return true;
                  
+     }
+     
+     public function getReserva() {
+         
+         $query=$this->db
+                ->query("SELECT r.pk,r.fecha,s.sala,s.pk AS pksala,d.nombres AS nombredocente,d.apellidos AS apellidodocente,d.pk AS pkdocente,a.nombre AS asignatura,a.pk AS pkasignatura,c.seccion,p.periodo,p.pk AS pkperiodo 
+                    FROM reservas as r,salas as s,docentes as d,cursos as c,asignaturas as a,periodos as p WHERE 
+                    r.adm_fk is not NULL and
+                    s.pk=r.sala_fk and 
+                    c.pk=r.curso_fk and 
+                    p.pk=r.periodo_fk and 
+                    d.pk=c.docente_fk and 
+                    a.pk=c.asignatura_fk 
+                    ORDER BY pk ASC");
+        return $query->result();
+     }
+     
+     
+     public function editarReserva() {
+         
+         
+     }
+     
+     public function getPkDocente($pkDocente) {
+         $query=$this->db->query("SELECT * FROM docentes WHERE pk=$pkDocente ");
+         return $query->row();
+     }
+      
+     public function getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura) {
+         $query=$this->db
+                 ->query("SELECT seccion FROM cursos WHERE docente_fk=$pkDocente AND asignatura_fk=$pkAsignatura");
+         return $query->result();
      }
 
     

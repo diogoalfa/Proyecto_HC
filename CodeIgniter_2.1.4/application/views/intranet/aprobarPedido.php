@@ -14,6 +14,7 @@
 </script>
 
 <div class="well">
+    <h4>Aprobar Pedido</h4><br>
     <?=form_open('intranet/aprobarFinal')?>
     <div class="row">
         <div class="span2">N° Pedido:</div><div class="span3"><?=form_input(array('name'=>'pkPedido','readonly'=>'readonly','value'=>$pedido['pk']))?></div>

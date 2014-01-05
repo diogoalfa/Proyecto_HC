@@ -91,6 +91,7 @@ $atributos_Apellido=array('name'=>'Apellido');
     
     if (isset($docente)) {
         ?>
+    <br>
     <div class="row">
         <div class="span2"><?= form_label('Nombre :');?></div> <div class="span3"><?=  form_label($docente->nombres); ?></div>
     </div>
@@ -104,9 +105,10 @@ $atributos_Apellido=array('name'=>'Apellido');
     }
     ?>
      <br><br>
+     <h4>Pedir Sala</h4><br>
      <?=     form_open('pedidos/guardarPedidoSala');?>
      <div class="row">
-         <div class="span2">Curso :</div><div class="span4"><input type="text" name="docente" value="<?=$docente->pk?>"></div>
+         <div class="span2"></div><div class="span4"><?=  form_hidden('docente',$docente->pk)?><input type="hidden" name="docente" value="<?=$docente->pk?>"></div>
      </div>
     <div class="row">
         <div class="span2"><label>Asignatura : </label></div><div class="span4">

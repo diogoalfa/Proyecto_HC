@@ -1,20 +1,8 @@
-<script>
-    $(function() {  
-   var window_height = $(window).height(),
-   content_height = window_height - 200;
-   $('.mygrid-wrapper-div').height(content_height);
-});
 
-$( window ).resize(function() {
-   var window_height = $(window).height(),
-   content_height = window_height - 50;
-   $('.mygrid-wrapper-div').height(content_height);
-});
-</script>
 
 <div class="well">
-    <h4 class="">Pedidos de profesores</h4>
-    <div class="mygrid-wrapper-div">
+    <h4 class="">Reservas de Profesores</h4>
+     <div class="mygrid-wrapper-div">
       <table class="table table-hover">
              <thead>
                     <tr>
@@ -26,15 +14,15 @@ $( window ).resize(function() {
                         <th>Asignatura</th>
                         <th>Periodo</th>
                         <th>Sala</th>
-                        <th>Aprobar</th>
+                        <th>Editar</th>
                         <th>Eliminar</th>
                     </tr> 
                   </thead>
                  
-                  <tbody>
+                <tbody >
                 
                      <?php
-                    foreach ($pedidos as $pedi) {
+                    foreach ($reservas as $pedi) {
                         echo '<tr>';
                         echo "<option>";
                         echo '<td>'.form_label($pedi->pk).'</td>';
@@ -45,14 +33,15 @@ $( window ).resize(function() {
                         echo '<td>'.form_label($pedi->asignatura).'</td>';
                         echo '<td>'.form_label($pedi->periodo).'</td>';
                         echo '<td>'.form_label($pedi->sala).'</td>'; 
-                        echo "<td><a href='".base_url()."index.php/intranet/aprobarPedido/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo' onclick='return confirm('¿Desea editar este Contenido?')' class='btn btn-primary' >Aprobar</a></td>";
-                        echo "<td><a href='".base_url()."index.php/intranet/eliminarPedido/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-danger' >Eliminar</a></td>";  
+                        echo "<td><a href='".base_url()."index.php/intranet/editarReserva/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo/$pedi->seccion' onclick='return confirm('¿Desea editar este Contenido?')' class='btn' >Editar</a></td>";
+                        echo "<td><a href='".base_url()."index.php/intranet/eliminarReserva/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-danger' >Eliminar</a></td>";  
                         echo "</tr>";
                     }
                     ?>
                  
                 </tbody>
        </table>
-        </div>
+     </div>    
     
 </div>
+

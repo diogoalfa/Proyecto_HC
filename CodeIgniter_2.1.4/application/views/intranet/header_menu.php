@@ -9,11 +9,11 @@
 			<div class="btn-group">
 			    <a class="btn btn-default btn-large" href="<?= site_url('intranet/academico');?>">Asignacion Semestre</a>
 			    <a class="btn btn-default btn-large" href="<?= site_url('intranet/salas');?>">Peticion Docentes</a>
-			    <a class="btn btn-default btn-large" href="#">Asignatura</a>
+			   
 			</div>
 		</div>
 	</div>
-
+    <br>
     <button class="btn btn-warning" onclick="location.href='<?= site_url('intranet/desconectar') ?>'" >desconectar</button>
 </div>
 
