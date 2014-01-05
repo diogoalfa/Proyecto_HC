@@ -102,16 +102,14 @@ maxDate: "+7M, 6D"
 <div class="well">
     
     
-        <?= form_open('intranet/llenarReservaSemestre')?>
+        <?= form_open('intranet/llenarReservaSemestre');?>
         <div class="row">
-         <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'")?></div>
+         <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'");?></div>
         </div>
         <div class="row">
-         <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',$atributosAsignatura,'',"id='asignatura'")?></div>
+         <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',$atributosAsignatura,'',"id='asignatura'");?></div>
         </div>
-        <div class="row">
-        <div class="span2">Semestre:</div> <div class="span3"><?=form_dropdown('semestre',array('1'=>'1','2'=>'2'),'',"id='semestre'")?></div>
-        </div>
+        
         <div class="row">
             <div class="span2">Fecha:</div><div class="span3">
                 <?= form_input(array('name'=>'datepickerInicio','id'=>'datepicker','placeholder'=>'Desde'));?>
@@ -120,16 +118,16 @@ maxDate: "+7M, 6D"
                 <?=form_input(array('name'=>'datepickerTermino','id'=>'datepicker2','placeholder'=>'Hasta'));?></div>
         </div>
         <div class="row">
-        <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo'")?></div>
+        <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo'");?></div>
         </div>
         
         <div class="row">
-        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'")?></div>
+        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'");?></div>
         </div>
         <div class="row">
-            <div class="span3"><?= form_submit("btnEnviar", "Enviar","class='btn'") ?></div> <div class="span3"></div>
+            <div class="span3"><?= form_submit("btnEnviar", "Enviar","class='btn'"); ?></div> <div class="span3"></div>
         </div>
-        <?=  form_close() ?>
+        <?=  form_close(); ?>
         <div class="row">
             <div class="span2"></div> <div class="span3"></div>
         </div>

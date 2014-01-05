@@ -109,58 +109,34 @@
                 return $query->row();
      }
 
-    public function AsignacionPorTiempo($pkDocente,$pkAsignatura,$semestre,$fechaInicio,$fechaTermino,$periodo,$sala){
-        //echo $pkDocente."<br>".$pkAsignatura."<br>".$semestre."<br>".$fechaInicio."<br>".$fechaTermino."<br>".$periodo."<br>".$sala;
+    public function AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso){
+        //echo $pkDocente."<br>".$pkAsignatura."<br>".$fechaInicio."<br>".$fechaTermino."<br>".$periodo."<br>".$sala."<br>".$curso;
         
-        $date = explode("-", $fechaInicio, 3);
-        $year=$date[0];   //año
-        $month=$date[1];   //mes
-        $day=$date[2];   //dia
-        echo "fecha inicio: ".$fechaInicio."<br>";
-        echo "fecha termino: ".$fechaTermino."<br>";
+
         
-        // if (strlen($month)==1) {
-        //     $month="0".$month;   //una forma de concadenar
-        // }
-        // if (strlen($day)==1) {
-        //     $day="0".$day;      //otra forma de concadenar
-        // }
-        $date="$year-$month-$day";
-        while($date<="$fechaTermino" ){
-            echo "<br><br>".$date."<br>";
-            for ($conta=1; $conta<=7 || $date<"2014-02-28"; $conta++) { 
-                if ($day=="31" && ($month=="01"||$month=="03"||$month=="05"||$month=="07"||$month=="08"||$month=="10"||$month=="12")){
-                    if ($month=="12") {
-                        $day="01";
-                        $month="01";
-                        $year=$year+"0001";
-                    }
-                    else{
-                        $day="01";
-                        $month=$month+"01";
-                    }
-                }
-                elseif ($day=="30" && ($month=="04"||$month=="06"||$month=="09"||$month=="11")) {
-                    $day="01";  
-                    $month=$month+"01";
-                }
-                else{
-                    $day=$day+"01";
-                }
-            }
-            $date="$year-$month-$day";
-            
+        //echo "$fechaInicio -- $fechaTermino<br>";
+
+        $nuevafecha = strtotime ( '+0 day' , strtotime ( $fechaInicio ) ) ;
+        $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+        a:
+        if ($nuevafecha<=$fechaTermino) {
+            $data = array(
+               'fecha' => "$nuevafecha",
+               'sala_fk' => $sala,
+               'periodo_fk' => $periodo,
+               'curso_fk' => $curso->array(),
+               'adm_fk' =>1,
+            );
+
+            $this->db->insert('reservas', $data);
+            $nuevafecha = strtotime ( '+7 day' , strtotime ( $nuevafecha ) ) ;
+            $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+            goto a;
         }
 
-        // $data = array(
-        //        'fecha' => ,
-        //        'sala_fk' => ,
-        //        'periodo_fk' => ,
-        //        'curso_fk' => ,
-        //        'adm_fk' => ,
-        //     );
+        //obtener curso_fk
 
-        // $this->db->insert('mitabla', $data); 
+         
         }
 
     

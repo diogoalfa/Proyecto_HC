@@ -114,14 +114,24 @@
        return true;
      }
 
-     /*public function getSeccion_AsignaturasDocente($pkDocente,$pkAsignatura)){
+      public function getCurso($pkDocente,$pkAsignatura){
 
-        ->query=$this->db
-              ->query('SELECT c.seccion from cursos c, docentes d,asignaturas a where d.pk=c.docente_fk and d.pk=$pkDocente and a.pk=c.asignatura_fk and a.pk=$pkAsignatura');
+        $where=array('d.pk ='=>$pkDocente,
+                    'a.pk ='=>$pkAsignatura);
+
+        $query=$this->db
+              ->select('c.pk') 
+              ->from ('cursos as c')
+              ->join('docentes as d','d.pk = c.docente_fk','inner')
+              ->join('asignaturas as a','a.pk = c.asignatura_fk','inner')
+              ->where($where)
+              ->get ();
         return $query->row();
 
-     }*/
-     
+        
+
+      }
+
      
    }
 ?>
