@@ -1,9 +1,15 @@
-<div class="well">
 <div class="row-fluid">
 	<div class="span12"><br>
 		<?php 
+            if ($day=date("N")<=5 && $day=date("j")>=1) {
+            
+            }
+            else{
+                echo "Las proximas clases para el dia lunes son:";
+
+            }
             if ($hoy != null) {
-                echo "<h3>Clases del periodo</h3>";
+                echo "<h3></h3>";
                 echo "<table class='table table-hover-striped'>
                        <thead>
                         <tr>
@@ -32,12 +38,9 @@
                 echo "</tbody></table>";
             } 
             else {
-                $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-                $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-                echo "No hay clases hoy día ".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+                echo "No hay clases hoy día ";
 
             }
         ?>
 	</div>
-</div>
 </div>

@@ -1,9 +1,32 @@
-<div class="well">
 <div class="row-fluid">
 	<div class="span12"><br>
 		<?php 
+
+            if ($day=date("N")<=5 && $day=date("j")>=1) {
+                if ($time>="08:15" && $time<="22:15") {
+                //Esta dentro del limite y si esta en receso automaticamente lo asigna al siguiente periodo 
+                //gracias al "if" que hay en la funcion "getTime"
+                    
+                }
+                else{
+                    if ($time>"22:15:00" && $time<"23:59:59") {
+                        if ($day=date("j")==5) {
+                            echo "Las proximas clases para el dia lunes son:";
+                        }
+                        else{
+                            echo "La clases para mañana son:";
+                        }
+                    }
+                    else{
+                    }
+                }
+            }
+            else{
+                echo "Las proximas clases para el dia lunes son:";
+            }          
+
             if ($clases != null) {
-                echo "<h3>Clases del periodo</h3>";
+                echo "<h3></h3>";
                 echo "<table class='table table-hover-striped'>
                        <thead>
                         <tr>
@@ -31,8 +54,7 @@
                 }
                 echo "</tbody></table>";
             } 
-            else echo "No hay clases en este periodo, recomendamos consultar por dia o profesor";
+            else echo "No hay clases, recomendamos consultar por dia o profesor";
         ?>
 	</div>
-</div>
 </div>
