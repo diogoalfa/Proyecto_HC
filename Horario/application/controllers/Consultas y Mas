@@ -1,0 +1,59 @@
+select *
+from salas 
+where pk not in (select sala_fk from reservas where reservas.periodo_fk='6' and adm_fk is not null)
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="jquery.ui.datepicker-es.js"></script>
+
+
+<script>
+$(function () {
+ $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+        dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };    
+$.datepicker.setDefaults($.datepicker.regional["es"]);
+$("#datepicker").datepicker({
+minDate: "0D",
+maxDate: "+1M, 5D"
+});
+});
+</script>
+
+
+
+
+2013-12-20	[fk]15	[fk]6	[fk]1	[fk]1
+
+  //--------------Bueno-----------------------------------
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#sePeriodo").change(function() {
+                $("#sePeriodo option:selected").each(function() { 
+                   sePeriodo = $('#sePeriodo').val();
+                   datepicker=$('#datepicker').val();
+                    $.post("<?= base_url('/index.php/pedidos/salaDisponible')?>", {
+                        sePeriodo : sePeriodo ,datepicker : datepicker
+                    }, function(data) {
+                        $("#divSala").html(data);
+                    });
+                });
+            });
+        });
+</script>

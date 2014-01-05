@@ -17,9 +17,9 @@ class Intranet extends CI_Controller {
         $this->load->view('general/headers');
         $this->load->view('general/menu_principal');
         $this->load->view('general/abre_bodypagina');
-              $this->load->view('intranet/loginAdmin');
+              
        if (!isset($_SESSION['usuarioAdmin'])) {
-                          
+                   $this->load->view('intranet/loginAdmin');       
        }
        else{
         redirect('intranet/acceso', 'refresh');
@@ -143,11 +143,12 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                    $this->load->view('intranet/bienvenido');
+                  //  $this->load->view('intranet/bienvenido');
                     $this->load->view('intranet/header_menu');
+                    
                        $this->load->view('intranet/salas_menu',compact('salas','academico','periodo'));
-                    $this->load->view('intranet/fin_header_menu');
-                
+
+                $this->load->view('intranet/fin_header_menu'); 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
             }
