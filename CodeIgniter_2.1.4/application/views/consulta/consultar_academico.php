@@ -1,3 +1,4 @@
+<div class="well">
 <div class="row-fluid">
 	<div class="span12"><br>
 		<h3>Imparte Clase:</h3>
@@ -18,4 +19,5 @@
 			?>
 
 	</div>
+</div>
 </div>

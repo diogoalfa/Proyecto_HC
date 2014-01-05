@@ -1,7 +1,9 @@
+<div class="well">
 <div class="row-fluid"><br>
   <div class="span12">
   
                           <?php 
+                          if($result!=null){
             echo "<table class='table table-hover-striped'>
                    <thead>
                     <tr>
@@ -29,9 +31,9 @@
                    
             <?php }
             echo "</tbody></table>";
-        //}else{
-         //   echo "Noo exiten datos!<br>";
-       // }
+        }else
+        echo "Este academico no esta impartiendo clases este semestre. recomendamos consultar otro academico";
         ?>
+</div>
 </div>
 </div>

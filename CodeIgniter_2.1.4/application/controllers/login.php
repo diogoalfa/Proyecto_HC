@@ -8,34 +8,16 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->helper("ws_helper");
        session_start();
-      // session_destroy();
     }
   
     
     function index() {
-       
-        // if($this->input->post()){
-        //     $clave=$this->input->post('clave');
-        //     $rut=$this->input->post('rut');
-            
-        //     $respuestaLogin=$this->Docente_model->loguearDocente($rut,$clave);
-        //     if($respuestaLogin==1){
-        //            $_SESSION['usuarioProfesor']=  $this->input->post('rut');
-        //            redirect('pedidos',301); 
-                   
-        //     }
-        //     else{
-        //        redirect('pedidos/logueoError',301);
-        //     }
-        // }
               if ($this->input->post()) {
                 $rut = $this->input->post("rut", TRUE);//rut
                 $p = strtoupper($this->input->post("clave", TRUE));
                 $str = hash('sha256', $p);
                 error_log("$rut / $p / $str");
                 $resultado = wsLogear($rut, $str);
-//           echo $resultado;exit;
-
           if($resultado==1){
                   $_SESSION['usuarioProfesor']=  $this->input->post('rut');
                   $alias=wsSession($rut);
@@ -48,25 +30,17 @@ class Login extends CI_Controller {
             }
             else{
                redirect('pedidos/logueoError',301);
-            }
-            
-        }
-        
+            }   
+        }    
     }
-    
-    public function validarAdmin() {
-        
+    public function validarAdmin() {       
         if($this->input->post()){
            $clave=$this->input->post('clave');
            $nombre=$this->input->post('usuario');
            $respuestaLogin=$this->Admin_model->loguearAdmin($nombre,$clave);
-            
             if($respuestaLogin==1){
                    $_SESSION['usuarioAdmin']=$this->input->post('usuario');
-
-                  // redirect('intranet/acceso',301); 
-                  //  base_url("intranet/acceso");
-              header ("Location: http://localhost/Proyecto_HC/CodeIgniter_2.1.4/index.php/intranet/acceso");
+                  redirect('intranet/acceso',301); 
             }
             else{
                redirect('intranet/errorLoguear',301);
@@ -74,7 +48,6 @@ class Login extends CI_Controller {
            
         }
     }
-    
     public function desconectar() {
         session_destroy();
         redirect('welcome');

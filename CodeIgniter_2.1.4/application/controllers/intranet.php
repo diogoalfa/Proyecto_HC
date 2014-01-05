@@ -24,11 +24,6 @@ class Intranet extends CI_Controller {
        else{
         redirect('intranet/acceso', 'refresh');
        }
-           //$this->load->view('intranet/central_secretaria');     
-        
-         
-         
-        
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
     }

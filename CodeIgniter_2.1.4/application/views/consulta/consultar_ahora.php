@@ -1,20 +1,7 @@
+<div class="well">
 <div class="row-fluid">
 	<div class="span12"><br>
 		<?php 
-
-            // if ($time>="08:15" && $time<="22:15") {
-                
-            // }
-            // else{
-            //     if ($time>"22:15:00" && $time<"23:59:59") {
-            //         echo "No hay clases en estos momentos pero se mostrará las clases del primer periodo del próximo día";
-                    
-            //     }
-            //     else{                
-            //         echo "No hay clases en estos momentos pero se mostrará las clases del primer periodo del próximo día";
-            //     }
-            // }            
-
             if ($clases != null) {
                 echo "<h3>Clases del periodo</h3>";
                 echo "<table class='table table-hover-striped'>
@@ -47,4 +34,5 @@
             else echo "No hay clases en este periodo, recomendamos consultar por dia o profesor";
         ?>
 	</div>
+</div>
 </div>

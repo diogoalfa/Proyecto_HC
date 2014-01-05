@@ -1,3 +1,4 @@
+<div class="well">
 <div class="row-fluid">
 	<div class="span12"><br>
 		<?php 
@@ -38,4 +39,5 @@
             }
         ?>
 	</div>
+</div>
 </div>

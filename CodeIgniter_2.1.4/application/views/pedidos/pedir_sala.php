@@ -47,15 +47,6 @@ maxDate: "+1M, 5D"
 });
 });
 </script>
-<div class="well">
-    <div class="row" id="divSaludoProfesor">
-       <div class="span4"><h4>Bienvenido SR@ :<?=$_SESSION['usuarioProfesor'];?></h4></div> 
-    </div>
-    <div class="row">
-        <div class="span6">Llene el formulario para enviar la solicitud de peticion de Sala.</div>
-    </div>
-</div><br>
-<br><br>
 <?php
 $atributos_Nombre=array('name'=>'nombre');
 $atributos_Apellido=array('name'=>'Apellido');
