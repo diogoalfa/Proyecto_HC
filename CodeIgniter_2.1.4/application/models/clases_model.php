@@ -42,7 +42,6 @@ class Clases_model extends CI_Model{
                 if ($time>"22:15:00" && $time<"23:59:59") {
                     $time="08:15:01";
                     if ($day=date("j")==5) {
-                        echo "hola";
                         $nuevafecha = strtotime ( 'next monday' , strtotime ( $date ) ) ;
                         $date = date ( 'Y-m-d' , $nuevafecha );
                     }
