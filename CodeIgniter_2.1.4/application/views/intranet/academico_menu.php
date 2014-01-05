@@ -90,7 +90,7 @@ maxDate: "+7M, 6D"
     
     $atributosPeriodo=array( "" => "Seleccione un Periodo", );
     foreach ($periodos as $peri) {
-      $atributosPeriodo[$peri->pk]=$peri->periodo;
+      $atributosPeriodo[$peri->pk]=$peri->periodo." -> ".$peri->inicio." - ".$peri->termino;
     }
     $atributosAsignatura= array( "" => "Seleccione una Asignatura", );
                     foreach ($asignatura as $ramo){ 
