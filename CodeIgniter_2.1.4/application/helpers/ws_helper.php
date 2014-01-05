@@ -54,7 +54,7 @@ if (!function_exists('wsSession')) {
 
             $cliente = new SoapClient("http://informatica.utem.cl:8011/dirdoc-auth/ws/auth?wsdl", $autenticacion);
         // $objeto = $cliente->consultarDocente($parametros);
-                    $objeto = $cliente->consultarEstudiante($parametros);
+                    $objeto = $cliente->consultarEstudiante($parametros);//cambiar a Docente-------------->4
 
                  $tipo=(string) trim($objeto->return->tipo);   
                 // echo $resultado->return->apellidoMaterno; 
