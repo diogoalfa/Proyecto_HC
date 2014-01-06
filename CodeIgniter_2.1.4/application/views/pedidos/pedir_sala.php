@@ -65,7 +65,7 @@ $atributos_Apellido=array('name'=>'Apellido');
         $atributos_OptionPeriodo=array(''=>'->Seleccione Periodo',);
        foreach($periodos as $peri) {
            
-           $atributos_OptionPeriodo[$peri->periodo]=$peri->pk ." -> ".$peri->inicio." ".$peri->termino;
+           $atributos_OptionPeriodo[$peri->periodo]=$peri->pk;
       }
     }
  
@@ -112,12 +112,12 @@ $atributos_Apellido=array('name'=>'Apellido');
      </div>
     <div class="row">
         <div class="span2"><label>Asignatura : </label></div><div class="span4">
-            <?= form_dropdown('asignatura',$atributos_OptionAsig,'','')?>  
+            <?= form_dropdown('asignatura',$atributos_OptionAsig,'','',set_value('asignatura'))?>  
          </div>
     </div>
      <div class="row">
         <div class="span2"><label>Seccion : </label></div><div class="span4">
-            <?= form_dropdown('seccion',$atributos_OptionSeccion,'','')?>  
+            <?= form_dropdown('seccion',$atributos_OptionSeccion,'','',set_value('seccion'))?>  
          </div>
     </div>
    
@@ -140,7 +140,7 @@ $atributos_Apellido=array('name'=>'Apellido');
         </div>
     </div>
     <div class="row">
-        <div class="span7"><button type="submit" class="btn btn-primary btn-large">Enviar</button> </div>
+        <div class="span3"><button type="submit" class="btn">Enviar</button> </div>
     </div>
      <?= form_close();?>
      <br>
