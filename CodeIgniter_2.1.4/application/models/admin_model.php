@@ -109,25 +109,33 @@
                 return $query->row();
      }
 
-        public function AsignarPorTiempo($pkDocente, $pkAsignatura, $fechaInicio, $fechaTermino, $periodo, $sala, $curso) { 
-            $nuevafecha = strtotime('+0 day', strtotime($fechaInicio));
-            $nuevafecha = date('Y-m-d', $nuevafecha); 
-            a: 
-            if ($nuevafecha <= $fechaTermino) { 
-                $data = array( 
-                    'fecha' => "$nuevafecha", 
-                    'sala_fk' => $sala, 
-                    'periodo_fk' => $periodo, 
-                    'curso_fk' => $curso->pk, 
-                    'adm_fk' => 1, ); 
-                $this->db->insert('reservas', $data); 
-                $nuevafecha = strtotime('+7 day', strtotime($nuevafecha)); 
-                $nuevafecha = date('Y-m-d', $nuevafecha); 
-                goto a; 
-            } //obtener curso_fk }
-        return true;
-}
+    public function AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso){
+        //echo $pkDocente."<br>".$pkAsignatura."<br>".$fechaInicio."<br>".$fechaTermino."<br>".$periodo."<br>".$sala."<br>".$curso;
+        //echo "$fechaInicio -- $fechaTermino<br>";
+
+        $nuevafecha = strtotime ( '+0 day' , strtotime ( $fechaInicio ) ) ;
+        $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+        a:
+        if ($nuevafecha<=$fechaTermino) {
+            $data = array(
+               'fecha' => "$nuevafecha",
+               'sala_fk' => $sala,
+               'periodo_fk' => $periodo,
+               'curso_fk' => $curso->array(),
+               'adm_fk' =>1,
+            );
+
+            $this->db->insert('reservas', $data);
+            $nuevafecha = strtotime ( '+7 day' , strtotime ( $nuevafecha ) ) ;
+            $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+            goto a;
+        }
+
+        //obtener curso_fk
+
          
+        }
+        
         public function getTodosPedidos() {
          
          $query=$this->db
