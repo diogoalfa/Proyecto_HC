@@ -32,19 +32,34 @@
         return $query->result();
     }
     public function academicoSemana($pk){
-        $condicion=array('d.pk'=>$pk);
-              $query=$this->db
-                ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
-                ->from('reservas as r')
-                ->join('cursos as c','r.curso_fk=c.pk','inner')
-                ->join('docentes as d','c.docente_fk=d.pk','inner')
-                ->join('salas as s','r.sala_fk=s.pk','inner')
-                ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
-                ->join('periodos as p','p.pk=r.periodo_fk','inner')
-                ->where($condicion)
-                ->order_by('r.periodo_fk','asc')
-                ->get();
+        // $condicion=array('d.pk'=>$pk,
+        //     //'r.adm_fk '=>'1'
+        //   );
+        //     $query=$this->db
+        //         ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+        //         ->from('reservas as r')
+        //         ->join('cursos as c','r.curso_fk=c.pk','inner')
+        //         ->join('docentes as d','c.docente_fk=d.pk','inner')
+        //         ->join('salas as s','r.sala_fk=s.pk','inner')
+        //         ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
+        //         ->join('periodos as p','p.pk=r.periodo_fk','inner')
+        //         ->where($condicion)
+        //        // ->where('r.adm_fk IS NOT', null)
+        //         ->order_by('r.periodo_fk','asc')
+        //         ->get();
+//SE GENERO LA CONSULTA QUERY DEBIDO AH QUE SE NOS FUE IMPOSIBLE COLOCAR IS NOT NULL A r.adm_fk
+                $query=$this->db->query('SELECT r.pk, p.periodo, p.inicio, p.termino, d.nombres, d.apellidos, a.nombre, s.sala, c.seccion
+                                           FROM reservas r, cursos c,docentes d, salas s , asignaturas a, periodos p WHERE 
+                                           r.curso_fk=c.pk AND
+                                            c.docente_fk=d.pk AND
+                                             r.sala_fk=s.pk AND 
+                                             c.asignatura_fk=a.pk AND
+                                              p.pk=r.periodo_fk   AND 
+                                             r.adm_fk is NOT  NULL AND
+                                              d.pk='.$pk.' order by r.periodo_fk asc');
         return $query->result();
+          
+
        }
 
     public function getDocenteRut($rut){
