@@ -69,12 +69,15 @@ public function verPedidos() {
     $this->load->view('general/menu_principal');
     $this->load->view('general/abre_bodypagina');
     $this->load->view('pedidos/selecionar_opcionPedidos');
+    
     $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']);
     $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
-    $this->load->view('pedidos/consultaPorAsignatura',compact("asignaturas"));
+    $this->load->view('pedidos/consultaPorAsignatura',compact("asignaturas",'docente'));
     $asignatura_pk=$this->input->post('asignatura');
     $seccion=  $this->input->post('seccion');
-    if($asignatura_pk){
+    $pkDocente=$this->input->post('docente');
+    if($seccion){
+     
       $pedidos=$this->Docente_model->getPedidoSalaDocente($asignatura_pk,$docente->pk,$seccion);
       $this->load->view('pedidos/verPedidos',compact("pedidos","asignatura_pk","seccion"));
     }
@@ -83,7 +86,8 @@ public function verPedidos() {
   }
 }
 
-public function editarPedido($pkPedido=null,$fecha=null,$seccion=null){
+public function editarPedido($pkPedido=null,$fecha=null,$seccion=null,$pkdocente=NULL,
+        $pkasignatura=NULL,$nombreasignatura=NULL,$nombredocente=NULL,$periodo=NULL,$pksala=NULL,$sala=NULL){
 
   if(!isset($_SESSION['usuarioProfesor'])){
     $this->load->view('general/headers');
@@ -97,12 +101,14 @@ public function editarPedido($pkPedido=null,$fecha=null,$seccion=null){
   else{
     $docente=$this->Docente_model->getDocenteRut($_SESSION['usuarioProfesor']); 
     $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
-    $periodos= $this->Admin_model->getPeriodo();        
+    $periodos= $this->Admin_model->getPeriodo();   
+    $secciones= $this->Admin_model->getSeccionDeAsignaturaDocente($pkdocente,$pkasignatura);
     $this->load->view('general/headers');
     $this->load->view('general/menu_principal');
     $this->load->view('general/abre_bodypagina');
     $this->load->view('pedidos/selecionar_opcionPedidos');
-    $this->load->view('pedidos/editarPedido',compact("pkPedido","asignaturas","periodos","fecha","docente"));
+    $this->load->view('pedidos/editarPedido',compact("secciones",'asignaturas','periodos','pkPedido','fecha','seccion','pkdocente',
+        'pkasignatura','nombreasignatura','nombredocente','periodo','pksala','sala'));
     $this->load->view('general/cierre_bodypagina');
     $this->load->view('general/cierre_footer');
   }    
@@ -121,7 +127,7 @@ public function updatePedido() {
   }
   else{
 
-    $pkPedido=  $this->input->post('pkPeriodo');
+    $pkPedido=  $this->input->post('pkPedido');
     $asignatura=$this->input->post('asignatura');
     $fecha=$this->input->post('fecha');
     $periodo=$this->input->post('periodo');
@@ -204,7 +210,7 @@ public function salaDisponible() {
 
   }
   else{  
-    $pkPeriodo= $this->input->post('sePeriodo');
+    $pkPeriodo= $this->input->post('periodo');
     $fecha=$this->input->post('datepicker');
     $salasDisponibles=$this->Sala_model->getSalasDisponibles($pkPeriodo,$fecha);
     foreach ($salasDisponibles as $sala) {
@@ -215,17 +221,6 @@ public function salaDisponible() {
 
 
 public function guardarPedidoSala(){
-    $docente= $this->input->post('docente');
-    $asignatura= $this->input->post('asignatura');
-    $seccion= $this->input->post('seccion');
-    $fecha= $this->input->post('datepicker');
-    $periodo= $this->input->post('sePeriodo');
-    $sala= $this->input->post('divSala');
-    if ($asignatura==null || $seccion==null || $fecha==null || $periodo==null ) {
-      echo '<script>alert("Por favor rellene todos los datos"); </script>';
-      redirect('pedidos/pedirSala', 'refresh');
-    }
-
 
   if(!isset($_SESSION['usuarioProfesor'])){
     $this->load->view('general/headers');
@@ -256,6 +251,34 @@ public function guardarPedidoSala(){
  }
 
 
-}    
+}
+
+    public function getSeccionDeAsignatura(){
+        
+         if(!isset($_SESSION['usuarioProfesor']))
+            {
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                $this->load->view('intranet/nosesion');
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+
+            }else{
+         
+        $pkDocente=$this->input->post('docente');
+        $pkAsignatura=$this->input->post('asignatura');
+       // $pkAsignatura='82';
+        echo "$pkDocente - $pkAsignatura";
+        $secciones=$this->Admin_model->getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura);
+        
+        foreach ($secciones as $sec) {
+     
+            echo "<option value='".$sec->seccion."'>".$sec->seccion."</option>";
+            
+           
+        }
+            }
+    }
 
 }
