@@ -4,10 +4,8 @@
                 $("#periodo option:selected").each(function() { 
                    periodo = $('#periodo').val();
                    datepicker=$('#datepicker').val();
-                   document.getElementById("esEditado").value=1;
-                   history.go(0);
                     $.post("<?= base_url('/index.php/intranet/getSala')?>", {
-                        periodo : periodo ,datepicker : datepicker
+                        periodo : periodo , datepicker : datepicker
                     }, function(data) {
                         $("#divSala").html(data);
                     });
@@ -34,10 +32,11 @@
         $(document).ready(function() {
             $("#asignatura").change(function() {
                 $("#asignatura option:selected").each(function() { 
-                   docente = $('#docente').val();
                    asignatura=$('#asignatura').val();
-                    $.post("<?= base_url('/index.php/intranet/getAsignaturasDocente2')?>", {
-                        docente : docente,asignatura : asignatura
+                   docente = $('#docente').val();
+                  
+                    $.post("<?= base_url('/index.php/intranet/getSeccionDeAsignatura')?>", {
+                        asignatura : asignatura , docente : docente
                     }, function(data) {
                         $("#seccion").html(data);
                     });
@@ -87,9 +86,9 @@ maxDate: "+1M, 5D"
   }
   
  
-  $contenidoAsignatura=array($pkasignatura=>$asignatura." - $seccion",);
+  $contenidoAsignatura=array($pkasignatura=>$asignatura." - ".$seccion,);
   
-  $contenidoSeccion=array(''=>'Seleccione seccion',);
+  $contenidoSeccion=array("$seccion"=>"$seccion",);
   /*foreach ($asignaturas as $asig) {
     $contenidoAsignatura[$asig->pk]=$asig->nombre;
     $contenidoSeccion[$asig->seccion]=$asig->seccion;
@@ -103,6 +102,8 @@ maxDate: "+1M, 5D"
     $contenidoDocentes[$acade->pk]=$acade->nombres." ".$acade->apellidos;  
       
   }
+  
+  
  
 ?>
 
@@ -115,18 +116,18 @@ maxDate: "+1M, 5D"
     <h4>Editar Reserva</h4><br>
      <div class="row">
         <div class="span2">N° Pedido :</div>
-        <div class="span3"><?= form_input(array('name'=>'pkPeriodo','readonly'=>'readonly','value'=>$pkPedido))?></div>
+        <div class="span3"><?= form_input(array('name'=>'pkPedido','readonly'=>'readonly','value'=>$pkPedido))?></div>
     </div>   
     <div class="row">
          <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$contenidoDocentes,'',"id='docente'")?></div>
         </div>
         <div class="row">
-            <div class="span2">Asignatura:</div> <div class="span3" id=""><?=form_dropdown('asignatura',$contenidoAsignatura,'',"id='asignatura'")?>
+            <div class="span2">Asignatura:</div> <div class="span3" ><?=form_dropdown('asignatura',$contenidoAsignatura,'',"id='asignatura'")?>
         </div>
             
         </div>
     <div class="row">
-            <div class="span2">Seccion:</div> <div class="span3" id=""><?=form_dropdown('seccion',array($seccion=>$seccion),'',"id='seccion'")?>
+            <div class="span2">Seccion:</div> <div class="span3" id=""><?=form_dropdown('seccion',$contenidoSeccion,'',"id='seccion'")?>
         </div>
             
         </div>
