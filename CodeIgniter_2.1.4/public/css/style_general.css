@@ -53,3 +53,10 @@ root {
 #divSaludoProfesor{
     margin: 0  auto 0 40%;
 }
+
+
+.mygrid-wrapper-div {
+   border: solid gainsboro 5px;
+   overflow: scroll;
+   height: 70%;
+}

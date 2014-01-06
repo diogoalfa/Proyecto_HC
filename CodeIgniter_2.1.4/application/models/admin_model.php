@@ -108,8 +108,35 @@
                 ->get ();
                 return $query->row();
      }
-     
-     public function getTodosPedidos() {
+
+    public function AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso){
+        //echo $pkDocente."<br>".$pkAsignatura."<br>".$fechaInicio."<br>".$fechaTermino."<br>".$periodo."<br>".$sala."<br>".$curso;
+        //echo "$fechaInicio -- $fechaTermino<br>";
+
+        $nuevafecha = strtotime ( '+0 day' , strtotime ( $fechaInicio ) ) ;
+        $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+        a:
+        if ($nuevafecha<=$fechaTermino) {
+            $data = array(
+               'fecha' => "$nuevafecha",
+               'sala_fk' => $sala,
+               'periodo_fk' => $periodo,
+               'curso_fk' => $curso->array(),
+               'adm_fk' =>1,
+            );
+
+            $this->db->insert('reservas', $data);
+            $nuevafecha = strtotime ( '+7 day' , strtotime ( $nuevafecha ) ) ;
+            $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+            goto a;
+        }
+
+        //obtener curso_fk
+
+         
+        }
+        
+        public function getTodosPedidos() {
          
          $query=$this->db
               ->query("SELECT r.pk,r.fecha,s.sala,s.pk AS pksala,d.nombres AS nombredocente,d.apellidos AS apellidodocente,d.pk AS pkdocente,a.nombre AS asignatura,a.pk AS pkasignatura,p.periodo,p.pk AS pkperiodo 
@@ -119,7 +146,8 @@
                     c.pk=r.curso_fk and 
                     p.pk=r.periodo_fk and 
                     d.pk=c.docente_fk and 
-                    a.pk=c.asignatura_fk ");
+                    a.pk=c.asignatura_fk 
+                    ORDER BY pk DESC");
        return $query->result();
      }
      
@@ -134,12 +162,53 @@
      
      public function eliminarPedido($pkPedido) {
          
-         $query=  $this->db
-                 ->delete('reservas',array('pk'=>$pkPedido));
+        $this->db->delete('reservas',array('pk'=>$pkPedido));
          return true;
                  
      }
+     
+     public function getReserva() {
+         
+         $query=$this->db
+                ->query("SELECT r.pk,r.fecha,s.sala,s.pk AS pksala,d.nombres AS nombredocente,d.apellidos AS apellidodocente,d.pk AS pkdocente,a.nombre AS asignatura,a.pk AS pkasignatura,c.seccion,p.periodo,p.pk AS pkperiodo 
+                    FROM reservas as r,salas as s,docentes as d,cursos as c,asignaturas as a,periodos as p WHERE 
+                    r.adm_fk is not NULL and
+                    s.pk=r.sala_fk and 
+                    c.pk=r.curso_fk and 
+                    p.pk=r.periodo_fk and 
+                    d.pk=c.docente_fk and 
+                    a.pk=c.asignatura_fk 
+                    ORDER BY pk DESC");
+        return $query->result();
+     }
+     
+     
+     public function editarReserva($pkPedido,$pkdocente,$pkAsignatura,$seccion,$fecha,$periodo,$pkSala) {
+         $this->db->
+                 query("UPDATE reservas  SET "
+                       ."sala_fk='$pkSala', "
+                       ."periodo_fk=(SELECT pk FROM periodos WHERE periodo='$periodo'), "
+                       ."curso_fk=(SELECT pk FROM cursos WHERE  asignatura_fk='$pkAsignatura' AND docente_fk='$pkdocente' AND seccion='$seccion' ) ,"
+                       . "fecha='$fecha' "
+                       ." WHERE pk=$pkPedido");
+         return true;
+         
+     }
+     
+     public function getPkDocente($pkDocente) {
+         $query=$this->db->query("SELECT * FROM docentes WHERE pk=$pkDocente ");
+         return $query->row();
+     }
+      
+     public function getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura) {
+         $query=$this->db
+                 ->query("SELECT seccion FROM cursos WHERE docente_fk=$pkDocente AND asignatura_fk=$pkAsignatura ;");
+         return $query->result();
+     }
 
+
+    
     
    }
 ?>
+
