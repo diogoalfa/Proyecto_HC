@@ -26,8 +26,9 @@
         	$academico=$this->docente_model->getAcademico();//va a llamara  aextraer a todos los academicos
         	$this->load->view('consulta/bienvenido');
             $this->load->view('consulta/header_menu');
-        	$this->load->view('consulta/consultar_academico',compact("academico"));//consulta academico
             $this->load->view('consulta/fin_header_menu');
+        	$this->load->view('consulta/consultar_academico',compact("academico"));//consulta academico
+            
             $this->load->view('general/cierre_bodypagina');
             $this->load->view('general/cierre_footer');
 		}

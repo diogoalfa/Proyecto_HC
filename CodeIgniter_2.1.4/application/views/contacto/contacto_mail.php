@@ -28,7 +28,7 @@
         <div class="span6"><?=form_textarea('comentario',set_value('comentario'),"id='textoAreaMensaje'","placeholder='Escriba mensaje ...'");?></div><div></div>
     </div>
     <div class="row">
-        <div class="span4"></div><div class="span1"><input class="btn" type="submit" value="Enviar"></div><div></div>
+        <div class="span4"></div><div class="span1"><input class="btn btn-primary btn-large" type="submit" value="Enviar"></div><div></div>
     </div>
     
   </div>    

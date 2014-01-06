@@ -34,7 +34,9 @@
                         echo '<td>'.form_label($pedi->periodo).'</td>';
                         echo '<td>'.form_label($pedi->sala).'</td>'; 
                         echo "<td><a href='".base_url()."index.php/intranet/editarReserva/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo/$pedi->seccion' onclick='return confirm('¿Desea editar este Contenido?')' class='btn' >Editar</a></td>";
-                        echo "<td><a href='".base_url()."index.php/intranet/eliminarReserva/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-danger' >Eliminar</a></td>";  
+                                                ?>
+                        <td><a class="btn btn-danger" href="javascript:void(0);"onclick="eliminar('<?php base_url()?>eliminarPedido/<? echo $pedi->pk; ?>')">Eliminar</a></td>
+                        <?php
                         echo "</tr>";
                     }
                     ?>

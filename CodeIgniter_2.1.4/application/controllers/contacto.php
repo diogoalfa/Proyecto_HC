@@ -9,22 +9,17 @@ class Contacto extends CI_Controller {
         $this->load->library('form_validation');
 
     }
-
-
     public function index()
 	{
             
         $this->load->library('email');
 		$this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                
-                $this->load->view('contacto/contacto_informacion');
-                $this->load->view('contacto/contacto_mail');
-                
-                
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
+        $this->load->view('general/menu_principal');
+        $this->load->view('general/abre_bodypagina');                
+        $this->load->view('contacto/contacto_informacion');
+        $this->load->view('contacto/contacto_mail');
+        $this->load->view('general/cierre_bodypagina');
+        $this->load->view('general/cierre_footer');
 	}
     public function enviar(){
         // $this->load->library('email');
@@ -33,16 +28,13 @@ class Contacto extends CI_Controller {
         // $config['charset'] = 'iso-8859-1';
         // $config['wordwrap'] = TRUE;
         // $this->email->initialize($config);
-
         $nombre=$this->input->post('nombre'); 
         $apellido=$this->input->post('apellido'); 
         $correo=$this->input->post('correo'); 
         $asunto=$this->input->post('asunto'); 
         $comentario=$this->input->post('comentario'); 
-
         if ($this->input->post()) {
             if ($this->form_validation->run('Contacto')==TRUE) {
-
                 $formulario = array(
                     'nombre' => $this->input->post('nombre', true),
                     'apellido' => $this->input->post('apellido', true),
@@ -50,8 +42,7 @@ class Contacto extends CI_Controller {
                     'asunto'=>$this->input->post('asunto',true), 
                     'comentario'=>$this->input->post('comentario',true),
         
-                );
-                
+                );             
             }
             else{
                 $error_nombre= form_error('nombre');
@@ -90,10 +81,6 @@ class Contacto extends CI_Controller {
 
             }
         }
-
-        
-
-
         // $config = array(
         //   'protocol' => 'smtp',
         //   'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -118,12 +105,6 @@ class Contacto extends CI_Controller {
         // {
         // show_error($this->email->print_debugger());
         // }
-
-
-
-
-
-
             }
 
     }
