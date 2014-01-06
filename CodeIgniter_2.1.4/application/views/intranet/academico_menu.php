@@ -29,6 +29,23 @@
         
 </script>
 
+<!--PARA COMBOBOX DE SECCION
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#docente").change(function() {
+                $("#docente option:selected").each(function() { 
+                   docente = $('#docente').val();
+                    $.post("<?= base_url('/index.php/intranet/getSeccionAsignaturasDocente')?>", {
+                        docente : docente
+                    }, function(data) {
+                        $("#asignatura").html(data);
+                    });
+                });
+            });
+        });
+        
+</script>-->
+
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
@@ -46,7 +63,7 @@ $(function () {
         dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
         dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
         weekHeader: 'Sm',
-        dateFormat: 'dd/mm/yy',
+        dateFormat: 'yy-mm-dd',
         firstDay: 1,
         isRTL: false,
         showMonthAfterYear: false,
@@ -55,11 +72,11 @@ $(function () {
 $.datepicker.setDefaults($.datepicker.regional["es"]);
 $("#datepicker").datepicker({
 minDate: "0D",
-maxDate: "+4M, 5D"
+maxDate: "+7M, 6D"
 });
 $('#datepicker2').datepicker({
 minDate: "0D",
-maxDate: "+6M, 5D"
+maxDate: "+7M, 6D"
 });
 });
 </script>
@@ -75,6 +92,9 @@ maxDate: "+6M, 5D"
     foreach ($periodos as $peri) {
       $atributosPeriodo[$peri->pk]=$peri->periodo;
     }
+    $atributosAsignatura= array( "" => "Seleccione una Asignatura", );
+                    foreach ($asignatura as $ramo){ 
+                        $atributosAsignatura[$ramo->pk] = $ramo->nombre." ".$ramo->codigo; }
     
 ?>
 
@@ -82,32 +102,32 @@ maxDate: "+6M, 5D"
 <div class="well">
     
     
-        <?= form_open('intranet/llenarReservaSemestre')?>
+        <?= form_open('intranet/llenarReservaSemestre');?>
         <div class="row">
-         <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'")?></div>
+         <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'");?></div>
         </div>
         <div class="row">
-         <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',array(''=>'Seleccione Asignatura'),'',"id='asignatura'")?></div>
-        </div>
-        <div class="row">
-        <div class="span2">Semestre:</div> <div class="span3"><?=form_dropdown('semestre',array('1'=>'1','2'=>'2'),'',"id='semestre'")?></div>
-        </div>
-        <div class="row">
-            <div class="span2">Fecha:</div><div class="span3">
-                <?= form_input(array('name'=>'datepickerInicio','id'=>'datepicker'));?>
-            </div><div class="span3"><?=form_input(array('name'=>'datepickerTermino','id'=>'datepicker2'));?></div>
-        </div>
-        <div class="row">
-        <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo'")?></div>
+         <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',$atributosAsignatura,'',"id='asignatura'");?></div>
         </div>
         
         <div class="row">
-        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'")?></div>
+            <div class="span2">Fecha:</div><div class="span3">
+                <?= form_input(array('name'=>'datepickerInicio','id'=>'datepicker','placeholder'=>'Desde'));?>
+            </div>
+                <div class="span3">
+                <?=form_input(array('name'=>'datepickerTermino','id'=>'datepicker2','placeholder'=>'Hasta'));?></div>
         </div>
         <div class="row">
-            <div class="span3"><?= form_submit("btnEnviar", "Enviar","class='btn'") ?></div> <div class="span3"></div>
+        <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo'");?></div>
         </div>
-        <?=  form_close() ?>
+        
+        <div class="row">
+        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'");?></div>
+        </div>
+        <div class="row">
+            <div class="span3"><?= form_submit("btnEnviar", "Enviar","class='btn'"); ?></div> <div class="span3"></div>
+        </div>
+        <?=  form_close(); ?>
         <div class="row">
             <div class="span2"></div> <div class="span3"></div>
         </div>

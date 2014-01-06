@@ -17,7 +17,13 @@
                 ->count_all_results();
         return $query;
     }
-    
+    public function getDocente(){
+        $query=$this->db
+                ->select('*')
+                ->from('profesor')
+                ->get();
+        return $query->result();
+    }
     public function getAcademico(){
         $query=$this->db
                 ->select('pk,nombres,apellidos')

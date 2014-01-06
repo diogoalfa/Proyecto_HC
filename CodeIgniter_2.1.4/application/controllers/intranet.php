@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+    <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Intranet extends CI_Controller {
 
@@ -137,26 +137,21 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
+                        $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
             }else{
-                $academico=$this->docente_model->getAcademico();
-                $salas=$this->admin_model->getSala();
-                $periodo=$this->admin_model->getPeriodo();
+                            $academico=$this->docente_model->getAcademico();
+                            $salas=$this->admin_model->getSala();
+                            $periodo=$this->admin_model->getPeriodo();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-               // $this->load->view('intranet/bienvenido');
-                
-              $pedidos=$this->admin_model->getTodosPedidos();
-              $reservas=$this->admin_model->getReserva();
-                
-                $this->load->view('intranet/header_menu');
-                $this->load->view('intranet/pedidosDocentes',compact('pedidos'));
-                $this->load->view('intranet/verReservas',compact('reservas'));
-               //$this->load->view('intranet/fin_header_menu');
+                    $this->load->view('intranet/bienvenido');
+                    $this->load->view('intranet/header_menu');
+                       $this->load->view('intranet/salas_menu',compact('salas','academico','periodo'));
+                    $this->load->view('intranet/fin_header_menu');
                 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
@@ -165,8 +160,100 @@ class Intranet extends CI_Controller {
 
 
     }
-    
-    
+    public function setSala(){
+                $datos=array(
+                 'facultad_fk'=>'1',//facultad de ingenieria=1   
+                'sala'=>$this->input->post('nombre'),
+                );
+                $estado=$this->admin_model->setSala($datos);
+                    if($estado==TRUE){
+                    echo '<script>alert("Sala Ingresada con Exito"); </script>';
+                     redirect('intranet/salas', 'refresh');
+             }
+    }
+    public function setSalaAcademico(){
+           
+            $docentePk=$this->input->post('docente');
+            //print_r($docentePk);
+            //$comprobar=$this->admin_model->check($docentePk);//arreglar esto
+            $cursoPk=$this->admin_model->pkCurso($docentePk);//extrae el pk apartir del docente
+            // print_r($cursoPk);
+            if($cursoPk==NULL)
+            {
+                    echo '<script>alert("Debes asignar un academico con una asignatura previamente"); </script>';
+                     redirect('intranet/academico', 'refresh');
+            }else{
+                         $x=$cursoPk->pk;
+                $datos=array(
+                'sala_fk'=>$this->input->post('sala'),
+                'periodo_fk'=>$this->input->post('periodo'),
+                'curso_fk'=>$x,
+                'adm_fk'=>'1',//1 por el administrador
+                );
+                $estado=$this->admin_model->setReserva($datos);
+                    if($estado==TRUE){
+                    echo '<script>alert("Reserva con Exito"); </script>';
+                     redirect('intranet/salas', 'refresh');
+             }
+            } 
+    }
+    public function resultadosGral(){//muestra la tabla reserva "todos los datos (sala,periodo, academico etc)"
+
+            if(!isset($_SESSION['usuarioAdmin']))
+            {
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                        $this->load->view('intranet/nosesion');
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+
+            }else{
+                   $result=$this->admin_model->resultadosGral();
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                    $this->load->view('intranet/bienvenido');
+                    $this->load->view('intranet/header_menu');
+                      $this->load->view('intranet/resultadosGral',compact('result'));
+                    $this->load->view('intranet/fin_header_menu');
+                
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+            }                
+    }
+    public function eliminar($id=NULL){
+        if (!$id) {
+            show_404();
+        }
+        $eliminar = $this->admin_model->delete($id);
+        if($eliminar==TRUE)
+        {
+            echo '<script>alert("Se ha eliminado un registro"); </script>';
+            redirect('/intranet/resultadosGral', 'refresh');
+        }
+    }
+    public function editar($id = null){
+        $edit=$this->admin_model->getReservas($id);
+                    $academico=$this->docente_model->getAcademico();
+                    $asignatura=$this->admin_model->getAsignatura();
+                    $salas=$this->admin_model->getSala();
+                    $periodo=$this->admin_model->getPeriodo();
+                    $cursos=$this->admin_model->getCursos();
+
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                    $edit=$this->admin_model->getReservas($id);
+                $this->load->view('intranet/edit',compact('edit','academico','asignatura','salas','periodo','cursos'));
+                    //$this->load->view('intranet/bienvenido');
+                   // $this->load->view('intranet/header_menu');
+                       // $this->load->view('intranet/resultadosGral',compact('result'));
+                 //   $this->load->view('intranet/fin_header_menu');
+                
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+    }
     public function updateReservas($id){
             //seguir
     }
@@ -178,11 +265,16 @@ class Intranet extends CI_Controller {
         
         foreach ($asignaturas as $asig) {
             echo form_hidden('seccion',$asig->seccion,'',"id='seccion'");
-            echo "<option value=''".$asig->pk."''>".$asig->nombre."-".$asig->seccion."</option>";
-            
-           
+            echo "<option value=".$asig->pk.">".$asig->nombre." sec. ".$asig->seccion."</option>";
         }
     }
+    /*public function getSeccionAsignaturasDocente() {
+        $pkDocente=$this->input->post('docente');
+        $pkAsignatura=$this->input->post('asignatura');
+        $asignaturas=$this->Docente_model->getSeccion_AsignaturasDocente($pkDocente,$pkAsignatura);
+        
+        
+    }*/
     
     public function getSala(){
         
@@ -201,222 +293,16 @@ class Intranet extends CI_Controller {
     
     public function llenarReservaSemestre() {
         
-        $pkDocente=$this->input->post('docente');
-        $pkAsignatura=$this->input->post('asignatura');
-        $semestre=$this->input->post('semestre');  
-        $fechaInicio=$this->input->post('datepickerInicio');
-        
-        
-        
-        
-        
-    }
-    
-    public function aprobarPedido($pk=NULL,$fecha=NULL,$sala=NULL,$pksala=NULL,$nombredocente=NULL,
-            $apellidodocente=NULL,$pkdocente=NULL,$asignatura=NULL,$pkasignatura=NULL,$periodo=NULL) {
-         
-           if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-               
-                
-  $pedido=array('pk'=>$pk,'fecha'=>$fecha,'sala'=>$sala,'pksala'=>$pksala,'nombredocente'=>$nombredocente,'apellidodocente'=>$apellidodocente,'pkdocente'=>$pkdocente,'asignatura'=>$asignatura,'pkasignatura'=>$pkasignatura,'periodo'=>$periodo);
-  
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-               // $this->load->view('intranet/bienvenido');
-                
-             
-                
-                $this->load->view('intranet/header_menu');
-                
-                
-                $this->load->view('intranet/aprobarPedido',compact('pedido'));
-              
-                
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-            }
-        
-    }
-    
-    public function aprobarFinal() {
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-        
-        $pkPedido=$this->input->post('pkPedido');
+        $pkDocente=$this->input->post('docente');              
+        $pkAsignatura=$this->input->post('asignatura');        
+        $fechaInicio=$this->input->post('datepickerInicio');   
+        $fechaTermino=$this->input->post('datepickerTermino'); 
+        $periodo=$this->input->post('periodo');
         $sala=$this->input->post('sala');
-        
-        $updateReserva=$this->admin_model->aprobarReserva($pkPedido,$sala,$_SESSION['usuarioAdmin']);
-        
-         if($updateReserva==true){
-               echo '<script>alert("Reserva Aprobada"); </script>';
-               redirect('intranet', 'refresh');
-          } 
-          else{
-               echo '<script>alert("A ocurrido un error al aprobar la reserva"); </script>';
-               redirect('intranet', 'refresh');
-         } 
-           
-         
-          }
-        
+        $curso=$this->Docente_model->getCurso($pkDocente,$pkAsignatura);
+        $listo=$this->Admin_model->AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso);  
         
     }
-    
-    public function eliminarPedido($pkPedido=NULL){
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-        
-        $eliminarPedido=$this->admin_model->eliminarPedido($pkPedido);
-         if($eliminarPedido==true){
-               echo '<script>alert("Pedido Eliminado"); </script>';
-               redirect('intranet', 'refresh');
-          } 
-          else{
-               echo '<script>alert("A ocurrido un error al eliminar el pedido"); </script>';
-               redirect('intranet', 'refresh');
-         } 
-            }
-    }
-    
-    
-    public function editarReserva($pk=NULL,$fecha=NULL,$sala=NULL,$pksala=NULL,$nombredocente=NULL,
-            $apellidodocente=NULL,$pkdocente=NULL,$asignatura=NULL,$pkasignatura=NULL,$periodo=NULL,$seccion=NULL) {
-        
-          if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-                
-                $docente=$this->admin_model->getPkDocente($pkdocente); 
-                $asignaturas=$this->Docente_model->getAsignatura($docente->pk);
-                $periodos= $this->Admin_model->getPeriodo();      
-                $pkPedido=$pk;
-                $academicos=$this->Docente_model->getAcademico();
-               
-                
-                
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-               // $this->load->view('intranet/bienvenido');
-                
-             
-                
-                $this->load->view('intranet/header_menu');
-                
-                
-                
-                $this->load->view('intranet/editarReserva',compact("pkPedido","asignaturas","periodos","fecha","docente"
-                        ,'pk','fecha','sala','pksala','nombredocente',
-            'apellidodocente','pkdocente','asignatura','pkasignatura','periodo','pksala','academicos','seccion'));
-              
-                
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-            }
-        
-    }
-    
-    public function eliminarReserva($pkReserva) {
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-        
-        $eliminarReserva=$this->admin_model->eliminarPedido($pkReserva);
-        if($eliminarReserva==true){
-               echo '<script>alert("Reserva Eliminada"); </script>';
-               redirect('intranet', 'refresh');
-          } 
-          else{
-               echo '<script>alert("A ocurrido un error al eliminar la reserva"); </script>';
-               redirect('intranet', 'refresh');
-         } 
-        
-            }
-        
-    }
-    
-    public function editarReservaFinal() {
-        
-        if(!isset($_SESSION['usuarioAdmin']))
-            {
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                $this->load->view('intranet/nosesion');
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-
-            }else{
-                
-                $docente=$this->input->post('docente');
-                $this->input->post('asignatura');
-                $this->input->post('datepicker');
-                $this->input->post('periodo');
-                $this->input->post('sala');
-                
-            }
-        
-    }
-    
-     public function getAsignaturasDocente2() {
-        
-        $pkDocente=$this->input->post('docente');
-        $pkAsignatura=$this->input->post('asignatura');
-        $secciones=$this->Admin_model->getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura);
-        
-        foreach ($secciones as $sec) {
-     
-            echo "<option value=''".$sec->seccion."''>".$sec->seccion."</option>";
-            
-           
-        }
-    }
-    
-    
-    
     public function desconectar() {
         session_destroy();
         redirect('welcome');
