@@ -66,7 +66,35 @@ class Login extends CI_Controller {
     }
 
 
-    public function validarAdmin() {       
+    public function validarAdmin() {
+        if ($this->input->post()) {
+          if ($this->form_validation->run('Login')==TRUE) {
+                 $formulario = array(
+                  'rut' => $this->input->post('rut', true),
+                  'clave' => $this->input->post('clave', true),
+              );    
+          }
+          else{
+              $error_user= form_error('rut');
+              $error_pass=form_error('clave');
+              $error="";
+              $conta=0;
+              if (strlen($error_user)>1) {
+                $error=$error.$error_user."<br>";
+                $conta++;
+              }
+              if (strlen($error_pass)>1) {
+                $error=$error.$error_pass."<br>";
+                $conta++;
+              }
+              if ($conta>0) {
+                echo $error;
+              }
+              //echo "La pagina se redireccionará en 8 segundos...";
+              //header ("refresh: 8, http://localhost/Proyecto_HC/CodeIgniter_2.1.4/index.php/contacto"); 
+            }
+        }    
+           
         if($this->input->post()){
            $clave=$this->input->post('clave');
            $nombre=$this->input->post('usuario');

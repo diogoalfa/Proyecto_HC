@@ -9,14 +9,16 @@
     }
       
            $atributos_Usuario = array(
-          'name' => 'usuario',
+          'name' => 'rut',
             'value' => set_value('usuario'), 
-            'placeholder'=>'jose'
+            'placeholder'=>'Usuario',
+            'id' => 'user'
         );
         $atributos_Clave=  array(
             'name'=>'clave'
             ,'type'=>'password',
-            'placeholder'=>'4321'
+            'placeholder'=>'Contraseña',
+            'id' => 'pass'
         );
         $atributos_Btn=  array(
             'class'=>'btn btn-primary btn-large'); 
