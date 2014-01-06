@@ -305,7 +305,11 @@ class Intranet extends CI_Controller {
         $periodo=$this->input->post('periodo');
         $sala=$this->input->post('sala');
         $curso=$this->Docente_model->getCurso($pkDocente,$pkAsignatura);
-        $listo=$this->Admin_model->AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso);  
+        $listo=$this->Admin_model->AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso); 
+        if($listo==TRUE){
+                echo '<script>alert("Exito al guardar las salas"); </script>';
+                redirect('intranet/academico', 'refresh');
+        } 
         
     }
     
@@ -325,7 +329,7 @@ class Intranet extends CI_Controller {
             }else{
                
                 
-  $pedido=array('pk'=>$pk,'fecha'=>$fecha,'sala'=>$sala,'pksala'=>$pksala,'nombredocente'=>$nombredocente,'apellidodocente'=>$apellidodocente,'pkdocente'=>$pkdocente,'asignatura'=>$asignatura,'pkasignatura'=>$pkasignatura,'periodo'=>$periodo);
+            $pedido=array('pk'=>$pk,'fecha'=>$fecha,'sala'=>$sala,'pksala'=>$pksala,'nombredocente'=>$nombredocente,'apellidodocente'=>$apellidodocente,'pkdocente'=>$pkdocente,'asignatura'=>$asignatura,'pkasignatura'=>$pkasignatura,'periodo'=>$periodo);
   
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
@@ -489,18 +493,18 @@ class Intranet extends CI_Controller {
 
             }else{
          
-        $pkDocente=$this->input->post('docente');
-        $pkAsignatura=$this->input->post('asignatura');
-       // $pkAsignatura='82';
-        echo "$pkDocente - $pkAsignatura";
-        $secciones=$this->admin_model->getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura);
-        
-        foreach ($secciones as $sec) {
-     
-            echo "<option value='".$sec->seccion."'>".$sec->seccion."</option>";
+            $pkDocente=$this->input->post('docente');
+            $pkAsignatura=$this->input->post('asignatura');
+           // $pkAsignatura='82';
+            echo "$pkDocente - $pkAsignatura";
+            $secciones=$this->admin_model->getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura);
             
-           
-        }
+            foreach ($secciones as $sec) {
+         
+                echo "<option value='".$sec->seccion."'>".$sec->seccion."</option>";
+                
+               
+            }
             }
     }
     
