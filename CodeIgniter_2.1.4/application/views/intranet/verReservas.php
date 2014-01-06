@@ -33,8 +33,8 @@
                         echo '<td>'.form_label($pedi->asignatura).'</td>';
                         echo '<td>'.form_label($pedi->periodo).'</td>';
                         echo '<td>'.form_label($pedi->sala).'</td>'; 
-                        echo "<td><a href='".base_url()."index.php/intranet/editarReserva/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo/$pedi->seccion' onclick='return confirm('¿Desea editar este Contenido?')' class='btn' >Editar</a></td>";
                                                 ?>
+                        <td><a class="btn" href="<?php base_url()?>editarReserva/<?php echo $pedi->pk."/".$pedi->fecha."/".$pedi->sala."/".$pedi->pksala."/".$pedi->nombredocente."/".$pedi->apellidodocente."/".$pedi->pkdocente."/".$pedi->asignatura."/".$pedi->pkasignatura."/".$pedi->periodo."/".$pedi->seccion;?>" >Editar</a></td>                        
                         <td><a class="btn btn-danger" href="javascript:void(0);"onclick="eliminar('<?php base_url()?>eliminarPedido/<? echo $pedi->pk; ?>')">Eliminar</a></td>
                         <?php
                         echo "</tr>";
