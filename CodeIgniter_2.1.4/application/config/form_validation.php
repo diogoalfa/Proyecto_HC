@@ -28,5 +28,20 @@ $config = array(
                   'label' => 'Comentario',
                   'rules' => 'required|alpha|trim',
                   ), 
-    )
+    ),
+
+    'Login' => array(
+                  array(
+                  'field' => 'rut',
+                  'label' => 'R.U.T.',
+                  'rules' => 'required|trim',
+                  ),
+                  array(
+                  'field' => 'clave',
+                  'label' => 'Clave',
+                  'rules' => 'required',
+                  ), 
+      )
 );
+
+?>

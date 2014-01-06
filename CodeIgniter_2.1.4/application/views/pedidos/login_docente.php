@@ -4,7 +4,7 @@
 <div class="well">
     <div class="alert alert-block">
         <label><h2>Ingreso Docentes</h2></label>
-        <h5>Solo los profesores pueden acceder.Entrar con USUARIO y PASSWORD de dirdoc!.</h5><br>
+        <h5></h5><br>
       
          <?php
          
@@ -18,12 +18,15 @@
           $atributos_Rut = array(
           'name' => 'rut',
             'value' => set_value('usuario'),
-            'placeholder'=>'12.345.678-9'
+            'placeholder'=>'Ej: 12.345.678-9',
+            'id' => 'user'
         );
         $atributos_Clave=  array(
-            'name'=>'clave'
-            ,'type'=>'password',
-            'placeholder'=>'1234'
+            'name'=>'clave',
+            'type'=>'password',
+            'placeholder'=>'Contraseña',
+            'id' => 'pass'
+
         );
         $atributos_Btn=  array('class'=>'btn btn-primary btn-large'); 
         
