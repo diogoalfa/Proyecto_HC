@@ -297,7 +297,10 @@ class Intranet extends CI_Controller {
     }
     
     public function llenarReservaSemestre() {
-        
+        if($this->input->post())
+        {
+            echo ":S";
+        }
         $pkDocente=$this->input->post('docente');              
         $pkAsignatura=$this->input->post('asignatura');        
         $fechaInicio=$this->input->post('datepickerInicio');   

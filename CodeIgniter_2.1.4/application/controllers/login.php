@@ -63,7 +63,7 @@ class Login extends CI_Controller {
              redirect('pedidos/logueoError',301);
           }   
         }    
-    }
+    } 
 
 
     public function validarAdmin() {
@@ -97,10 +97,10 @@ class Login extends CI_Controller {
            
         if($this->input->post()){
            $clave=$this->input->post('clave');
-           $nombre=$this->input->post('usuario');
+           $nombre=$this->input->post('rut');
            $respuestaLogin=$this->Admin_model->loguearAdmin($nombre,$clave);
             if($respuestaLogin==1){ 
-                   $_SESSION['usuarioAdmin']=$this->input->post('usuario');
+                   $_SESSION['usuarioAdmin']=$this->input->post('rut');
                   redirect('intranet/acceso',301); 
             }
             else{

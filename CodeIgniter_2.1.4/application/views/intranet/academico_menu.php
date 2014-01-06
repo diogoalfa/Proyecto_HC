@@ -103,6 +103,7 @@ maxDate: "+7M, 6D"
     
     
         <?= form_open('intranet/llenarReservaSemestre');?>
+        <h4>Asignacion por semestre</h4><br>
         <div class="row">
          <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'");?></div>
         </div>
@@ -125,7 +126,7 @@ maxDate: "+7M, 6D"
         <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'");?></div>
         </div>
         <div class="row">
-            <div class="span3"><?= form_submit("btnEnviar", "Enviar","class='btn'"); ?></div> <div class="span3"></div>
+            <div class="span7"><?= form_submit("btnEnviar", "Enviar","class='btn btn-primary btn-large'"); ?></div> <div class="span3"></div>
         </div>
         <?=  form_close(); ?>
         <div class="row">
