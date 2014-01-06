@@ -28,7 +28,7 @@ $( window ).resize(function() {
                         <th>Periodo</th>
                         <th>Sala</th>
                         <th>Aprobar</th>
-                        <th>Eliminar</th>
+                        <th>Estado</th>
                     </tr> 
                   </thead>
                  
@@ -46,9 +46,9 @@ $( window ).resize(function() {
                         echo '<td>'.form_label($pedi->asignatura).'</td>';
                         echo '<td>'.form_label($pedi->periodo).'</td>';
                         echo '<td>'.form_label($pedi->sala).'</td>'; 
-                        echo "<td><a href='".base_url()."index.php/intranet/aprobarPedido/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo' onclick='return confirm('¿Desea editar este Contenido?')' class='btn btn-primary' >Aprobar</a></td>";
+                        echo "<td><a href='".base_url()."index.php/intranet/aprobarPedido/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo' onclick='return confirm('¿Desea editar este Contenido?')' class='btn btn-success' >Aprobar</a></td>";
                         ?>
-                        <td><a class="btn btn-danger" href="javascript:void(0);"onclick="eliminar('<?php base_url()?>eliminarPedido/<? echo $pedi->pk; ?>')">Eliminar</a></td>
+                        <td><a class="btn btn-danger" href="javascript:void(0);"onclick="eliminar('<?php base_url()?>eliminarPedido/<? echo $pedi->pk; ?>')">Rechazar</a></td>
                         <?php
 
                         echo "</tr>";
