@@ -2,7 +2,12 @@
     <body>
  <script src="http://code.jquery.com/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
-    
+    <script>
+    function CambiarEstilo(id) {
+  var elemento = document.getElementById(id);
+  elemento.className = "active";
+}
+    </script>
         
         <div class="masthead" id="divBarra1">
         <h3 class="muted">Horario de Clases</h3>
@@ -16,7 +21,7 @@
                 <li class="divider-vertical"></li>
                 <li><a href="<?= site_url('intranet');?>">Intranet</a></li>
                 <li class="divider-vertical"></li>
-                <li><a href="<?= site_url('contacto');?>">Contacto</a></li>
+                <li id="con"><a  href="<?= site_url('contacto');?>">Contacto</a></li>
                 <li class="divider-vertical"></li>
               </ul> 
                 <?php if(isset($_SESSION['bnv']) || isset($_SESSION['usuarioProfesor']) || isset($_SESSION['usuarioAdmin']))
