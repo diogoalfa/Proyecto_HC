@@ -1,21 +1,34 @@
 
-
-
-
 <script type="text/javascript">
         $(document).ready(function() {
-            $("#sePeriodo").change(function() {
-                $("#sePeriodo option:selected").each(function() { 
-                   sePeriodo = $('#sePeriodo').val();
+            $("#periodo").change(function() {
+                $("#periodo option:selected").each(function() { 
+                   periodo = $('#periodo').val();
                    datepicker=$('#datepicker').val();
                     $.post("<?= base_url('/index.php/pedidos/salaDisponible')?>", {
-                        sePeriodo : sePeriodo ,datepicker : datepicker
+                        periodo : periodo ,datepicker : datepicker
                     }, function(data) {
                         $("#divSala").html(data);
                     });
                 });
             });
         });
+</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#asignatura").change(function() {
+                $("#asignatura option:selected").each(function() { 
+                   asignatura=$('#asignatura').val();
+                   docente = $('#docente').val();
+                  $.post("<?= base_url('/index.php/pedidos/getSeccionDeAsignatura')?>", {
+                        asignatura : asignatura , docente : docente
+                    }, function(data) {
+                        $("#seccion").html(data);
+                    });
+                });
+            });
+        });
+        
 </script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -47,6 +60,7 @@ maxDate: "+1M, 5D"
 });
 });
 </script>
+
 <?php
 $atributos_Nombre=array('name'=>'nombre');
 $atributos_Apellido=array('name'=>'Apellido');
@@ -91,6 +105,7 @@ $atributos_Apellido=array('name'=>'Apellido');
     
     if (isset($docente)) {
         ?>
+    <h4>Docente</h4>
     <br>
     <div class="row">
         <div class="span2"><?= form_label('Nombre :');?></div> <div class="span3"><?=  form_label($docente->nombres); ?></div>
@@ -106,18 +121,18 @@ $atributos_Apellido=array('name'=>'Apellido');
     ?>
      <br><br>
      <h4>Pedir Sala</h4><br>
-     <?=     form_open('pedidos/guardarPedidoSala');?>
+     <?=     form_open(base_url('index.php/pedidos/guardarPedidoSala'));?>
      <div class="row">
-         <div class="span2"></div><div class="span4"><?=  form_hidden('docente',$docente->pk)?><input type="hidden" name="docente" value="<?=$docente->pk?>"></div>
+         <div class="span2"></div><div class="span4"><?php echo form_input(array('name'=>'docente','type'=>'hidden','id'=>'docente','value'=>$docente->pk));?></div>
      </div>
     <div class="row">
         <div class="span2"><label>Asignatura : </label></div><div class="span4">
-            <?= form_dropdown('asignatura',$atributos_OptionAsig,'','',set_value('asignatura'))?>  
+            <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura'")?>  
          </div>
     </div>
      <div class="row">
         <div class="span2"><label>Seccion : </label></div><div class="span4">
-            <?= form_dropdown('seccion',$atributos_OptionSeccion,'','',set_value('seccion'))?>  
+            <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion'")?>  
          </div>
     </div>
    
@@ -130,7 +145,7 @@ $atributos_Apellido=array('name'=>'Apellido');
      <div class="row">
         <div class="span2"><label>Periodo : </label></div>
           <div class="span4">
-           <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id=sePeriodo")?>
+           <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id='periodo'")?>
         </div>
     </div>
     <div class="row">
@@ -140,7 +155,7 @@ $atributos_Apellido=array('name'=>'Apellido');
         </div>
     </div>
     <div class="row">
-        <div class="span7"><button type="submit" class="btn btn-primary btn-large">Enviar</button> </div>
+        <div class="span3"><button type="submit" class="btn">Enviar</button> </div>
     </div>
      <?= form_close();?>
      <br>

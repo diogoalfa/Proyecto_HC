@@ -27,6 +27,8 @@
            $atributos_OptionAsig[$asig->pk]=$asig->nombre;
            $atributos_OptionSeccion[$asig->seccion]=$asig->seccion;
        }
+       
+      
     }
 ?>
 
