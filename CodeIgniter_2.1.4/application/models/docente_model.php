@@ -80,7 +80,7 @@
 //$query=$this->db->query("SELECT * FROM reservas WHERE curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk') ");
          
       $query=$this->db->query("SELECT r.*,s.sala,s.pk AS pksala,p.periodo,d.pk AS pkdocente,d.nombres AS nombredocente,"
-              . "d.apellidos AS apellidodocente,a.pk as pkasignatura,a.nombre as nombreasignatura "
+              . "d.apellidos AS apellidodocente,a.pk AS pkasignatura,a.nombre AS nombreasignatura "
               . "FROM reservas as r,salas as s,periodos as p,docentes as d ,asignaturas as a "
               . "WHERE r.curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' "
               . "AND docente_fk='$docente_pk' AND seccion='$seccion') "

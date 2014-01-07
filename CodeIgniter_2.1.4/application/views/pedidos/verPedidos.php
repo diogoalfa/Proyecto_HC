@@ -4,9 +4,11 @@
   <table class='table table-hover-striped'border="0" style="text-align:left;">
                    <thead >
                     <tr>
-                        <th>PK</th>
+                        <th>N° Pedido</th>
+                        <th>Asignatura</th>
                         <th >Fecha</th>
                         <th>Sala</th>
+                        
                         <th>Periodo</th>
                         <th>Estado</th>
                         <th>Editar</th>
@@ -19,7 +21,8 @@
                     <?php
                     foreach ($pedidos as $pedi) {
                         echo '<tr>';
-                        echo '<td>'.form_label($pedi->pk).'</td>';;  
+                        echo '<td>'.form_label($pedi->pk).'</td>';
+                        echo '<td>'.form_label($pedi->nombreasignatura).'</td>';
                         echo '<td>'.form_label($pedi->fecha).'</td>'; 
                         echo '<td>'.form_label($pedi->sala).'</td>'; 
                         echo '<td>'.form_label($pedi->periodo).'</td>';
