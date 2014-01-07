@@ -7,6 +7,29 @@
 ?>
 <br>
 <div class="well" >
+     <?php
+    if (isset($errores)) {
+     //  echo "<div class='alert alert-error'>";
+        if(isset($errores['error_nombre']) && strlen($errores['error_nombre'])>0){
+            echo "<div class='alert alert-error'><div class='row'><div class='span8'>".$errores['error_nombre']."</div></div></div>";
+        }
+        if(isset($errores['error_apellido']) && strlen($errores['error_apellido'])>0 ){
+            echo "<div class='alert alert-error'><div class='row'><div class='span8'>".$errores['error_apellido']."</div></div></div>"; 
+        }
+        if(isset($errores['error_correo'])&& strlen($errores['error_correo'])>0){
+            echo "<div class='alert alert-error'><div class='row'><div class='span8'>".$errores['error_correo']."</div></div></div>"; 
+        }
+        if(isset($errores['error_asunto'])&& strlen($errores['error_asunto'])>0){
+            echo "<div class='alert alert-error'><div class='row'><div class='span8'>".$errores['error_asunto']."</div></div></div>"; 
+        }
+        if(isset($errores['error_comentario'])&& strlen($errores['error_comentario'])>0){
+            echo "<div class='alert alert-error'><div class='row'><div class='span8'>".$errores['error_comentario']."</div></div></div>"; 
+        }
+      
+       // echo "</div>";
+    }
+    
+    ?>
     <?php echo form_open('contacto/enviar'); ?>
     <div class="row">
         <div class="span2"></div>
@@ -35,7 +58,7 @@
         </div>
     </div>   
         <?=  form_close(); ?>
-    
+   
     <br>
          
 </div>
