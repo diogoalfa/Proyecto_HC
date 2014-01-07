@@ -37,7 +37,6 @@ $( window ).resize(function() {
                      <?php
                     foreach ($pedidos as $pedi) { 
                         echo '<tr>';
-                        echo "<option>";
                         echo '<td>'.form_label($pedi->pk).'</td>';
                         echo '<td>'.form_label($pedi->nombredocente).'</td>';
                         echo '<td>'.form_label($pedi->apellidodocente).'</td>';

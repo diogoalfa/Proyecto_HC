@@ -24,7 +24,6 @@
                      <?php
                     foreach ($reservas as $pedi) {
                         echo '<tr>';
-                        echo "<option>";
                         echo '<td>'.form_label($pedi->pk).'</td>';
                         echo '<td>'.form_label($pedi->nombredocente).'</td>';
                         echo '<td>'.form_label($pedi->apellidodocente).'</td>';
@@ -34,7 +33,7 @@
                         echo '<td>'.form_label($pedi->periodo).'</td>';
                         echo '<td>'.form_label($pedi->sala).'</td>'; 
                                                 ?>
-                        <td><a class="btn" href="<?php base_url()?>editarReserva/<?php echo $pedi->pk."/".$pedi->fecha."/".$pedi->sala."/".$pedi->pksala."/".$pedi->nombredocente."/".$pedi->apellidodocente."/".$pedi->pkdocente."/".$pedi->asignatura."/".$pedi->pkasignatura."/".$pedi->periodo."/".$pedi->seccion;?>" >Editar</a></td>                        
+                        <td><a class="btn btn-info" href="<?php base_url()?>editarReserva/<?php echo $pedi->pk."/".$pedi->fecha."/".$pedi->sala."/".$pedi->pksala."/".$pedi->nombredocente."/".$pedi->apellidodocente."/".$pedi->pkdocente."/".$pedi->asignatura."/".$pedi->pkasignatura."/".$pedi->periodo."/".$pedi->seccion;?>" >Editar</a></td>                        
                         <td><a class="btn btn-danger" href="javascript:void(0);"onclick="eliminar('<?php base_url()?>eliminarPedido/<? echo $pedi->pk; ?>')">Eliminar</a></td>
                         <?php
                         echo "</tr>";
