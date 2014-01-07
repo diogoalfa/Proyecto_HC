@@ -47,7 +47,7 @@
                 ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
                 ->join('periodos as p','p.pk=r.periodo_fk','inner')
                 ->where($condicion)
-                ->order_by('r.periodo_fk','asc')
+                ->order_by('r.fecha','asc')
                 ->get();
         return $query->result();
        }
