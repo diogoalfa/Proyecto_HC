@@ -1,5 +1,5 @@
 
-<footer><?php 
+<footer class="footer"><?php 
             date_default_timezone_set("America/Santiago");
             $time  = date("H:i:s");
             $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
