@@ -239,7 +239,7 @@ public function guardarPedidoSala(){
     $docente_pk=$this->input->post('docente');
     $asignatura_pk=$this->input->post('asignatura'); 
     $seccion=$this->input->post('seccion');
-    if($fecha==null || $sala_pk==null || $peridodo_pk==null || $docente_pk==null  || $asignatura_pk==null || $seccion==null  ){
+    if($fecha==null || $sala_pk==null || $periodo_pk==null || $docente_pk==null  || $asignatura_pk==null || $seccion==null  ){
       redirect('pedidos/pedirSala');
     }else{
               $pedidoSala=  $this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion);
