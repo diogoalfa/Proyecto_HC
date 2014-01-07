@@ -42,7 +42,10 @@ class Contacto extends CI_Controller {
                     'asunto'=>$this->input->post('asunto',true), 
                     'comentario'=>$this->input->post('comentario',true),
         
-                );             
+                ); 
+                if(!isset($errores)){
+                    echo '<script>alert("Mensaje enviado"); </script>';
+                }           
             }
             else{
                 $error_nombre= form_error('nombre');
@@ -50,27 +53,20 @@ class Contacto extends CI_Controller {
                 $error_correo=form_error('correo');
                 $error_asunto=form_error('asunto');
                 $error_comentario=form_error('comentario');
-                
-                
                 $errores=array('error_nombre'=>$error_nombre,'error_apellido'=>$error_apellido,
                     'error_correo'=>$error_correo,'error_asunto'=>$error_asunto,'error_comentario'=>$error_comentario);
-                if (strlen($error_nombre)==0 && strlen($error_apellido)==0 && strlen($error_correo)==0 && strlen($error_asunto)==0 && strlen($error_comentario)==0) {
-                    
-                    echo '<script>alert("Mensaje enviado"); </script>';
-                }
-                $this->load->view('general/headers');
-                $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');                
-                $this->load->view('contacto/contacto_informacion');
-                $this->load->view('contacto/contacto_mail',compact("errores"));
-                $this->load->view('general/cierre_bodypagina');
-                $this->load->view('general/cierre_footer');
-              
-
             }
+            $this->load->view('general/headers');
+            $this->load->view('general/menu_principal');
+            $this->load->view('general/abre_bodypagina');                
+            $this->load->view('contacto/contacto_informacion');
+            $this->load->view('contacto/contacto_mail',compact("errores"));
+            $this->load->view('general/cierre_bodypagina');
+            $this->load->view('general/cierre_footer');
+              
         }
        
-            }
+        }
 
     }
 ?> 

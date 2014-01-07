@@ -28,9 +28,6 @@
         
        // echo "</div>";
     }
-    else{
-        echo '<script>alert("Mensaje enviado"); </script>';
-    }
 
     
     ?>
