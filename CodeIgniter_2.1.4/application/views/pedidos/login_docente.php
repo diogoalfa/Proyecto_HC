@@ -34,13 +34,6 @@
         );
         $atributos_Btn=  array('class'=>'btn btn-primary btn-lg'); 
         $form=array('name'=>'form1');
-        // echo form_open('login/index',$form);
-        // echo form_label('Rut', 'labelRut');
-        // echo form_input($atributos_Rut);echo '<br>';
-        // echo form_label('Clave', 'password');
-        // echo form_input($atributos_Clave);echo '<br>';      
-        // echo form_submit($atributos_Btn, 'Enviar');
-        // echo form_close();
         
     ?>   
         <div class="row" ><br>

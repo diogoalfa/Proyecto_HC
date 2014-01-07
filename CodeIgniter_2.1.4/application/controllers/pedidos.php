@@ -7,9 +7,7 @@ class Pedidos extends CI_Controller {
 
   function __construct() {
     parent::__construct();
-    session_start();
-
-       //session_destroy();   
+    session_start();   
   }
 
   public function index(){
@@ -221,42 +219,40 @@ public function salaDisponible() {
 
 
 public function guardarPedidoSala(){
-
-  if(!isset($_SESSION['usuarioProfesor'])){
-    $this->load->view('general/headers');
-    $this->load->view('general/menu_principal');
-    $this->load->view('general/abre_bodypagina');
-    $mensajeAlerta="No ha iniciado sesion!";
-    $this->load->view('pedidos/login_docente',compact('mensajeAlerta'));
-    $this->load->view('general/cierre_bodypagina');
-    $this->load->view('general/cierre_footer');
-  }
-  else{
-
-    $fecha=  $this->input->post('datepicker');
-    $sala_pk=$this->input->post('sala');
-    $periodo_pk=$this->input->post('sePeriodo');
-    $docente_pk=$this->input->post('docente');
+ if(!isset($_SESSION['usuarioProfesor'])){
+  $this->load->view('general/headers');
+   $this->load->view('general/menu_principal'); 
+   $this->load->view('general/abre_bodypagina'); 
+   $mensajeAlerta="No ha iniciado sesion!";
+    $this->load->view('pedidos/login_docente',compact('mensajeAlerta')); 
+    $this->load->view('general/cierre_bodypagina'); 
+    $this->load->view('general/cierre_footer'); 
+  } else{
+   $fecha= $this->input->post('datepicker');
+    $sala_pk=$this->input->post('sala'); 
+    $periodo_pk=$this->input->post('sePeriodo'); 
+    $docente_pk=$this->input->post('docente'); 
     $asignatura_pk=$this->input->post('asignatura'); 
-    $seccion=$this->input->post('seccion');
-    if($fecha==null || $sala_pk==null || $periodo_pk==null || $docente_pk==null  || $asignatura_pk==null || $seccion==null  ){
-      redirect('pedidos/pedirSala');
-    }else{
-              $pedidoSala=  $this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion);
-      if($pedidoSala==true){
-        echo '<script>alert("Se ha guardado Exitosamente!"); </script>';
-        redirect('pedidos', 'refresh');
-      }
-      else{
-       echo '<script>alert("Ha ocurrido un error !"); </script>';
-       redirect('pedidos', 'refresh');
-     }
+    $seccion=$this->input->post('seccion'); 
+    if($fecha==null || $sala_pk==null || $periodo_pk==null || $docente_pk==null || $asignatura_pk==null || $seccion==null )
+      { redirect('pedidos/pedirSala');
+       }else{ 
+        $date=$this->Clases_model->getDate(); 
+        $listo=$this->Docente_model->hayProfesor($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion,$date);
+         if ($listo->cantidad==0) { 
+          $pedidoSala=$this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion,$date); 
+        } else{ 
+          echo '<script>alert("El profesor ya esta asignado a esa hora y en esa fecha"); </script>'; 
+          redirect('pedidos', 'refresh'); 
+        } if($pedidoSala==true){
+         echo '<script>alert("Se ha guardado Exitosamente!"); </script>'; 
+         redirect('pedidos', 'refresh');
+          } else{ echo '<script>alert("Ha ocurrido un error !"); </script>';
+           redirect('pedidos', 'refresh'); 
+         } 
+       } 
+     } 
     }
- 
- }
-
-
-}
 
     public function getSeccionDeAsignatura(){
         
@@ -273,7 +269,6 @@ public function guardarPedidoSala(){
          
         $pkDocente=$this->input->post('docente');
         $pkAsignatura=$this->input->post('asignatura');
-       // $pkAsignatura='82';
         echo "$pkDocente - $pkAsignatura";
         $secciones=$this->Admin_model->getSeccionDeAsignaturaDocente($pkDocente,$pkAsignatura);
         

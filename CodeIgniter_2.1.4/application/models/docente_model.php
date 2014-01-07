@@ -69,12 +69,23 @@
         return $query->result();
      }
      
-     public function guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion) {
-         $this->db
-               ->query("INSERT INTO reservas (fecha,sala_fk,periodo_fk,curso_fk) values('$fecha','$sala_pk','$periodo_pk'"
-                       . ",(select pk FROM cursos WHERE asignatura_fk='$asignatura_pk' and docente_fk='$docente_pk' and seccion=$seccion));");
-         return true;
-     }
+ public function hayProfesor($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion,$date){ 
+  $query=$this->db->query("SELECT count (*) AS cantidad 
+    From reservas as r, docentes as d, cursos as c, periodos as p 
+    Where r.periodo_fk=p.pk and
+     r.curso_fk=c.pk and
+      c.docente_fk=d.pk and 
+      p.pk='$periodo_pk' and 
+      d.pk='$docente_pk' and
+       r.fecha='$date'"); 
+  return $query->row(); 
+} 
+
+  public function guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion,$date)
+   { 
+    $this->db ->query("INSERT INTO reservas (fecha,sala_fk,periodo_fk,curso_fk) values('$fecha','$sala_pk','$periodo_pk',(select pk FROM cursos WHERE asignatura_fk='$asignatura_pk' and docente_fk='$docente_pk' and seccion=$seccion));");
+     return true; 
+   }
      
      public function getPedidoSalaDocente($asignatura_pk,$docente_pk,$seccion){
 //$query=$this->db->query("SELECT * FROM reservas WHERE curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk') ");

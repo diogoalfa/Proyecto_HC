@@ -53,14 +53,14 @@ if (!function_exists('wsSession')) {
                 'password' => '54d6b211811cf8a22a735d3d071299ad94419900');
 
             $cliente = new SoapClient("http://informatica.utem.cl:8011/dirdoc-auth/ws/auth?wsdl", $autenticacion);
-        // $objeto = $cliente->consultarDocente($parametros);
-                    $objeto = $cliente->consultarEstudiante($parametros);//cambiar a Docente-------------->4
+         $objeto = $cliente->consultarDocente($parametros);
+                    //$objeto = $cliente->consultarEstudiante($parametros);//cambiar a Docente-------------->4
 
                  $tipo=(string) trim($objeto->return->tipo);   
                 // echo $resultado->return->apellidoMaterno; 
-                if($tipo=="ALUM") //cambiar PROF -->1
-                   // $resultado = (string) trim($objeto->return->tipo);//cambiar $objeto->return->alias --->2
-                    $resultado = (string) trim($objeto->return->nombres);//borrar esta linea -->3
+                if($tipo=="PROF") //cambiar PROF -->1
+                   $resultado = (string) trim($objeto->return->alias);//cambiar $objeto->return->alias --->2
+                   // $resultado = (string) trim($objeto->return->nombres);//borrar esta linea -->3
                  else
                     $resultado = false;//si entra a false quiere decir que es alumno
                     

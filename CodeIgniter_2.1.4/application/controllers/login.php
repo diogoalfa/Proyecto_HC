@@ -47,13 +47,14 @@ class Login extends CI_Controller {
           error_log("$rut / $p / $str");
           $resultado = wsLogear($rut, $str);
           if($resultado==1){
-                $_SESSION['usuarioProfesor']=  $this->input->post('rut');
+                
                 $alias=wsSession($rut);
                 if($alias==FALSE){
                   redirect('pedidos/logueoError',301);
                 }
                 else{
-                   $_SESSION['bnv'] = $alias;
+                  $_SESSION['usuarioProfesor']=  $this->input->post('rut');
+                  $_SESSION['bnv'] = $alias;
                  redirect('pedidos',301); 
                 }                  
           }
