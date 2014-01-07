@@ -37,7 +37,9 @@
 
 			$pk=$this->input->post('docente');
             if ($pk != null) {
-                $result=$this->docente_model->academicoSemana($pk);
+                $time=$this->clases_model->getTime();
+                $date=$this->clases_model->getDate();
+                $result=$this->docente_model->academicoSemana($pk,$time,$date);
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
@@ -49,7 +51,7 @@
                 $this->load->view('general/cierre_footer'); 
             }
             else{
-redirect('consulta/academico');
+                redirect('consulta/academico');
             }
 
 		}

@@ -10,7 +10,7 @@
                                 <th>Periodo</th>
                                 <th>Inicio</th>  
                                 <th>Termino</th>
-                                <th>Nombre</th>
+                                <th>Fecha (AA-MM-DD)</th>
                                 <th>Asignatura</th>
                                 <th>Sala</th>
                                 <th>Seccion</th>
@@ -22,7 +22,7 @@
                     <td><?= $profesor->periodo;  ?></td>
                     <td><?= $profesor->inicio; ?></td>
                     <td><?= $profesor->termino ;?></td>
-                    <td><?= $profesor->nombres." ".$profesor->apellidos;?></td>
+                    <td><?= $profesor->fecha;?></td>
                     <td><?= $profesor->nombre ;?></td>
                     <td><?= $profesor->sala ;?></td>
                     <td><?= $profesor->seccion ;?></td>

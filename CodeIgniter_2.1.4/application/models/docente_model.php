@@ -31,10 +31,15 @@
                 ->get();
         return $query->result();
     }
-    public function academicoSemana($pk){
-        $condicion=array('d.pk'=>$pk);
+    public function academicoSemana($pk,$time,$dateIni){
+        $dateFin = strtotime ('next friday', strtotime ( $dateIni ) ) ;
+        $dateFin = date ( 'Y-m-d' , $dateFin );
+        $condicion=array('d.pk'=>$pk,
+                         'r.fecha >='=>$dateIni,
+                         'r.fecha <='=>$dateFin
+          );
               $query=$this->db
-                ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+                ->select('r.pk,p.periodo,p.inicio,p.termino, r.fecha,d.apellidos, a.nombre,s.sala,c.seccion')
                 ->from('reservas as r')
                 ->join('cursos as c','r.curso_fk=c.pk','inner')
                 ->join('docentes as d','c.docente_fk=d.pk','inner')
@@ -65,7 +70,6 @@
      }
      
      public function guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion) {
-         echo "$seccion";
          $query=  $this->db
                ->query("INSERT INTO reservas (fecha,sala_fk,periodo_fk,curso_fk) values('$fecha','$sala_pk','$periodo_pk'"
                        . ",(select pk FROM cursos WHERE asignatura_fk='$asignatura_pk' and docente_fk='$docente_pk' and seccion=$seccion));");
