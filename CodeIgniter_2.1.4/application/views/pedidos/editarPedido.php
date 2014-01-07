@@ -131,7 +131,7 @@ maxDate: "+1M, 5D"
         <div class="span3"><?= form_dropdown('sala',array($pksala=>$sala),'',"id='divSala'");?></div>
     </div>
     <div class="row">
-        <div class="span2"><?= form_submit('btnEditarPedido','Enviar',"class='btn'");?></div>
+        <div class="span2"><?= form_submit('btnEditarPedido','Enviar',"class='btn btn-primary btn-lg'");?></div>
         
     </div>
      <?php form_close();?>

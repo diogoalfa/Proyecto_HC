@@ -96,8 +96,9 @@ class Login extends CI_Controller {
         }    
            
         if($this->input->post()){
-           $clave=$this->input->post('clave');
-           $nombre=$this->input->post('rut');
+          $clave=hash('sha256', trim($this->input->post('clave')));
+          $nombre=$this->input->post('rut');
+
            $respuestaLogin=$this->Admin_model->loguearAdmin($nombre,$clave);
             if($respuestaLogin==1){ 
                    $_SESSION['usuarioAdmin']=$this->input->post('rut');
