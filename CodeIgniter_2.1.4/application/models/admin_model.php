@@ -110,6 +110,7 @@
      }
 
         public function AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso){
+            date_default_timezone_set("America/Santiago");
             $nuevafecha = strtotime ( '+0 day' , strtotime ( $fechaInicio ) ) ;
             $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
             a:
