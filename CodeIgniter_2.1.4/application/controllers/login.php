@@ -37,8 +37,6 @@ class Login extends CI_Controller {
               if ($conta>0) {
                 echo $error;
               }
-              //echo "La pagina se redireccionará en 8 segundos...";
-              //header ("refresh: 8, http://localhost/Proyecto_HC/CodeIgniter_2.1.4/index.php/contacto"); 
             }
         }
 
@@ -90,8 +88,6 @@ class Login extends CI_Controller {
               if ($conta>0) {
                 echo $error;
               }
-              //echo "La pagina se redireccionará en 8 segundos...";
-              //header ("refresh: 8, http://localhost/Proyecto_HC/CodeIgniter_2.1.4/index.php/contacto"); 
             }
         }    
            

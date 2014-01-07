@@ -3,14 +3,13 @@
 <div class="well">
     <h4 class="">Reservas de Profesores</h4>
      <div class="mygrid-wrapper-div">
-      <table class="table table-hover" style="text-align:left;">
+      <table class="table table-hover" style="text-align:left;" border="0">
              <thead>
                     <tr>
                         <th>N° Pedido</th>
-                        <th>Profesor</th>
+                        <th >Profesor</th>
                         <th>Apellido</th>
-                        <th>Fecha</th>
-                       
+                        <th>Fecha</th>                 
                         <th>Asignatura</th>
                         <th>Periodo</th>
                         <th>Sala</th>
@@ -24,7 +23,7 @@
                      <?php
                     foreach ($reservas as $pedi) {
                         echo '<tr>';
-                        echo '<td>'.form_label($pedi->pk).'</td>';
+                        echo '<td >'.form_label($pedi->pk).'</td>';
                         echo '<td>'.form_label($pedi->nombredocente).'</td>';
                         echo '<td>'.form_label($pedi->apellidodocente).'</td>';
                         echo '<td>'.form_label($pedi->fecha).'</td>'; 

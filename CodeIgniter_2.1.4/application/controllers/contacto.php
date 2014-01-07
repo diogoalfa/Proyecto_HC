@@ -22,12 +22,6 @@ class Contacto extends CI_Controller {
         $this->load->view('general/cierre_footer');
 	}
     public function enviar(){
-        // $this->load->library('email');
-        // $config['protocol'] = 'sendmail';
-        // $config['mailpath'] = '/usr/sbin/sendmail';
-        // $config['charset'] = 'iso-8859-1';
-        // $config['wordwrap'] = TRUE;
-        // $this->email->initialize($config);
         $nombre=$this->input->post('nombre'); 
         $apellido=$this->input->post('apellido'); 
         $correo=$this->input->post('correo'); 

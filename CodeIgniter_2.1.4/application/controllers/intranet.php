@@ -10,7 +10,6 @@ class Intranet extends CI_Controller {
         $this->load->model('docente_model');
         $this->load->model('admin_model');
     }
- 
     
     function index(){
         
@@ -24,11 +23,6 @@ class Intranet extends CI_Controller {
        else{
         redirect('intranet/acceso', 'refresh');
        }
-           //$this->load->view('intranet/central_secretaria');     
-        
-         
-         
-        
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
     }
@@ -37,11 +31,9 @@ class Intranet extends CI_Controller {
         
         $this->load->view('general/headers');   
         $this->load->view('general/menu_principal');
-        $this->load->view('general/abre_bodypagina');
-        
+        $this->load->view('general/abre_bodypagina');  
         $mensajeAlerta='Usuario y Clave Erroneo Vuelva a intentar!';
         $this->load->view('intranet/loginAdmin',  compact('mensajeAlerta'));
-        
         $this->load->view('general/cierre_bodypagina');
         $this->load->view('general/cierre_footer');
         
@@ -52,7 +44,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                        $this->load->view('intranet/nosesion');
+                $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -60,11 +52,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                    //$this->load->view('intranet/bienvenido');
-                    $this->load->view('intranet/header_menu');
-                       // $this->load->view('intranet/menu');
-                    //$this->load->view('intranet/fin_header_menu');
-                
+                $this->load->view('intranet/header_menu');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
             }
@@ -76,7 +64,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                        $this->load->view('intranet/nosesion');
+                $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -85,15 +73,10 @@ class Intranet extends CI_Controller {
                 $asignatura=$this->admin_model->getAsignatura();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-                
+                $this->load->view('general/abre_bodypagina');   
                 $periodos=$this->Admin_model->getPeriodo();
-                    
-                //$this->load->view('intranet/bienvenido');
                 $this->load->view('intranet/header_menu');
                 $this->load->view('intranet/academico_menu',compact('academico','asignatura','periodos'));
-                  //  $this->load->view('intranet/fin_header_menu');
-                
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
             }
@@ -123,7 +106,6 @@ class Intranet extends CI_Controller {
             'docente_fk'=>$this->input->post('docente'),
             'seccion'=>$this->input->post('seccion')
             );
-        //print_r($datos);
         $estado=$this->admin_model->asocia($datos);
                     if($estado==TRUE){
                     echo '<script>alert("Asociacion realizada con Exito"); </script>';
@@ -147,17 +129,12 @@ class Intranet extends CI_Controller {
                 $periodo=$this->admin_model->getPeriodo();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
-                $this->load->view('general/abre_bodypagina');
-               // $this->load->view('intranet/bienvenido');
-                
-              $pedidos=$this->admin_model->getTodosPedidos();
-              $reservas=$this->admin_model->getReserva();
-                
+                $this->load->view('general/abre_bodypagina');  
+                $pedidos=$this->admin_model->getTodosPedidos();
+                $reservas=$this->admin_model->getReserva();
                 $this->load->view('intranet/header_menu');
                 $this->load->view('intranet/pedidosDocentes',compact('pedidos'));
                 $this->load->view('intranet/verReservas',compact('reservas'));
-               //$this->load->view('intranet/fin_header_menu');
-                
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
             }
@@ -179,10 +156,7 @@ class Intranet extends CI_Controller {
     public function setSalaAcademico(){
            
             $docentePk=$this->input->post('docente');
-            //print_r($docentePk);
-            //$comprobar=$this->admin_model->check($docentePk);//arreglar esto
             $cursoPk=$this->admin_model->pkCurso($docentePk);//extrae el pk apartir del docente
-            // print_r($cursoPk);
             if($cursoPk==NULL)
             {
                     echo '<script>alert("Debes asignar un academico con una asignatura previamente"); </script>';
@@ -209,7 +183,7 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                        $this->load->view('intranet/nosesion');
+                $this->load->view('intranet/nosesion');
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
 
@@ -218,11 +192,10 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                    $this->load->view('intranet/bienvenido');
-                    $this->load->view('intranet/header_menu');
-                      $this->load->view('intranet/resultadosGral',compact('result'));
-                    $this->load->view('intranet/fin_header_menu');
-                
+                $this->load->view('intranet/bienvenido');
+                $this->load->view('intranet/header_menu');
+                $this->load->view('intranet/resultadosGral',compact('result'));
+                $this->load->view('intranet/fin_header_menu');               
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
             }                
@@ -240,29 +213,19 @@ class Intranet extends CI_Controller {
     }
     public function editar($id = null){
         $edit=$this->admin_model->getReservas($id);
-                    $academico=$this->docente_model->getAcademico();
-                    $asignatura=$this->admin_model->getAsignatura();
-                    $salas=$this->admin_model->getSala();
-                    $periodo=$this->admin_model->getPeriodo();
-                    $cursos=$this->admin_model->getCursos();
-
+                $academico=$this->docente_model->getAcademico();
+                $asignatura=$this->admin_model->getAsignatura();
+                $salas=$this->admin_model->getSala();
+                $periodo=$this->admin_model->getPeriodo();
+                $cursos=$this->admin_model->getCursos();
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-                    $edit=$this->admin_model->getReservas($id);
+                $edit=$this->admin_model->getReservas($id);
                 $this->load->view('intranet/edit',compact('edit','academico','asignatura','salas','periodo','cursos'));
-                    //$this->load->view('intranet/bienvenido');
-                   // $this->load->view('intranet/header_menu');
-                       // $this->load->view('intranet/resultadosGral',compact('result'));
-                 //   $this->load->view('intranet/fin_header_menu');
-                
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
     }
-    public function updateReservas($id){
-            //seguir
-    }
-    
     public function getAsignaturasDocente() {
         
         $pkDocente=$this->input->post('docente');
@@ -273,23 +236,11 @@ class Intranet extends CI_Controller {
             echo "<option value=".$asig->pk.">".$asig->nombre." sec. ".$asig->seccion."</option>";
         }
     }
-    /*public function getSeccionAsignaturasDocente() {
-        $pkDocente=$this->input->post('docente');
-        $pkAsignatura=$this->input->post('asignatura');
-        $asignaturas=$this->Docente_model->getSeccion_AsignaturasDocente($pkDocente,$pkAsignatura);
-        
-        
-    }*/
-    
     public function getSala(){
         
        $pkPeriodo=$this->input->post('periodo');
        $fecha=$this->input->post('datepicker');
-       echo "$fecha - $pkPeriodo";
-       
        $salasDisponibles=$this->Sala_model->getSalasDisponibles($pkPeriodo,$fecha);
-     //  echo "<option>".$pk_periodo."</option>";
-     //  echo "<option>".$fecha."</option>";
         foreach ($salasDisponibles as $sala) {
            echo '<option value="'.$sala->pk.'">'.$sala->sala.'</option>';
         } 
@@ -340,16 +291,8 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-               // $this->load->view('intranet/bienvenido');
-                
-             
-                
                 $this->load->view('intranet/header_menu');
-                
-                
-                $this->load->view('intranet/aprobarPedido',compact('pedido'));
-              
-                
+                $this->load->view('intranet/aprobarPedido',compact('pedido')); 
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');
             }
@@ -383,9 +326,7 @@ class Intranet extends CI_Controller {
                redirect('intranet', 'refresh');
          } 
            
-         
-          }
-        
+          }    
         
     }
     
@@ -434,20 +375,10 @@ class Intranet extends CI_Controller {
                 $periodos= $this->Admin_model->getPeriodo();      
                 $pkPedido=$pk;
                 $academicos=$this->Docente_model->getAcademico();
-               
-                
-                
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');
-               // $this->load->view('intranet/bienvenido');
-                
-             
-                
                 $this->load->view('intranet/header_menu');
-                
-                
-                
                 $this->load->view('intranet/editarReserva',compact("pkPedido","asignaturas","periodos","fecha","docente"
                         ,'pk','fecha','sala','pksala','nombredocente',
             'apellidodocente','pkdocente','asignatura','pkasignatura','periodo','pksala','academicos','seccion'));
@@ -545,11 +476,7 @@ class Intranet extends CI_Controller {
                }
             }
         
-    }
-    
-    
-    
-    
+    }    
     public function desconectar() {
         session_destroy();
         redirect('welcome');
