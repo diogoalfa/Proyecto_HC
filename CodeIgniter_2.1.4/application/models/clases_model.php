@@ -80,7 +80,7 @@ class Clases_model extends CI_Model{
                 ->where($condicion)
                 ->order_by('c.seccion','asc')
                 ->get();
-
+//arreglar para la wa del isnot null
 
         /*//INI
         date_default_timezone_set("America/Santiago");

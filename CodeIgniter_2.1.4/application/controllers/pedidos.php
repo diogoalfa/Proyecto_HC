@@ -220,38 +220,50 @@ public function salaDisponible() {
 }
 
 
-public function guardarPedidoSala(){
+  
 
-  if(!isset($_SESSION['usuarioProfesor'])){
-    $this->load->view('general/headers');
-    $this->load->view('general/menu_principal');
-    $this->load->view('general/abre_bodypagina');
-    $mensajeAlerta="No ha iniciado sesion!";
-    $this->load->view('pedidos/login_docente',compact('mensajeAlerta'));
-    $this->load->view('general/cierre_bodypagina');
-    $this->load->view('general/cierre_footer');
-  }
-  else{
+    public function guardarPedidoSala(){
+        $docente= $this->input->post('docente');
+        $asignatura= $this->input->post('asignatura');
+        $seccion= $this->input->post('seccion');
+        $fecha= $this->input->post('datepicker');
+        $periodo= $this->input->post('sePeriodo');
+        $sala= $this->input->post('divSala');
+        if ($asignatura==null || $seccion==null || $fecha==null || $periodo==null ) {
+          echo '<script>alert("Por favor rellene todos los datos"); </script>';
+          redirect('pedidos/pedirSala', 'refresh');
+        }
+     
+     
+        if(!isset($_SESSION['usuarioProfesor'])){
+          $this->load->view('general/headers');
+          $this->load->view('general/menu_principal');
+          $this->load->view('general/abre_bodypagina');
+          $mensajeAlerta="No ha iniciado sesion!";
+          $this->load->view('pedidos/login_docente',compact('mensajeAlerta'));
+          $this->load->view('general/cierre_bodypagina');
+          $this->load->view('general/cierre_footer');
+        }
+        else{
+     
+          $fecha=  $this->input->post('datepicker');
+          $sala_pk=$this->input->post('sala');
+          $periodo_pk=$this->input->post('sePeriodo');
+          $docente_pk=$this->input->post('docente');
+          $asignatura_pk=$this->input->post('asignatura');
+          $seccion=$this->input->post('seccion');
+          $pedidoSala=  $this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion);
+          if($pedidoSala==true){
+            echo '<script>alert("Se ha guardado Exitosamente!"); </script>';
+            redirect('pedidos', 'refresh');
+          }
+          else{
+           echo '<script>alert("Ha ocurrido un error !"); </script>';
+           redirect('pedidos', 'refresh');
+         }
+     }}
 
-    $fecha=  $this->input->post('datepicker');
-    $sala_pk=$this->input->post('sala');
-    $periodo_pk=$this->input->post('sePeriodo');
-    $docente_pk=$this->input->post('docente');
-    $asignatura_pk=$this->input->post('asignatura'); 
-    $seccion=$this->input->post('seccion');
-    $pedidoSala=  $this->Docente_model->guardarPedidoSala($fecha,$sala_pk,$periodo_pk,$docente_pk,$asignatura_pk,$seccion);
-    if($pedidoSala==true){
-      echo '<script>alert("Se ha guardado Exitosamente!"); </script>';
-      redirect('pedidos', 'refresh');
-    }
-    else{
-     echo '<script>alert("Ha ocurrido un error !"); </script>';
-     redirect('pedidos', 'refresh');
-   } 
- }
 
-
-}
 
     public function getSeccionDeAsignatura(){
         

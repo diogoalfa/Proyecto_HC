@@ -32,18 +32,31 @@
         return $query->result();
     }
     public function academicoSemana($pk){
-        $condicion=array('d.pk'=>$pk);
-              $query=$this->db
-                ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
-                ->from('reservas as r')
-                ->join('cursos as c','r.curso_fk=c.pk','inner')
-                ->join('docentes as d','c.docente_fk=d.pk','inner')
-                ->join('salas as s','r.sala_fk=s.pk','inner')
-                ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
-                ->join('periodos as p','p.pk=r.periodo_fk','inner')
-                ->where($condicion)
-                ->order_by('r.periodo_fk','asc')
-                ->get();
+        // $condicion=array('d.pk'=>$pk,
+        //     //'r.adm_fk '=>'1'
+        //   );
+        //     $query=$this->db
+        //         ->select('r.pk,p.periodo,p.inicio,p.termino, d.nombres,d.apellidos, a.nombre,s.sala,c.seccion')
+        //         ->from('reservas as r')
+        //         ->join('cursos as c','r.curso_fk=c.pk','inner')
+        //         ->join('docentes as d','c.docente_fk=d.pk','inner')
+        //         ->join('salas as s','r.sala_fk=s.pk','inner')
+        //         ->join('asignaturas as a','c.asignatura_fk=a.pk','inner')
+        //         ->join('periodos as p','p.pk=r.periodo_fk','inner')
+        //         ->where($condicion)
+        //        // ->where('r.adm_fk IS NOT', null)
+        //         ->order_by('r.periodo_fk','asc')
+        //         ->get();
+//SE GENERO LA CONSULTA QUERY DEBIDO AH QUE SE NOS FUE IMPOSIBLE COLOCAR IS NOT NULL A r.adm_fk
+                $query=$this->db->query('SELECT r.pk, p.periodo, p.inicio, p.termino, d.nombres, d.apellidos, a.nombre, s.sala, c.seccion
+                                           FROM reservas r, cursos c,docentes d, salas s , asignaturas a, periodos p WHERE 
+                                           r.curso_fk=c.pk AND
+                                            c.docente_fk=d.pk AND
+                                             r.sala_fk=s.pk AND   
+                                             c.asignatura_fk=a.pk AND
+                                              p.pk=r.periodo_fk   AND 
+                                             r.adm_fk is NOT  NULL AND
+                                              d.pk='.$pk.' order by r.periodo_fk asc');
         return $query->result();
        }
 
@@ -75,20 +88,13 @@
      public function getPedidoSalaDocente($asignatura_pk,$docente_pk,$seccion){
 //$query=$this->db->query("SELECT * FROM reservas WHERE curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk') ");
          
-      $query=$this->db->query("SELECT r.*,s.sala,s.pk AS pksala,p.periodo,d.pk AS pkdocente,d.nombres AS nombredocente,"
-              . "d.apellidos AS apellidodocente,a.pk as pkasignatura,a.nombre as nombreasignatura "
-              . "FROM reservas as r,salas as s,periodos as p,docentes as d ,asignaturas as a "
-              . "WHERE r.curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' "
-              . "AND docente_fk='$docente_pk' AND seccion='$seccion') "
-              . "AND s.pk=r.sala_fk "
-              . "AND p.pk=r.periodo_fk "
-              . "AND d.pk=(SELECT docente_fk FROM cursos WHERE pk=r.curso_fk ) "
-              . "AND a.pk=(SELECT asignatura_fk FROM cursos WHERE pk=r.curso_fk )");
+      $query=$this->db->query("SELECT r.*,s.sala,p.periodo FROM reservas as r,salas as s,periodos as p WHERE r.curso_fk=(SELECT pk FROM cursos WHERE asignatura_fk='$asignatura_pk' AND docente_fk='$docente_pk' AND seccion='$seccion') "
+              . "AND s.pk=r.sala_fk AND p.pk=r.periodo_fk ");
          
       return $query->result();
      }
      
-     public function borrarPedido($pkPedido){
+     public function borrarPedido($pkPedido) {
         $this->db
              ->delete('reservas',array('pk'=>$pkPedido));
          return true;
@@ -134,6 +140,9 @@
               ->where($where)
               ->get ();
         return $query->row();
+
+        
+
       }
 
      
