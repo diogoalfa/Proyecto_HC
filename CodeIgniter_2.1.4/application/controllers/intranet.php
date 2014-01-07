@@ -297,17 +297,18 @@ class Intranet extends CI_Controller {
     }
     
     public function llenarReservaSemestre() {
-        $pkDocente=$this->input->post('docente');              
-        $pkAsignatura=$this->input->post('asignatura');        
-        $fechaInicio=$this->input->post('datepickerInicio');   
-        $fechaTermino=$this->input->post('datepickerTermino'); 
-        $periodo=$this->input->post('periodo');
-        $sala=$this->input->post('sala');
-        if($pkDocente==null || $pkAsignatura==null || $fechaInicio==null || $fechaTermino==null || $periodo==null || $sala==null){
-            echo '<script>alert("Debe llenar todos los campos, sin excepción"); </script>';
+            $pkDocente=$this->input->post('docente');              
+            $pkAsignatura=$this->input->post('asignatura');        
+            $fechaInicio=$this->input->post('datepickerInicio');   
+            $fechaTermino=$this->input->post('datepickerTermino'); 
+            $periodo=$this->input->post('periodo');
+            $sala=$this->input->post('sala');
+        if($pkDocente==null || $pkAsignatura==null || $fechaInicio==null || $fechaTermino==null || $periodo==null || $sala==null)
+        {
             redirect('intranet/academico');
         }
         else{
+
             $curso=$this->Docente_model->getCurso($pkDocente,$pkAsignatura);
             $listo=$this->Admin_model->AsignarPorTiempo($pkDocente,$pkAsignatura,$fechaInicio,$fechaTermino,$periodo,$sala,$curso); 
             if($listo==TRUE){

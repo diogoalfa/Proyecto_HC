@@ -6,6 +6,7 @@
 		function __construct()
 		{
 			parent::__construct();
+            session_start();
 			$this->load->model('docente_model');
             $this->load->model('clases_model');
 		}

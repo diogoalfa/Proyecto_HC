@@ -155,7 +155,7 @@ $atributos_Apellido=array('name'=>'Apellido');
         </div>
     </div>
     <div class="row">
-        <div class="span3"><button type="submit" class="btn">Enviar</button> </div>
+        <div class="span7"><button type="submit" class="btn btn-primary btn-large">Enviar</button> </div>
     </div>
      <?= form_close();?>
      <br>

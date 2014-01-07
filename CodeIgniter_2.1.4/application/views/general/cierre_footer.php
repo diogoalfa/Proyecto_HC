@@ -6,7 +6,8 @@
             $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
             $fecha= $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
 
-            echo "@UTEM-Company Son las $time, $fecha";
+            echo "Universidad Tecnologica Metropolitana del Estado de Chile.";echo "<br/>";
+              echo "Son las $time, $fecha";
 
 
 ?> <ul class="breadcrumb">

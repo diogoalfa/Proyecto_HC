@@ -2,10 +2,10 @@
 
 class Contacto extends CI_Controller {
 
-
     
     function __construct() {
         parent::__construct();
+        session_start();
         $this->load->library('form_validation');
 
     }
