@@ -18,6 +18,7 @@ class Clases_model extends CI_Model{
     }
 
     public function getDate(){
+        date_default_timezone_set("America/Santiago");
         $year=date("Y");
         $month=date("n");
         $day=date("j");
