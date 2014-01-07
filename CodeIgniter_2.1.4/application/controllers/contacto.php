@@ -54,7 +54,10 @@ class Contacto extends CI_Controller {
                 
                 $errores=array('error_nombre'=>$error_nombre,'error_apellido'=>$error_apellido,
                     'error_correo'=>$error_correo,'error_asunto'=>$error_asunto,'error_comentario'=>$error_comentario);
-              
+                if (strlen($error_nombre)==0 && strlen($error_apellido)==0 && strlen($error_correo)==0 && strlen($error_asunto)==0 && strlen($error_comentario)==0) {
+                    
+                    echo '<script>alert("Mensaje enviado"); </script>';
+                }
                 $this->load->view('general/headers');
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');                

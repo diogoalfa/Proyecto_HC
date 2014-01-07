@@ -25,9 +25,13 @@
         if(isset($errores['error_comentario'])&& strlen($errores['error_comentario'])>0){
             echo "<div class='alert alert-error'><div class='row'><div class='span8'>".$errores['error_comentario']."</div></div></div>"; 
         }
-      
+        
        // echo "</div>";
     }
+    else{
+        echo '<script>alert("Mensaje enviado"); </script>';
+    }
+
     
     ?>
     <?php echo form_open('contacto/enviar'); ?>
