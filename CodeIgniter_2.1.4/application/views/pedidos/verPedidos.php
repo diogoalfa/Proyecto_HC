@@ -1,11 +1,11 @@
 <div class="well">
     
    <div class="mygrid-wrapper-div">
-  <table class='table table-hover-striped'>
-                   <thead>
+  <table class='table table-hover-striped'border="0" style="text-align:left;">
+                   <thead >
                     <tr>
                         <th>PK</th>
-                        <th>Fecha</th>
+                        <th >Fecha</th>
                         <th>Sala</th>
                         <th>Periodo</th>
                         <th>Estado</th>
@@ -25,8 +25,8 @@
                         echo '<td>'.form_label($pedi->periodo).'</td>';
                         
                       if($pedi->adm_fk==NULL){
-                          echo "<td><span class='label'>Pendiente</span></td>";
-                          echo "<td><a href='".  base_url()."index.php/pedidos/editarPedido/$pedi->pk/$pedi->fecha/$seccion/$pedi->pkdocente/$pedi->pkasignatura/$pedi->nombreasignatura/$pedi->nombredocente/$pedi->periodo/$pedi->pksala/$pedi->sala' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-succes' >editar</a></td>";
+                          echo "<td><span class='label label-info'>Pendiente</span></td>";
+                          echo "<td><a href='".  base_url()."index.php/pedidos/editarPedido/$pedi->pk/$pedi->fecha/$seccion/$pedi->pkdocente/$pedi->pkasignatura/$pedi->nombreasignatura/$pedi->nombredocente/$pedi->periodo/$pedi->pksala/$pedi->sala' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-success' >editar</a></td>";
                           echo "<td><a href='".  base_url()."index.php/pedidos/eliminarPedido/$pedi->pk' onclick='return confirm('¿Desea eliminar este Contenido?')' class='btn btn-danger' >Eliminar</a></td>";  
                       }
                       else{

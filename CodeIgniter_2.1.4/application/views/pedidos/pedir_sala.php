@@ -105,58 +105,63 @@ $atributos_Apellido=array('name'=>'Apellido');
     
     if (isset($docente)) {
         ?>
-    <h4>Docente</h4>
-    <br>
-    <div class="row">
-        <div class="span2"><?= form_label('Nombre :');?></div> <div class="span3"><?=  form_label($docente->nombres); ?></div>
-    </div>
-    <div class="row">
-       <div class="span2"><?=form_label('Apellido :');?></div>  <div></div><div class="span3"><?=  form_label($docente->apellidos); ?></div>   
-    </div>
-    <div class="row">
-       <div class="span2"><?=form_label('Rut :'); ?></div>  <div></div><div class="span3"><?=  form_label($docente->rut); ?></div>   
-    </div>
-     <?php
-    }
-    ?>
-     <br><br>
-     <h4>Pedir Sala</h4><br>
-     <?=     form_open(base_url('index.php/pedidos/guardarPedidoSala'));?>
-     <div class="row">
-         <div class="span2"></div><div class="span4"><?php echo form_input(array('name'=>'docente','type'=>'hidden','id'=>'docente','value'=>$docente->pk));?></div>
-     </div>
-    <div class="row">
-        <div class="span2"><label>Asignatura : </label></div><div class="span4">
-            <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura'")?>  
-         </div>
-    </div>
-     <div class="row">
-        <div class="span2"><label>Seccion : </label></div><div class="span4">
-            <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion'")?>  
-         </div>
-    </div>
-   
-    <div class="row">
-        <div class="span2"><label>Fecha : </label></div>
-        <div class="span4">
-            <input required type="text" id="datepicker" placeholder="->Seleccione Fecha " name="datepicker" />
+    <div class="row-fluid">    
+        <div class="span6">
+            <h4>Docente</h4>
+                
+                <div class="row">
+                    <div class="span2"><?= form_label('Nombre :');?></div> <div class="span3"><?=  form_label($docente->nombres); ?></div>
+                </div>
+                <div class="row">
+                   <div class="span2"><?=form_label('Apellido :');?></div>  <div></div><div class="span3"><?=  form_label($docente->apellidos); ?></div>   
+                </div>
+                <div class="row">
+                   <div class="span2"><?=form_label('Rut :'); ?></div>  <div></div><div class="span3"><?=  form_label($docente->rut); ?></div>   
+                </div>
+                 <?php
+                }
+                ?>
+        </div>
+        <div class="span6">
+               <h4>Pedir Sala</h4>
+                 <?=     form_open(base_url('index.php/pedidos/guardarPedidoSala'));?>
+                 <div class="row">
+                     <div class="span2"></div><div class="span4"><?php echo form_input(array('name'=>'docente','type'=>'hidden','id'=>'docente','value'=>$docente->pk));?></div>
+                 </div>
+                <div class="row">
+                    <div class="span2"><label>Asignatura : </label></div><div class="span4">
+                        <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura'")?>  
+                     </div>
+                </div>
+                 <div class="row">
+                    <div class="span2"><label>Seccion : </label></div><div class="span4">
+                        <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion'")?>  
+                     </div>
+                </div>
+               
+                <div class="row">
+                    <div class="span2"><label>Fecha : </label></div>
+                    <div class="span4">
+                        <input required type="text" id="datepicker" placeholder="->Seleccione Fecha " name="datepicker" />
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="span2"><label>Periodo : </label></div>
+                      <div class="span4">
+                       <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id='periodo'")?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2"><label>Sala a priori </label></div>
+                    <div class="span4" >
+                        <select id="divSala" name="sala"><option>->Seleccione la sala</option></select> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span7"><button type="submit" class="btn btn-primary btn-lg">Enviar</button> </div>
+                </div>
+             <?= form_close();?>
         </div>
     </div>
-     <div class="row">
-        <div class="span2"><label>Periodo : </label></div>
-          <div class="span4">
-           <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id='periodo'")?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span2"><label>Sala a priori :</label></div>
-        <div class="span4" >
-            <select id="divSala" name="sala"><option>->Seleccione la sala</option></select> 
-        </div>
-    </div>
-    <div class="row">
-        <div class="span7"><button type="submit" class="btn btn-primary btn-large">Enviar</button> </div>
-    </div>
-     <?= form_close();?>
-     <br>
+  
 </div>

@@ -10,7 +10,7 @@
             }
             if ($hoy != null) {
                 echo "<h3></h3>";
-                echo "<table class='table table-hover-striped'>
+                echo "<table class='table table-hover-striped' style='text-align:left;' >
                        <thead>
                         <tr>
                             <th>Periodo</th>

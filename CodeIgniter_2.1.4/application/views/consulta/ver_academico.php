@@ -4,7 +4,7 @@
                           <?php 
 
             if ($result != null) {
-                    echo "<table class='table table-hover-striped'>
+                    echo "<table class='table table-hover-striped' style='text-align:left;'>
                        <thead>
                         <tr>
                                 <th>Periodo</th>

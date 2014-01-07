@@ -3,7 +3,7 @@
 <div class="well">
     <h4 class="">Reservas de Profesores</h4>
      <div class="mygrid-wrapper-div">
-      <table class="table table-hover">
+      <table class="table table-hover" style="text-align:left;">
              <thead>
                     <tr>
                         <th>N° Pedido</th>

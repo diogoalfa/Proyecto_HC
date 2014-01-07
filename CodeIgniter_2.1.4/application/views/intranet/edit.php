@@ -1,7 +1,7 @@
 <div class="row-fluid"><br>
   <div class="span12">
      <?php 
-        $atributos_Btnn=  array('class'=>'btn btn-primary btn-large');
+        $atributos_Btnn=  array('class'=>'btn btn-primary btn-lg');
                     foreach ($periodo as $peri){ 
                         if($peri->pk==$edit->periodo_fk)  
                        $atributosPeriodo[0] = $peri->periodo." -> ".$peri->inicio." - ".$peri->termino; 

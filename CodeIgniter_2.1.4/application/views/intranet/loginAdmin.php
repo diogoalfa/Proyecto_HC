@@ -1,6 +1,6 @@
 
 <div class="well">
-   <div class="alert alert-block">
+   <div class="">
     <label><h2>Ingreso Administrador</h2></label>
     <?php
     
@@ -21,7 +21,7 @@
             'id' => 'pass'
         );
         $atributos_Btn=  array(
-            'class'=>'btn btn-primary btn-large'); 
+            'class'=>'btn btn-primary btn-lg'); 
         
         echo form_open('login/validarAdmin');
           echo form_label('Usuario', 'usuario');

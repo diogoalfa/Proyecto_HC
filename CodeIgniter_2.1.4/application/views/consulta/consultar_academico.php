@@ -4,7 +4,7 @@
 		<h3>Imparte Clase:</h3>
 			<?php 
 			        $atributos_Btn=  array(
-		            'class'=>'btn btn-primary btn-large'); 
+		            'class'=>'btn btn-primary btn-lg'); 
 		            $atributos= array( "" => "Seleccione un Academico", );
 					foreach ($academico as $profesor){ 
 						$atributos[$profesor->pk] = $profesor->nombres." ".$profesor->apellidos; 

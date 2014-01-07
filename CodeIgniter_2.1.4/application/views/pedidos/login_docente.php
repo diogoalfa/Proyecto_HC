@@ -2,7 +2,7 @@
 
 
 <div class="well">
-    <div class="alert alert-block">
+    <div class="">
         <label><h2>Ingreso Docentes</h2></label>
         <h5>Solo los profesores pueden acceder.Entrar con USUARIO y PASSWORD de dirdoc!.</h5><br>
       

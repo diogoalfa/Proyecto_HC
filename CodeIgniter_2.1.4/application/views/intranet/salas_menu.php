@@ -30,7 +30,7 @@
 			$atributosPeriodo= array( "" => "Seleccione un Periodo", );
         	foreach ($periodo as $peri){ 
 						$atributosPeriodo[$peri->pk] = $peri->periodo." -> ".$peri->inicio." - ".$peri->termino; }
-			$atributos_Btn=  array('class'=>'btn btn-primary btn-large','id'=>'btn_Asociar','name'=>'btn_Asociar');				
+			$atributos_Btn=  array('class'=>'btn btn-primary btn-lg','id'=>'btn_Asociar','name'=>'btn_Asociar');				
 				echo form_label('Sala', 'sala');
 				echo form_dropdown('sala', $atributosSala);
 				echo form_label('Academico', 'academico');
@@ -43,7 +43,7 @@
 	</div>
 	<div class="span2"><h4>Resultados</h4>
 			<?php echo form_label('Ver'); ?>
-		<a class="btn btn-info btn-large" href="<?= site_url('intranet/resultadosGral');?>">Asignaciones</a>
+		<a class="btn btn-info btn-lg" href="<?= site_url('intranet/resultadosGral');?>">Asignaciones</a>
 	</div>
 
 </div>
