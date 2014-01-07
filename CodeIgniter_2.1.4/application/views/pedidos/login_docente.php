@@ -27,7 +27,7 @@
             ,'type'=>'password',
             'placeholder'=>'************'
         );
-        $atributos_Btn=  array('class'=>'btn btn-primary btn-large'); 
+        $atributos_Btn=  array('class'=>'btn btn-primary btn-lg'); 
         $form=array('name'=>'form1');
         echo form_open('login/index',$form);
         echo form_label('Rut', 'labelRut');
