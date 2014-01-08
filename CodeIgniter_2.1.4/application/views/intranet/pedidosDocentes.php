@@ -14,14 +14,13 @@ $( window ).resize(function() {
 <div class="well">
     <h4 class="">Pedidos de Profesores</h4>
     <div class="mygrid-wrapper-div">
-      <table class="table table-hover" style="text-align:left;">
+      <table class="table table-hover-striped" style="text-align:left;">
              <thead>
                     <tr>
                         <th>N° Pedido</th>
                         <th>Profesor</th>
                         <th>Apellido</th>
-                        <th>Fecha</th>
-                       
+                        <th>Fecha</th>                      
                         <th>Asignatura</th>
                         <th>Periodo</th>
                         <th>Sala</th>
@@ -35,14 +34,14 @@ $( window ).resize(function() {
                      <?php
                     foreach ($pedidos as $pedi) { 
                         echo '<tr>';
-                        echo '<td>'.form_label($pedi->pk).'</td>';
-                        echo '<td>'.form_label($pedi->nombredocente).'</td>';
-                        echo '<td>'.form_label($pedi->apellidodocente).'</td>';
-                        echo '<td>'.form_label($pedi->fecha).'</td>'; 
+                        echo '<td>'.$pedi->pk.'</td>';
+                        echo '<td>'.$pedi->nombredocente.'</td>';
+                        echo '<td>'.$pedi->apellidodocente.'</td>';
+                        echo '<td>'.$pedi->fecha.'</td>'; 
                         
-                        echo '<td>'.form_label($pedi->asignatura).'</td>';
-                        echo '<td>'.form_label($pedi->periodo).'</td>';
-                        echo '<td>'.form_label($pedi->sala).'</td>'; 
+                        echo '<td>'.$pedi->asignatura.'</td>';
+                        echo '<td>'.$pedi->periodo.'</td>';
+                        echo '<td>'.$pedi->sala.'</td>'; 
                         echo "<td><a href='".base_url()."index.php/intranet/aprobarPedido/$pedi->pk/$pedi->fecha/$pedi->sala/$pedi->pksala/$pedi->nombredocente/$pedi->apellidodocente/$pedi->pkdocente/$pedi->asignatura/$pedi->pkasignatura/$pedi->periodo' onclick='return confirm('¿Desea editar este Contenido?')' class='btn btn-success' >Aprobar</a></td>";
                         ?>
                         <td><a class="btn btn-danger" href="javascript:void(0);"onclick="eliminar('<?php base_url()?>eliminarPedido/<?php echo $pedi->pk; ?>')">Rechazar</a></td>
