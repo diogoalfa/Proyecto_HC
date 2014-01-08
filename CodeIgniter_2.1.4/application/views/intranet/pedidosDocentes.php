@@ -1,6 +1,5 @@
-<script type="text/javascript" src="<?php echo base_url() ?>public/js/funciones.js"></script>
 <script>
-    $(function() {  
+      $(function() {  
    var window_height = $(window).height(),
    content_height = window_height - 200;
    $('.mygrid-wrapper-div').height(content_height);
@@ -12,9 +11,8 @@ $( window ).resize(function() {
    $('.mygrid-wrapper-div').height(content_height);
 });
 </script>
-
 <div class="well">
-    <h4 class="">Pedidos de profesores</h4>
+    <h4 class="">Pedidos de Profesores</h4>
     <div class="mygrid-wrapper-div">
       <table class="table table-hover" style="text-align:left;">
              <thead>

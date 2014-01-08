@@ -38,22 +38,23 @@
     <h4>Consultar por Asignatura</h4><br><br>
      <?= form_open(base_url('index.php/pedidos/verPedidos'))?>
      <?=form_input(array("type"=>"hidden","name"=>"docente",'id'=>'docente','value'=>$docente->pk))?>
-    <div class="row">
-        <div class="span2">
+    <div class="row-fluid">
+        <div class="span6">
         <?= form_label('Asignatura :')?>
         </div>
-        <div class="span3">
-        <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura'") ?>     
+        <div class="span6">
+        <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura' style='width:250px'") ?>     
         </div>
     </div>   
-    <div class="row">
-        <div class="span2"><?= form_label('Seccion :')?></div>
-        <div class="span3">
-        <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion'")?>    
+    <div class="row-fluid">
+        <div class="span6"><?= form_label('Seccion :')?></div>
+        <div class="span6">
+        <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion' style='width:250px'")?>    
         </div>
     </div>
-    <div class="row">
-       <div class="span3"><button type="submit" class="btn btn-primary">Consultar Pedido</button></div>  
+    <div class="row"><div class="span6"></div>
+       <div class="span2"><button type="submit" class="btn btn-primary">Consultar Pedido</button></div>  
+      <div class="span4"></div>
     </div>   
        
     

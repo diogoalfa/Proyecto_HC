@@ -44,5 +44,4 @@
                 </tbody>
  </table>
    </div><br><br>
-<!--     <button class="btn btn-warning" onclick="location.href='<?= site_url('login/desconectar') ?>'" >desconectar</button>
- --></div>
+</div>

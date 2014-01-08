@@ -1,5 +1,16 @@
+<script>
+        $(function() {  
+   var window_height = $(window).height(),
+   content_height = window_height - 200;
+   $('.mygrid-wrapper-div').height(content_height);
+});
 
-
+$( window ).resize(function() {
+   var window_height = $(window).height(),
+   content_height = window_height - 50;
+   $('.mygrid-wrapper-div').height(content_height);
+});
+</script>
 <div class="well">
     <h4 class="">Reservas de Profesores</h4>
      <div class="mygrid-wrapper-div">

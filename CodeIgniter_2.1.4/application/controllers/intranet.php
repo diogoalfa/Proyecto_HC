@@ -131,9 +131,35 @@ class Intranet extends CI_Controller {
                 $this->load->view('general/menu_principal');
                 $this->load->view('general/abre_bodypagina');  
                 $pedidos=$this->admin_model->getTodosPedidos();
-                $reservas=$this->admin_model->getReserva();
                 $this->load->view('intranet/header_menu');
                 $this->load->view('intranet/pedidosDocentes',compact('pedidos'));
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+            }
+
+
+
+    }
+        public function reservas(){
+
+            if(!isset($_SESSION['usuarioAdmin']))
+            {
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');
+                $this->load->view('intranet/nosesion');
+                $this->load->view('general/cierre_bodypagina');
+                $this->load->view('general/cierre_footer');
+
+            }else{
+                         $academico=$this->docente_model->getAcademico();
+                $salas=$this->admin_model->getSala();
+                $periodo=$this->admin_model->getPeriodo();
+                $this->load->view('general/headers');
+                $this->load->view('general/menu_principal');
+                $this->load->view('general/abre_bodypagina');  
+                $reservas=$this->admin_model->getReserva();
+                $this->load->view('intranet/header_menu');
                 $this->load->view('intranet/verReservas',compact('reservas'));
                 $this->load->view('general/cierre_bodypagina');
                 $this->load->view('general/cierre_footer');

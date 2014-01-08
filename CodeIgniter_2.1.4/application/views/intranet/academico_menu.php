@@ -104,26 +104,22 @@ maxDate: "+7M, 6D"
     
         <?= form_open('intranet/llenarReservaSemestre');?>
         <h4>Asignacion por semestre</h4><br>
-        <div class="row">
-         <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente'");?></div>
+        <div class="row-fluid">
+            <div class="span2">Docente:</div> <div class="span3"><?=form_dropdown('docente',$atributosDocente,'',"id='docente' style='width:250px'");?></div>
         </div>
-        <div class="row">
-         <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',$atributosAsignatura,'',"id='asignatura'");?></div>
+        <div class="row-fluid">
+            <div class="span2">Asignatura:</div> <div class="span3"><?=form_dropdown('asignatura',$atributosAsignatura,'',"id='asignatura' style='width:250px'");?></div>
         </div>
-        
-        <div class="row">
-            <div class="span2">Fecha:</div><div class="span3">
-                <?= form_input(array('name'=>'datepickerInicio','id'=>'datepicker','placeholder'=>'Desde'));?>
-            </div>
-                <div class="span3">
-                <?=form_input(array('name'=>'datepickerTermino','id'=>'datepicker2','placeholder'=>'Hasta'));?></div>
+        <div class="row-fluid">
+            <div class="span2">Fecha:</div><div class="span3"><?= form_input(array('style'=>'width:250px','name'=>'datepickerInicio','id'=>'datepicker','placeholder'=>'Desde'));?></div>
+            <div class="span3"><?=form_input(array('style'=>'width:250px','name'=>'datepickerTermino','id'=>'datepicker2','placeholder'=>'Hasta'));?></div>
         </div>
-        <div class="row">
-        <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo'");?></div>
+        <div class="row-fluid">
+            <div class="span2">Periodo:</div><div class="span3"><?=form_dropdown('periodo',$atributosPeriodo,'',"id='periodo' style='width:250px'" );?></div>
         </div>
         
-        <div class="row">
-        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'");?></div>
+        <div class="row-fluid">
+        <div class="span2">Sala :</div> <div class="span3"><?=form_dropdown('sala',array(''=>'Seleccione Sala'),'',"id='sala'style='width:250px'");?></div>
         </div>
         <div class="row">
             <div class="span7"><?= form_submit("btnEnviar", "Enviar","class='btn btn-primary btn-lg'"); ?></div> <div class="span3"></div>

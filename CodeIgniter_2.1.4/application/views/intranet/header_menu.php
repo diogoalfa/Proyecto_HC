@@ -9,7 +9,7 @@
 			<div class="btn-group">
 			    <a class="btn btn-default btn-lg" href="<?= site_url('intranet/academico');?>">Asignacion Semestre</a>
 			    <a class="btn btn-default btn-lg" href="<?= site_url('intranet/salas');?>">Peticion Docentes</a>
-			   
+			   <a class="btn btn-default btn-lg" href="<?= site_url('intranet/reservas');?>">Reservas</a>
 			</div>
 		</div>
 	</div>

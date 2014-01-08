@@ -108,15 +108,18 @@ $atributos_Apellido=array('name'=>'Apellido');
     <div class="row-fluid">    
         <div class="span6">
             <h4>Docente</h4>
-                
-                <div class="row">
-                    <div class="span2"><?= form_label('Nombre :');?></div> <div class="span3"><?=  form_label($docente->nombres); ?></div>
+                <div class="row-fluid">
+                    <div class="span6"></div>
+                    <div class="span6"></div>
                 </div>
-                <div class="row">
-                   <div class="span2"><?=form_label('Apellido :');?></div>  <div></div><div class="span3"><?=  form_label($docente->apellidos); ?></div>   
+                <div class="row-fluid">
+                    <div class="span6"><?= form_label('Nombre :');?></div> <div class="span6"><?=  form_label($docente->nombres); ?></div>
                 </div>
-                <div class="row">
-                   <div class="span2"><?=form_label('Rut :'); ?></div>  <div></div><div class="span3"><?=  form_label($docente->rut); ?></div>   
+                <div class="row-fluid">
+                   <div class="span6"><?=form_label('Apellido :');?></div>  <div></div><div class="span6"><?=  form_label($docente->apellidos); ?></div>   
+                </div>
+                <div class="row-fluid">
+                   <div class="span6"><?=form_label('Rut :'); ?></div>  <div></div><div class="span6"><?=  form_label($docente->rut); ?></div>   
                 </div>
                  <?php
                 }
@@ -125,40 +128,40 @@ $atributos_Apellido=array('name'=>'Apellido');
         <div class="span6">
                <h4>Pedir Sala</h4>
                  <?=     form_open(base_url('index.php/pedidos/guardarPedidoSala'));?>
-                 <div class="row">
-                     <div class="span2"></div><div class="span4"><?php echo form_input(array('name'=>'docente','type'=>'hidden','id'=>'docente','value'=>$docente->pk));?></div>
+                 <div class="row-fluid">
+                     <div class="span6"></div><div class="span6"><?php echo form_input(array('name'=>'docente','type'=>'hidden','id'=>'docente','value'=>$docente->pk));?></div>
                  </div>
-                <div class="row">
-                    <div class="span2"><label>Asignatura : </label></div><div class="span4">
-                        <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura'")?>  
+                <div class="row-fluid">
+                    <div class="span6"><label>Asignatura : </label></div><div class="span6">
+                        <?= form_dropdown('asignatura',$atributos_OptionAsig,'',"id='asignatura'style='width:250px'")?>  
                      </div>
                 </div>
-                 <div class="row">
-                    <div class="span2"><label>Seccion : </label></div><div class="span4">
-                        <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion'")?>  
+                 <div class="row-fluid">
+                    <div class="span6"><label>Seccion : </label></div><div class="span6">
+                        <?= form_dropdown('seccion',$atributos_OptionSeccion,'',"id='seccion' style='width:250px'")?>  
                      </div>
                 </div>
                
-                <div class="row">
-                    <div class="span2"><label>Fecha : </label></div>
-                    <div class="span4">
-                        <input required type="text" id="datepicker" placeholder="->Seleccione Fecha " name="datepicker" />
+                <div class="row-fluid">
+                    <div class="span6"><label>Fecha : </label></div>
+                    <div class="span6">
+                        <input required style='width:250px' type="text" id="datepicker" placeholder="->Seleccione Fecha " name="datepicker" />
                     </div>
                 </div>
-                 <div class="row">
-                    <div class="span2"><label>Periodo : </label></div>
-                      <div class="span4">
-                       <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id='periodo'")?>
+                 <div class="row-fluid">
+                    <div class="span6"><label>Periodo : </label></div>
+                      <div class="span6">
+                       <?= form_dropdown('sePeriodo',$atributos_OptionPeriodo,'',"id='periodo' style='width:250px'")?>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="span2"><label>Sala a priori </label></div>
-                    <div class="span4" >
-                        <select id="divSala" name="sala"><option>->Seleccione la sala</option></select> 
+                <div class="row-fluid">
+                    <div class="span6"><label>Sala a priori :</label></div>
+                    <div class="span6" >
+                        <select style='width:250px' id="divSala" name="sala"><option>->Seleccione la sala</option></select> 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="span7"><button type="submit" class="btn btn-primary btn-lg">Enviar</button> </div>
+                <div class="row-fluid">
+                    <div class="span6"><button type="submit" class="btn btn-primary btn-lg">Enviar</button> </div>
                 </div>
              <?= form_close();?>
         </div>
